@@ -57,9 +57,7 @@ const LoginForm: React.FC = () => {
   return (    <div className="w-[90%] sm:w-[450px] md:w-[500px] mx-auto p-4 sm:p-6 rounded-md shadow-md backdrop-blur-3xl bg-white/80">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {error && (
-            <div className="text-red-500 text-sm mb-4">{error}</div>
-          )}
+          
           
           <FormField
             control={form.control}
@@ -97,7 +95,9 @@ const LoginForm: React.FC = () => {
               </FormItem>
             )}
           />
-
+          {error && (
+            <div className="text-red-500 text-sm mb-4">{error}</div>
+          )}
           <Button 
             type="submit" 
             className="w-full"
@@ -105,6 +105,7 @@ const LoginForm: React.FC = () => {
           >
             {loading ? 'Logging in...' : 'Login'}
           </Button>
+          
         </form>
       </Form>
 
