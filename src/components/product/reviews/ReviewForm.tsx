@@ -37,15 +37,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
 
     try {
       const newReview: Review = {
-        // _id, name, user, product, createdAt, updatedAt will be handled by the backend
-        _id: '', // Placeholder, will be assigned by backend
-        name: '', // Placeholder, will be assigned by backend (user's name)
-        user: '', // Placeholder, will be assigned by backend (user's ID)
+        _id: '', 
+        name: '', 
+        user: '',
         product: productId,
         rating,
         comment,
-        createdAt: '', // Placeholder
-        updatedAt: '' // Placeholder
+        createdAt: '', 
+        updatedAt: '' 
       };
 
       await addReview(productId, newReview);
@@ -53,8 +52,12 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
       setComment('');
       setRating(0);
       onReviewSubmit();
-    } catch (err) {
-      setError('Failed to submit review. Please try again.');
+    } catch (err: any) {
+      if(err.response?.status === 400){
+        setError('You can only review products you have purchased.')
+      } else {
+        setError('Failed to submit review. Please try again.');
+      }
       console.error('Review submission error:', err);
     } finally {
       setLoading(false);
