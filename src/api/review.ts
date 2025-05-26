@@ -21,7 +21,7 @@ const addReview = async (idProduct: string, review: Review) => {
     }
 }
 
-const getReviewByIdProduct = async (idProduct: string) => {
+const getProductReviews = async (idProduct: string) => {
     try {
         const response = await axiosClient.get(`/products/${idProduct}/reviews`);
         return response.data;
@@ -30,4 +30,4 @@ const getReviewByIdProduct = async (idProduct: string) => {
         throw error;
     }
 }
-export { getReviews, addReview, getReviewByIdProduct };
+export { getReviews, addReview, getProductReviews };

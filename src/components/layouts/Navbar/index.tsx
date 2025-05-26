@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
-            </div>            {/* Mobile Menu */}
+            </div>         
             {isMobileMenuOpen && (
                 <div className="md:hidden flex flex-col items-center w-full mt-4 space-y-4 animate-in slide-in-from-top">
                     <NavCategory />
@@ -29,7 +29,6 @@ const Navbar: React.FC = () => {
                 </div>
             )}
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex md:flex-row md:items-center md:gap-4 lg:gap-6 w-full md:w-auto">
                 <NavCategory />
                 <SearchBar />

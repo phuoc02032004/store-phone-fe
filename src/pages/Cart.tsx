@@ -20,8 +20,6 @@ import CartSummary from '@/components/cart/CartSummary';
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="shadow-lg rounded-lg">

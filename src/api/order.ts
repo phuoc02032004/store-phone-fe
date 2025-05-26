@@ -1,4 +1,3 @@
-import axios from "axios";
 import type { Order } from "@/types/Order";
 import type { AxiosResponse } from "axios";
 import axiosClient from "./axiosClient";

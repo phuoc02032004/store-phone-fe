@@ -1,13 +1,10 @@
 import React from "react";
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,  
 } from "@/components/ui/dialog"
-import {getParents} from '@/api/category'     
 
 const ModalCategory: React.FC = () => {
     return(

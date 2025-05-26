@@ -50,7 +50,7 @@ const NavCategory: React.FC = () => {
             };
             fetchChildren();
         } else {
-            setChildCategories([]); // Clear children when no parent is selected
+            setChildCategories([]);
         }
     }, [selectedParentId]);
 

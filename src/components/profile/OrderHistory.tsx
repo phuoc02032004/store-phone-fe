@@ -34,8 +34,7 @@ const OrderHistory: React.FC = () => {
     setSelectedOrderId(null);
   };
 
-  useEffect(()=>{
-    const fetchMyorder = async () => {
+  const fetchMyorder = async () => {
       try {
         const response = await myOrder();
         setOrderHistory(response)
@@ -45,6 +44,8 @@ const OrderHistory: React.FC = () => {
         throw error
       }
     }
+
+  useEffect(()=>{
     fetchMyorder()
   },[])
 

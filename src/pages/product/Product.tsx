@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getProductbyId } from '@/api/product';
 import type { Product } from '@/types/Product';
+import type { Review } from '@/types/Review';
 import ProductImageGallery from '@/components/product/ProductImageGallery';
 import ProductInfo from '@/components/product/ProductInfo';
+import ReviewList from '@/components/product/reviews/ReviewList';
+import ReviewForm from '@/components/product/reviews/ReviewForm';
+import { getProductReviews } from '@/api/review';
 import {
   Card,
   CardHeader,
@@ -13,16 +17,18 @@ import {
 } from "@/components/ui/card";
 import { addItem } from '@/store/cartSlice';
 
-const Product: React.FC = () => {
+const Products: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [reviewsError, setReviewsError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
+  const fetchProduct = async () => {
       if (!id) {
         setError("Product ID is missing.");
         setLoading(false);
@@ -32,7 +38,6 @@ const Product: React.FC = () => {
         setLoading(true);
         const productData = await getProductbyId(id);
         setProduct(productData);
-        console.log(productData)
       } catch (err) {
         console.error("Error fetching product details:", err);
         setError("Failed to load product details.");
@@ -41,8 +46,28 @@ const Product: React.FC = () => {
       }
     };
 
+  const fetchReviews = async () => {
+    if (!id) {
+      setReviewsError("Product ID is missing for reviews.");
+      setReviewsLoading(false);
+      return;
+    }
+    try {
+      setReviewsLoading(true);
+      const reviewsData = await getProductReviews(id);
+      setReviews(reviewsData);
+    } catch (err) {
+      console.error("Error fetching reviews:", err);
+      setReviewsError("Failed to load reviews.");
+    } finally {
+      setReviewsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchProduct();
-  }, [id]);
+    fetchReviews();
+  }, []);
 
   const handleQuantityChange = (value: number) => {
     if (value >= 1) setQuantity(value);
@@ -93,8 +118,17 @@ const Product: React.FC = () => {
           </div>
         </CardContent>
       </Card>
+
+      {reviewsLoading ? (
+        <div className="text-center py-4">Loading reviews...</div>
+      ) : reviewsError ? (
+        <div className="text-center py-4 text-red-500">{reviewsError}</div>
+      ) : (
+        <ReviewList reviews={reviews || []} />
+      )}
+      <ReviewForm productId={product._id} onReviewSubmit={fetchReviews} />
     </div>
   );
 };
 
-export default Product;
+export default Products;

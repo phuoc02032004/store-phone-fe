@@ -1,4 +1,3 @@
-import axios from "axios";
 import type { ZaloPay } from "@/types/Zalopay";
 import axiosClient from "./axiosClient";
 

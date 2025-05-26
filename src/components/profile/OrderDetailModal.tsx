@@ -14,8 +14,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ isOpen, onClose, or
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchOrderDetail = async () => {
+  const fetchOrderDetail = async () => {
       if (!orderId) return;
 
       setLoading(true);
@@ -32,7 +31,8 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ isOpen, onClose, or
         setLoading(false);
       }
     };
-
+    
+  useEffect(() => {
     if (isOpen) {
       fetchOrderDetail();
     } else {

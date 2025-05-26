@@ -1,5 +1,6 @@
 import type { Category } from "./Category";
 import type { Feedback } from "./Feedback";
+import type { Review } from "./Review";
 
 export interface ProductSpecifications {
     display?: string;
@@ -25,5 +26,6 @@ export interface Product {
     feedback?: Feedback[];
     isNewArrival?: boolean;
     isBestSeller?: boolean;
+    reviews?: Review[]
 }
 
