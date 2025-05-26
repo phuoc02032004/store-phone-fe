@@ -19,5 +19,15 @@ const register = async (email: string, password: string, username: string) => {
         throw error;
     }
 };
-  
-export { login, register };
+
+const changePassword = async (oldPassword: string, newPassword: string) => {
+    try {
+        const response = await axiosClient.patch('/auth/changepassword', { oldPassword, newPassword });
+        return response.data;
+    } catch (error) {
+        console.error('Error changing password:', error);
+        throw error;
+    }
+}
+
+export { login, register, changePassword };

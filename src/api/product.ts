@@ -31,4 +31,14 @@ const getProductbyId = async (id: string): Promise<Product> => {
     }
 };
 
-export { getProducts, getProductbyCategory, getProductbyId };
+const searchProducts = async (query: string): Promise<Product[]> => {
+    try {
+        const response = await axiosClient.get('/products/search', { params: { q: query } });
+        return response.data;
+    } catch (error) {
+        console.error('Error searching products:', error);
+        throw error;
+    }
+}
+
+export { getProducts, getProductbyCategory, getProductbyId, searchProducts };

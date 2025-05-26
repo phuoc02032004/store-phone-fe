@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { toast } from "sonner"
 import type { Product } from "@/types/Product";
 
 interface ProductCardProps {
@@ -20,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     const handleAddToCart = () => {
         if(!localStorage.getItem('token')){
-            alert('Ban can dang nhap')
+            toast('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng')
         } else {
             dispatch(addItem({ product, quantity: 1 }));
             console.log(`Added ${product.name} to cart`);

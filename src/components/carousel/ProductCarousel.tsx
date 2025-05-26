@@ -28,7 +28,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
         onMouseLeave={() => plugin.current.reset()}
       >
         <CarouselContent className="-ml-4">
-          {products.map((product) => (
+          {products.slice().reverse().slice().map((product) => (
             <CarouselItem
               key={product._id}
               className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/4"

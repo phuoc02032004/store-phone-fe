@@ -38,7 +38,6 @@ const ProductSection: React.FC = () => {
 
     return (
         <main className="flex flex-col items-center px-4 py-8 md:px-8 gap-16">
-            {/* New Arrival Section */}
             <section className="w-full max-w-[1400px]">
                 <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-6">
                     New Arrival

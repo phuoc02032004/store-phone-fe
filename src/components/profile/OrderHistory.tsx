@@ -22,7 +22,7 @@ const OrderHistory: React.FC = () => {
   const totalPages = Math.ceil(orderHistory.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentOrders = orderHistory.slice(startIndex, endIndex);
+  const currentOrders = orderHistory.slice().reverse().slice(startIndex, endIndex);
 
   const openModal = (orderId: string) => {
     setSelectedOrderId(orderId);

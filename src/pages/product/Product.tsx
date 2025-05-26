@@ -15,6 +15,7 @@ import {
   CardTitle,
   CardContent,
 } from "@/components/ui/card";
+import { toast } from "sonner"
 import { addItem } from '@/store/cartSlice';
 
 const Products: React.FC = () => {
@@ -75,11 +76,11 @@ const Products: React.FC = () => {
 
   const handleAddToCart = () => {
     if(!localStorage.getItem('token')){
-      alert('Login pls')
+      toast('Login pls')
     }else{
         if (product) {
         dispatch(addItem({ product, quantity }));
-        alert(`Added ${quantity} of ${product.name} to cart`)
+        toast(`Added ${quantity} of ${product.name} to cart`)
       }
     }
 
