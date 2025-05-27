@@ -8,9 +8,6 @@ const AccountSettings: React.FC = () => {
   const navigate = useNavigate();
   const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =useState(false);
 
-  const handleChangePassword = () => {
-    console.log("Change password clicked");
-  };
 
   const handleLogout = () => {
     console.log("Logout clicked");

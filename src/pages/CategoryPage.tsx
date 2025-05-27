@@ -73,7 +73,7 @@ const CategoryPage: React.FC = () => {
 
       {products.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map(product => (
+          {products.slice().reverse().map(product => (
             <Link key={product._id} to={`/product/${product._id}`}> 
               <ProductCard product={product} />
             </Link>

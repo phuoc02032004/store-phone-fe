@@ -27,5 +27,15 @@ export interface Product {
     isNewArrival?: boolean;
     isBestSeller?: boolean;
     reviews?: Review[]
+    variants: Variant[];
+}
+
+export interface Variant {
+    _id: string;
+    color: string;
+    capacity: string;
+    price: number;
+    stock: number;
+    sku: string;
 }
 

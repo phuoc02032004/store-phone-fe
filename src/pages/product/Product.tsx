@@ -74,12 +74,13 @@ const Products: React.FC = () => {
     if (value >= 1) setQuantity(value);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (selectedVariant?: Product['variants'][0]) => {
     if(!localStorage.getItem('token')){
       toast('Login pls')
     }else{
         if (product) {
-        dispatch(addItem({ product, quantity }));
+        console.log('Adding to cart:', product, quantity, selectedVariant);
+        dispatch(addItem({ product, quantity, selectedVariant }));
         toast(`Added ${quantity} of ${product.name} to cart`)
       }
     }

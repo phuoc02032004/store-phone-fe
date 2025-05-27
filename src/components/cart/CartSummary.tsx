@@ -21,14 +21,15 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
   const transformedItems = cartItems.map(item => ({
     product: item._id,
     quantity: item.quantity,
-    price: item.price,
-    _id: item._id
+    price: item.selectedVariant?.price || item.price, // Use variant price if available
+    _id: item._id,
+    ...(item.selectedVariant && { variantId: item.selectedVariant._id }) // Include variantId if variant exists
   }));
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.selectedVariant?.price || item.price) * item.quantity, 0);
   let discount = 0;
 
   if (appliedCoupon) {
@@ -52,7 +53,8 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
     try {
       const response = await getCouponByCode(couponCode);
       const applyResponse = await applyCoupon(couponCode);
-      
+      console.log('Coupon applied:', applyResponse);
+
       setAppliedCoupon(response);
       toast.success(`Coupon "${couponCode}" applied successfully!`);
     } catch (error: any) {

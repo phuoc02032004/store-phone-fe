@@ -16,13 +16,24 @@ import {
 } from "@/components/ui/table";
 import CartItem from '@/components/cart/CartItem';
 import CartSummary from '@/components/cart/CartSummary';
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Card className="shadow-lg rounded-lg">
+      {!localStorage.getItem('token') ? (
+        <Button
+          className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          onClick={() => navigate('/login')}
+        >
+          Login
+        </Button>
+      ) : (
+        <Card className="shadow-lg rounded-lg">
         <CardHeader className="bg-gray-100 border-b border-gray-200 p-6">
           <CardTitle className="text-2xl font-bold text-gray-800">Shopping Cart</CardTitle>
         </CardHeader>
@@ -63,6 +74,7 @@ const Cart: React.FC = () => {
           )}
         </CardContent>
       </Card>
+      )}
     </div>
   );
 };

@@ -7,7 +7,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink, 
-  navigationMenuTriggerStyle, 
 } from "@/components/ui/navigation-menu";
 import { getParents, getChild } from "@/api/category"; 
 import type { Category } from "@/types/Category";
@@ -20,7 +19,7 @@ const NavCategory: React.FC = () => {
     const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
     const [selectedParentName, setSelectedParentName] = useState<string | null>(null);
     const [loadingChildren, setLoadingChildren] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); 
+    const [, setIsMenuOpen] = useState(false); 
 
     useEffect(() => {
         const fetchParents = async () => {
