@@ -7,6 +7,9 @@ const axiosClient = axios.create({
     },
 });
 
+const DEFAULT_RETRY_COUNT = 3;
+const DEFAULT_RETRY_DELAY = 1000;
+
 axiosClient.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');

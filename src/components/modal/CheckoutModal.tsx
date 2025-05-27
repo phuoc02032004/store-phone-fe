@@ -16,11 +16,12 @@ interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
   items: Items[];
+  coupon: string | null;
 }
 
 type ViewState = 'form' | 'zalopay_redirect' | 'cod_thankyou';
 
-const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items }) => {
+const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, coupon }) => {
   const dispatch = useDispatch();
   const initialShippingAddress = { street: '', city: '', state: '', phone: '' };
   const [shippingAddress, setShippingAddress] = useState(initialShippingAddress);
@@ -30,7 +31,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items })
   const [viewState, setViewState] = useState<ViewState>('form');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
 
   const resetModalState = () => {
     setShippingAddress(initialShippingAddress);
@@ -50,10 +50,12 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items })
     }
   }, [isOpen]);
 
-
   const handleModalClose = () => {
-    resetModalState(); 
-    onClose();        
+    if (viewState === 'cod_thankyou' || viewState === 'zalopay_redirect') {
+      dispatch(clearCart());
+    }
+    resetModalState();
+    onClose();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,18 +67,15 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items })
     setIsLoading(true);
     setError(null);
 
-    console.log('Checkout submitted:', { shippingAddress, paymentMethod, notes, items });
     try {
       const orderData = {
         items: items,
         shippingAddress: shippingAddress,
         paymentMethod: paymentMethod,
         notes: notes,
+        appliedCoupon: coupon
       };
       const orderResponse = await createOrder(orderData);
-      console.log('Method', orderResponse.paymentMethod);
-
-      dispatch(clearCart());
       
       if (paymentMethod === "ZaloPay") {
         if (!orderResponse || !orderResponse._id) {
@@ -105,12 +104,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items })
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleZaloPayRedirect = () => {
-    setTimeout(() => {
-      // handleModalClose();
-    }, 300);
   };
 
 
@@ -218,7 +211,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items })
             </DialogHeader>
             <div className="py-6 text-center">
               <Button asChild className="w-full bg-blue-500 hover:bg-blue-600 text-white">
-                <a href={zalopayUrl} target="_blank" rel="noopener noreferrer" onClick={handleZaloPayRedirect}>
+                <a href={zalopayUrl} target="_blank" rel="noopener noreferrer">
                   Pay with ZaloPay
                 </a>
               </Button>

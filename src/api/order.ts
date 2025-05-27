@@ -25,6 +25,7 @@ interface CreateOrderPayload {
 }
 
 const createOrder = async (payload: CreateOrderPayload): Promise<Order> => {
+    console.log('Request payload:', payload);
     try {
         const response: AxiosResponse<Order> = await axiosClient.post('/orders', payload);
         return response.data;

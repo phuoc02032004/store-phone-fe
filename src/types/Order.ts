@@ -10,6 +10,10 @@ export interface Order {
     notes: string,
     createdAt: string,
     updatedAt: string,
+    shippingFee?: number,
+    isFreeShipping?: boolean,
+    appliedCoupon?: string | null,
+    discountAmount?: number,
 }
 
 export interface shippingAddress {

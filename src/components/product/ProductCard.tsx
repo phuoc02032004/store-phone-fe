@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             toast('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng')
         } else {
             dispatch(addItem({ product, quantity: 1 }));
-            console.log(`Added ${product.name} to cart`);
+            toast(`Added ${product.name} to cart`);
         }
        
     };
