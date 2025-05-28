@@ -20,7 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     return(
-        <Card className="w-full max-w-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white flex flex-col h-[420px]">
+        <Card className="w-full max-w-sm rounded-xl overflow-hidden shadow-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white flex flex-col h-[420px]">
             <div className="relative group w-full h-[200px] overflow-hidden">
                 <img
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
@@ -30,18 +30,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <div className="absolute inset-0 bg-black opacity-0  transition-opacity duration-300"/>
             </div>
             <CardHeader className="p-4 flex-grow">
-                <CardTitle className="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                <CardTitle className="text-sm text-white font-bold bg-gray-800 rounded-2xl p-1 hover:text-gray-500 transition-colors duration-300 line-clamp-2">
                     {product.name}
                 </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 pt-0">
-                <p className="text-2xl font-semibold text-blue-600">
+            <CardContent className="p-2 pt-0">
+                <p className="text-2xl font-bold text-black">
                     {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price || product.variants?.[0]?.price)}
                 </p>
             </CardContent>
             <CardFooter className="p-4 pt-0">
                 <button
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                    className="w-full bg-black hover:bg-white text-white hover:text-black font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
                     onClick={handleAddToCart}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

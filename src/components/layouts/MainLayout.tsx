@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen w-full bg-[linear-gradient(to_right,#3B5284,#43978D)]">
+    <div className="flex flex-col min-h-screen w-full bg-[linear-gradient(to_right,#522157,#53A6D8)]">
       <Toaster />
       <main className="flex flex-col flex-grow w-full min-h-screen">
         <Navbar /> 

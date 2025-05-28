@@ -64,10 +64,13 @@ const cartSlice = createSlice({
 
       if (itemToUpdate) {
         itemToUpdate.quantity = quantity;
+              state.itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
+
       }
     },
     clearCart: (state) => {
       state.items = [];
+      state.itemCount = 0;
     },
   },
 });

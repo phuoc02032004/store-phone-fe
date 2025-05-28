@@ -21,18 +21,18 @@ const AccountSettings: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Account Settings</h2>
+      <h2 className="text-3xl font-semibold text-gray-700 mb-6">Account Settings</h2>
       <Separator />
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold" >Change Password</h3>
+        <h3 className="text-2xl font-medium text-gray-800">Change Password</h3>
         <p>Change password form/button will go here.</p>
-        <Button onClick={openChangePasswordModal}>Change Password</Button>
+        <Button onClick={openChangePasswordModal} className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors duration-200">Change Password</Button>
       </div>
       <Separator />
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold">Logout</h3>
+        <h3 className="text-2xl font-medium text-gray-800">Logout</h3>
         <p>Logout button will go here.</p>
-        <Button variant="destructive" onClick={handleLogout}>
+        <Button variant="destructive" onClick={handleLogout} className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors duration-200">
           Logout
         </Button>
       </div>

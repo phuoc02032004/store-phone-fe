@@ -6,7 +6,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 function BannerCarousel() {
-  const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const plugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   const bannerContent = [
     { id: 1, text: "Banner 1", bgColor: "bg-blue-500", url:"https://mir-s3-cdn-cf.behance.net/project_modules/1400/34b5bf180145769.6505ae7623131.jpg" },
@@ -19,7 +19,7 @@ function BannerCarousel() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-w-screen-lg mx-auto"
+      className="w-full max-w-6xl mx-auto px-4"
       onMouseEnter={() => {
         plugin.current.stop();
       }}
@@ -30,14 +30,13 @@ function BannerCarousel() {
       <CarouselContent>
         {bannerContent.map((banner) => (
           <CarouselItem key={banner.id}>
-            <div className={`flex aspect-video items-center justify-center text-white text-2xl rounded-xl max-h-[350px]`}>
-              <img src={banner.url} alt="" className="rounded-xl  max-h-[350px]"/>
+            <div className={`flex aspect-video items-center justify-center text-white text-2xl rounded-xl overflow-hidden h-full`}>
+              <img src={banner.url} alt="" className="rounded-xl w-full h-full object-cover max-h-[200px] sm:max-h-[300px] md:max-h-[400px]"/>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="rounded-full bg-white/60 hover:bg-white/80 transition-colors duration-200"/>
-      <CarouselNext className="rounded-full bg-white/60 hover:bg-white/80 transition-colors duration-200"/>
+
     </Carousel>
   )
 }

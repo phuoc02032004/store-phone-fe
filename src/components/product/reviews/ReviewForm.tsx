@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 import { addReview } from '@/api/review';
 import type { Review } from '@/types/Review';
+import { toast } from 'sonner';
 
 interface ReviewFormProps {
   productId: string;
@@ -30,7 +31,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
     setSuccess(null);
 
     if (!comment || rating === 0) {
-      setError('Please fill in all fields and provide a rating.');
+      toast.error('Please fill in all fields and provide a rating.');
       setLoading(false);
       return;
     }
@@ -54,7 +55,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
       onReviewSubmit();
     } catch (err: any) {
       if(err.response?.status === 400){
-        setError('You can only review products you have purchased.')
+        toast.error('You can only review products you have purchased.');
       } else {
         setError('Failed to submit review. Please try again.');
       }
