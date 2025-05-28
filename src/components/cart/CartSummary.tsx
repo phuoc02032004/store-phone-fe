@@ -21,9 +21,9 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
   const transformedItems = cartItems.map(item => ({
     product: item._id,
     quantity: item.quantity,
-    price: item.selectedVariant?.price || item.price, // Use variant price if available
+    price: item.selectedVariant?.price || item.price, 
     _id: item._id,
-    ...(item.selectedVariant && { variantId: item.selectedVariant._id }) // Include variantId if variant exists
+    ...(item.selectedVariant && { variantId: item.selectedVariant._id }) 
   }));
 
   const openModal = () => setIsModalOpen(true);

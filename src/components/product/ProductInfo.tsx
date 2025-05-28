@@ -42,7 +42,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
       );
       setCurrentVariant(variant || null);
     } else if (product.variants && product.variants.length > 0 && !product.price) {
-      // Fallback for products with variants but no initial selection
       setCurrentVariant(product.variants[0]);
     } else {
       setCurrentVariant(null);
@@ -58,10 +57,10 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
   const displayStock = currentVariant ? currentVariant.stock : product.stock;
 
   return (
-    <div className="space-y-6 m-6 shadow-2xl p-10">
+    <div className="space-y-6 m-4 sm:m-6 shadow-2xl p-4 sm:p-6 md:p-10">
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="text-4xl font-bold text-gray-900">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+          <div className="text-3xl sm:text-4xl font-bold text-gray-900">
             {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(displayPrice || 0)}
           </div>
           <Badge variant="secondary" className={`${displayStock && displayStock > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} px-3 py-1 rounded-full text-sm font-medium`}>
@@ -69,7 +68,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
           </Badge>
         </div>
 
-        <div className="flex items-center space-x-4 text-sm text-gray-600">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-600">
           <div className="flex items-center">
             <span className="mr-1 text-yellow-500">★</span>
             4.8 (120 reviews)
@@ -126,7 +125,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
             Description
           </TabsTrigger>
           <TabsTrigger value="specifications" className="rounded-md py-2 text-gray-700 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm">
-            Specifications  
+            Specifications
           </TabsTrigger>
         </TabsList>
         <TabsContent value="description" className="mt-6 text-gray-700 leading-relaxed">
@@ -147,7 +146,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
       <Separator />
 
       {/* Quantity Selector */}
-      <div className="flex items-center space-x-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
         <span className="font-medium text-gray-700">Quantity:</span>
         <div className="flex items-center space-x-2">
           <Button

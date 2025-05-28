@@ -20,10 +20,14 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }))
 
   return (
-    <div className="relative px-4 py-8 mx-auto max-w-[1400px]">
+    <div className="relative py-8 mx-auto max-w-[1400px]">
       <Carousel
         plugins={[plugin.current]}
-        className="w-full"
+        className="w-full px-4"
+        opts={{
+          align: "start",
+          slidesToScroll: 1,
+        }}
         onMouseEnter={() => plugin.current.stop()}
         onMouseLeave={() => plugin.current.reset()}
       >
@@ -31,7 +35,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
           {products.slice().reverse().slice().map((product) => (
             <CarouselItem
               key={product._id}
-              className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/4"
+              className="basis-full sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
             >
               <Link to={`/product/${product._id}`} className="block cursor-pointer">
                 <div className="p-2">
@@ -41,8 +45,8 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden sm:flex -left-6 sm:-left-8 h-10 w-10 sm:h-12 sm:w-12 border-2 border-blue-600 bg-white hover:bg-blue-50" />
-        <CarouselNext className="hidden sm:flex -right-6 sm:-right-8 h-10 w-10 sm:h-12 sm:w-12 border-2 border-blue-600 bg-white hover:bg-blue-50" />
+        <CarouselPrevious className="h-8 w-8 -left-2 sm:h-10 sm:w-10 sm:-left-6 md:h-12 md:w-12 md:-left-8 border-2 border-blue-600 bg-white hover:bg-blue-50 hidden sm:flex" />
+        <CarouselNext className="h-8 w-8 -right-2 sm:h-10 sm:w-10 sm:-right-6 md:h-12 md:w-12 md:-right-8 border-2 border-blue-600 bg-white hover:bg-blue-50 hidden sm:flex" />
       </Carousel>
     </div>
   )

@@ -7,11 +7,13 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import Profile from "./pages/Profile";
 import CategoryPage from "./pages/CategoryPage";
+import ScrollToTop from "./components/utils/ScrollToTop";
 import './App.css'
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

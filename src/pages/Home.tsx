@@ -5,7 +5,7 @@ import CouponList from '../components/coupon/CouponList';
 
 const Home: React.FC = () => {
     return (
-        <main className="flex flex-col  justify-center items-center">
+        <main className="flex flex-col justify-center items-center px-4 md:px-8">
             <HeroSection />
             <ProductSection/>
             <CouponList />

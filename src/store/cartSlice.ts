@@ -16,10 +16,12 @@ export interface CartItem extends Product {
 
 interface CartState {
   items: CartItem[];
+  itemCount: number;
 }
 
 const initialState: CartState = {
   items: [],
+  itemCount: 0,
 };
 
 const cartSlice = createSlice({
@@ -29,7 +31,6 @@ const cartSlice = createSlice({
     addItem: (state, action: PayloadAction<{ product: Product; quantity: number; selectedVariant?: CartItem['selectedVariant'] }>) => {
       const { product, quantity, selectedVariant } = action.payload;
       
-      // Create a unique ID for the cart item based on product ID and variant ID
       const cartItemId = selectedVariant ? `${product._id}-${selectedVariant._id}` : product._id;
 
       const existingItem = state.items.find(item => {
@@ -42,9 +43,15 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...product, quantity, selectedVariant });
       }
+
+      state.itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
     },
     removeItem: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter(item => item._id !== action.payload);
+      state.items = state.items.filter(item => {
+        const existingCartItemId = item.selectedVariant ? `${item._id}-${item.selectedVariant._id}` : item._id;
+        return existingCartItemId !== action.payload;
+      });
+      state.itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
     },
     updateQuantity: (state, action: PayloadAction<{ id: string; quantity: number; variantId?: string }>) => {
       const { id, quantity, variantId } = action.payload;
@@ -66,5 +73,6 @@ const cartSlice = createSlice({
 });
 
 export const { addItem, removeItem, updateQuantity, clearCart } = cartSlice.actions;
+export const selectCartItemCount = (state: { cart: CartState }) => state.cart.itemCount;
 
 export default cartSlice.reducer;

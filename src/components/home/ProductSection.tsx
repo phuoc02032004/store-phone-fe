@@ -29,38 +29,37 @@ const ProductSection: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <div className="text-center text-white">Loading products...</div>;
+        return <div className="text-center text-white py-10">Loading products...</div>;
     }
 
     if (error) {
-        return <div className="text-center text-red-500">{error}</div>;
+        return <div className="text-center text-red-500 py-10">{error}</div>;
     }
 
     return (
-        <main className="flex flex-col items-center px-4 py-8 md:px-8 gap-16">
-            <section className="w-full max-w-[1400px]">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-6">
+        <div className="flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12 gap-8 md:gap-12 lg:gap-16 w-full mx-auto">
+            <section className="w-full">
+                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8">
                     New Arrival
                 </h2>
                 {productNew.length > 0 ? (
                     <ProductCarousel products={productNew} />
                 ) : (
-                    <p className="text-center text-white">No new arrival products found.</p>
+                    <p className="text-center text-white py-4">No new arrival products found.</p>
                 )}
             </section>
 
-            {/* Best Seller Section */}
-            <section className="w-full max-w-[1400px]">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-6">
+            <section className="w-full">
+                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8">
                     Best Seller
                 </h2>
                 {productBest.length > 0 ? (
                     <ProductCarousel products={productBest} />
                 ) : (
-                    <p className="text-center text-white">No best seller products found.</p>
+                    <p className="text-center text-white py-4">No best seller products found.</p>
                 )}
             </section>
-        </main>
+        </div>
     );
 };
 
