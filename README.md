@@ -8,8 +8,11 @@
 -   [Tính năng](#tính-năng)
 -   [Cài đặt](#cài-đặt)
 -   [Sử dụng](#sử-dụng)
+-   [Triển khai với Docker](#triển-khai-với-docker)
 -   [Cấu trúc dự án](#cấu-trúc-dự-án)
 -   [Redux Workflow](#redux-workflow)
+-   [Tích hợp ZaloPay](#tích-hợp-zalopay)
+-   [Tích hợp WebSocket IO](#tích-hợp-websocket-io)
 
 ## Giới thiệu
 
@@ -28,6 +31,8 @@ Dự án này là giao diện người dùng (frontend) cho một ứng dụng c
 -   Xem lịch sử đơn hàng
 -   Xem chi tiết đơn hàng
 -   Hủy đơn hàng
+-   Tích hợp thanh toán ZaloPay
+-   Thông báo thời gian thực qua WebSocket IO
 
 ## Cài đặt
 
@@ -57,6 +62,21 @@ yarn dev
 ```
 
 Ứng dụng sẽ chạy trên `http://localhost:5173` (hoặc một cổng khác nếu 5173 đã được sử dụng).
+
+## Triển khai với Docker
+
+Để triển khai ứng dụng bằng Docker, bạn có thể làm theo các bước sau:
+
+1.  **Build Docker image:**
+    ```bash
+    docker build -t phone-store-fe .
+    ```
+
+2.  **Run Docker container:**
+    ```bash
+    docker run -p 80:80 phone-store-fe
+    ```
+    Ứng dụng sẽ có sẵn tại `http://localhost:80`.
 
 ## Cấu trúc dự án
 
@@ -124,3 +144,11 @@ Dự án này sử dụng Redux Toolkit để quản lý trạng thái ứng d�
 **Quy trình:**
 
 Component -> Dispatch Action -> Store -> Reducer -> Cập nhật State -> Component re-render.
+
+## Tích hợp ZaloPay
+
+Dự án này tích hợp cổng thanh toán ZaloPay để cung cấp phương thức thanh toán trực tuyến an toàn và tiện lợi cho người dùng.
+
+## Tích hợp WebSocket IO
+
+Dự án sử dụng WebSocket IO để cung cấp các thông báo thời gian thực, ví dụ như thông báo trạng thái đơn hàng hoặc các cập nhật quan trọng khác đến người dùng ngay lập tức.
