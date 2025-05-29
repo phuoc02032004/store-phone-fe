@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { myOrder } from '@/api/order';
+import { myOrder, cancelOrder } from '@/api/order';
 import { Button } from '../ui/button';
 
 import OrderDetailModal from './OrderDetailModal';
@@ -12,6 +12,7 @@ import {
   PaginationNext,
   PaginationEllipsis,
 } from "@/components/ui/pagination";
+import { id } from 'date-fns/locale';
 
 const OrderHistory: React.FC = () => {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -56,6 +57,16 @@ const OrderHistory: React.FC = () => {
     }
   };
 
+  const handleCancelOrder = async (id: string) => {
+    try {
+      const response  = await cancelOrder(id);
+      return response;
+    } catch (error) {
+      console.error('Error cancel order', error);
+      throw error;
+    }
+  }
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Order History</h2>
@@ -71,9 +82,11 @@ const OrderHistory: React.FC = () => {
                 </div>
                 <div className="flex justify-between mt-2">
                   <span className="font-semibold">Total: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.totalAmount)}</span>
-                   <Button onClick={() => openModal(order._id)}>Detail</Button>
-
-                </div>
+                    <div className='flex gap-2'>
+                        {/* <Button onClick={() => handleCancelOrder(order._id)} className='text-white'>Cancel</Button> */}
+                        <Button className='text-white' onClick={() => openModal(order._id)}>Detail</Button>
+                    </div>
+                  </div>
               </div>
             ))}
           </div>
@@ -86,56 +99,47 @@ const OrderHistory: React.FC = () => {
             </PaginationItem>
             {(() => {
               const pageNumbers: (number | string)[] = [];
-              const maxPageButtons = 6; // Max number of numeric page buttons to display
+              const maxPageButtons = 6;
 
               if (totalPages <= maxPageButtons) {
                 for (let i = 1; i <= totalPages; i++) {
                   pageNumbers.push(i);
                 }
               } else {
-                // Always show the first page
                 pageNumbers.push(1);
 
-                // Determine the range of pages around the current page
-                const pagesAroundCurrent = maxPageButtons - 3; // 1 (first), ... , (current-x), current, (current+y), ..., (last)
+                const pagesAroundCurrent = maxPageButtons - 3; 
                 let startMiddle = Math.max(2, currentPage - Math.floor(pagesAroundCurrent / 2));
                 let endMiddle = Math.min(totalPages - 1, currentPage + Math.ceil(pagesAroundCurrent / 2));
 
-                // Adjust window if it's too close to the beginning
                 if (startMiddle <= 2) {
                   startMiddle = 2;
-                  endMiddle = maxPageButtons - 1; // Fill up to maxPageButtons - 1
+                  endMiddle = maxPageButtons - 1; 
                 }
-                // Adjust window if it's too close to the end
                 if (endMiddle >= totalPages - 1) {
                   endMiddle = totalPages - 1;
-                  startMiddle = totalPages - (maxPageButtons - 2); // Fill back from totalPages - 1
+                  startMiddle = totalPages - (maxPageButtons - 2);
                 }
 
-                // Add left ellipsis if needed
                 if (startMiddle > 2) {
                   pageNumbers.push('...');
                 }
 
-                // Add middle pages
                 for (let i = startMiddle; i <= endMiddle; i++) {
                   pageNumbers.push(i);
                 }
 
-                // Add right ellipsis if needed
                 if (endMiddle < totalPages - 1) {
                   pageNumbers.push('...');
                 }
 
-                // Always show the last page
                 pageNumbers.push(totalPages);
 
-                // Final cleanup for edge cases where ellipses might be redundant or too many numbers
                 const finalCleanedItems: (number | string)[] = [];
                 let lastItem: number | string | null = null;
                 for (const item of pageNumbers) {
                     if (item === '...') {
-                        if (lastItem !== '...') { // Avoid consecutive ellipses
+                        if (lastItem !== '...') {
                             finalCleanedItems.push(item);
                             lastItem = item;
                         }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { getOrderbyId } from '@/api/order';
+import { getOrderbyId, cancelOrder } from '@/api/order';
 import { Separator } from "@/components/ui/separator";
+import { Button } from '@/components/ui/button';  
+import { toast } from 'sonner';
 
 interface OrderDetailModalProps {
   isOpen: boolean;
@@ -41,6 +43,17 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ isOpen, onClose, or
     }
   }, [isOpen, orderId]);
 
+  const handleCancelOrder = async ( id: string) => {
+       try {
+         const response = await cancelOrder(id);
+         fetchOrderDetail(); 
+         return response
+       } catch (error) {
+          console.error('Error canceling order:', error);
+          toast.error('Failed to cancel order.');
+          setError('Failed to cancel order.');
+        }
+  }
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] md:max-w-[600px]  [&>button]:bg-transparent [&>button]:text-black [&>button]:hover:bg-transparent">
@@ -90,6 +103,11 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ isOpen, onClose, or
               </>
             )}
           </div>
+        )}
+        {order && (
+          order.orderStatus === 'CANCELLED' ? null : (
+            <Button className='text-black shadow-2xl' onClick={() => { handleCancelOrder(order._id) }}>Cancel</Button>
+          )
         )}
       </DialogContent>
     </Dialog>

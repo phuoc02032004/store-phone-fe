@@ -25,7 +25,6 @@ interface CreateOrderPayload {
 }
 
 const createOrder = async (payload: CreateOrderPayload): Promise<Order> => {
-    console.log('Request payload:', payload);
     try {
         const response: AxiosResponse<Order> = await axiosClient.post('/orders', payload);
         return response.data;
@@ -55,4 +54,14 @@ const getOrderbyId = async (id: string) => {
     }
 } 
 
-export { getOrder, createOrder, myOrder, getOrderbyId };
+const cancelOrder = async (id: string) => {
+    try {
+        const response = await axiosClient.patch(`/orders/${id}/cancel`);
+        return response.data;
+    } catch (error) {
+        console.error('Error canceling order:', error);
+        throw error;
+    }
+}
+
+export { getOrder, createOrder, myOrder, getOrderbyId, cancelOrder };

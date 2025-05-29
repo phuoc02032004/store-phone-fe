@@ -64,7 +64,7 @@ const CouponList: React.FC = () => {
                             </p>
                             <Button
                                 onClick={() => handleCopyCode(coupon.code)}
-                                className="mt-4 w-full"
+                                className="mt-4 w-full text-white bg-black hover:bg-white hover:text-black transition-colors"
                             >
                                 Copy Code
                             </Button>

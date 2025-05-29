@@ -1,5 +1,5 @@
 import React from "react";
-import { ShoppingBag, User, Bell } from "lucide-react";
+import { ShoppingBag, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -29,9 +29,6 @@ const NavAction: React.FC = () => {
         </div>
       )}
     </div>
-      <div className="relative">
-        <Bell className="w-5 h-5 sm:w-6 sm:h-6 text-white hover:text-gray-300 transition-all hover:scale-110 cursor-pointer" />
-      </div>
       {localStorage.getItem("token") ? (
         <div>
           <User

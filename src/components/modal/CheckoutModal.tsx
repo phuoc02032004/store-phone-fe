@@ -9,7 +9,6 @@ import { createOrder } from '@/api/order';
 import { createZaloPay } from '@/api/zalopay';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '@/store/cartSlice';
-import { useNavigate } from 'react-router-dom';
 
 import type { Items } from '@/types/Order';
 
@@ -32,7 +31,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
   const [viewState, setViewState] = useState<ViewState>('form');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const resetModalState = () => {
     setShippingAddress(initialShippingAddress);
@@ -58,7 +56,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
     }
     resetModalState();
     onClose();
-    navigate('/'); 
+    // navigate('/'); 
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -197,7 +195,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                   disabled={isLoading}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full text-white" disabled={isLoading}>
                 {isLoading ? 'Processing...' : 'Place Order'}
               </Button>
             </form>
@@ -253,7 +251,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
             </DialogHeader>
             <div className="py-6 text-center">
               <p>We have received your order and will process it shortly. You will be contacted for confirmation.</p>
-              <Button onClick={handleModalClose} className="mt-4 w-full">
+              <Button onClick={handleModalClose} className="mt-4 w-full text-white">
                 Close
               </Button>
             </div>

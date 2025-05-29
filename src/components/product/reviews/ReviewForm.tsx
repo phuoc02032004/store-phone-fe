@@ -98,7 +98,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
           </div>
           {error && <p className="text-red-500 text-sm">{error}</p>}
           {success && <p className="text-green-500 text-sm">{success}</p>}
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} className='text-white bg-black hover:bg-white hover:text-black transition-colors'>
             {loading ? 'Submitting...' : 'Submit Review'}
           </Button>
         </form>

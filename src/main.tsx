@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import { Toaster } from 'sonner';
+import { NotificationProvider } from './context/NotificationContext';
 import './index.css'
 import App from './App.tsx'
 
@@ -13,7 +15,10 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <NotificationProvider>
+          <App />
+          <Toaster position="top-right" richColors />
+        </NotificationProvider>
       </PersistGate>
     </Provider>
   </StrictMode>,

@@ -97,7 +97,7 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
         <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total)}</span>
       </div>
       <div className="flex justify-center">
-        <Button size="lg" className="w-full md:w-auto" onClick={openModal}>Proceed to Checkout</Button>
+        <Button size="lg" className="w-full md:w-auto text-white" onClick={openModal}>Proceed to Checkout</Button>
       </div>
       <CheckoutModal isOpen={isModalOpen} onClose={closeModal} items={transformedItems} coupon={appliedCoupon ? appliedCoupon.code : null} />
     </div>

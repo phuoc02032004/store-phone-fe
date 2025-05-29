@@ -79,7 +79,6 @@ const Products: React.FC = () => {
       toast('Login pls')
     }else{
         if (product) {
-        console.log('Adding to cart:', product, quantity, selectedVariant);
         dispatch(addItem({ product, quantity, selectedVariant }));
         toast(`Added ${quantity} of ${product.name} to cart`)
       }
