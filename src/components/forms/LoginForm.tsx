@@ -100,7 +100,7 @@ const LoginForm: React.FC = () => {
           )}
           <Button 
             type="submit" 
-            className="w-full"
+            className="w-full text-white"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}

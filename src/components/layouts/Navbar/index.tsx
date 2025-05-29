@@ -12,22 +12,11 @@ import { useNotifications } from "@/context/NotificationContext";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { unreadCount, fetchNotifications, markAllNotificationsAsRead } = useNotifications();
+  const [isDesktopNotificationOpen, setIsDesktopNotificationOpen] = useState(false);
 
   const handleOpenNotification = () => {
     fetchNotifications();
   };
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isMobileMenuOpen && unreadCount > 0) {
-      timer = setTimeout(() => {
-        markAllNotificationsAsRead();
-      }, 3000); 
-    }
-    return () => clearTimeout(timer);
-  }, [isMobileMenuOpen, unreadCount, markAllNotificationsAsRead]);
-
-  const [isDesktopNotificationOpen, setIsDesktopNotificationOpen] = useState(false);
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (isDesktopNotificationOpen && unreadCount > 0) {
@@ -37,6 +26,18 @@ const Navbar: React.FC = () => {
     }
     return () => clearTimeout(timer);
   }, [isDesktopNotificationOpen, unreadCount, markAllNotificationsAsRead]);
+
+  useEffect(() => {
+    console.log('Navbar - unreadCount:', unreadCount);
+  }, [unreadCount]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchNotifications();
+    }, 30000); 
+
+    return () => clearInterval(intervalId);
+  }, [fetchNotifications]);
 
   return (
     <div className="sticky top-0 z-50 flex flex-col items-center p-3 sm:p-4 md:p-6 md:flex-row md:justify-between md:items-center shadow-2xl border-[1px] border-gray-900 rounded-b-2xl sm:rounded-b-3xl backdrop-blur-3xl">

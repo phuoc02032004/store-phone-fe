@@ -43,7 +43,6 @@ const RegisterForm: React.FC = () => {
       if(response.status === 'success'){
         navigate('/login')
       }
-      console.log(response);
     } catch (error: any) {
       console.error(error);
       form.setError("root", { message: error.message });
@@ -105,7 +104,7 @@ const RegisterForm: React.FC = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">Submit</Button>
+          <Button type="submit" className="w-full text-white">Submit</Button>
           {form.formState.errors.root && (
             <FormMessage>{form.formState.errors.root.message}</FormMessage>
           )}

@@ -10,7 +10,6 @@ const AccountSettings: React.FC = () => {
 
 
   const handleLogout = () => {
-    console.log("Logout clicked");
     localStorage.removeItem("token");
     navigate("/login");
   };

@@ -37,12 +37,23 @@ messaging.onBackgroundMessage((payload) => {
   };
 
   // self.registration là một thuộc tính của ServiceWorkerGlobalScope
-  return self.registration.showNotification(notificationTitle, notificationOptions);
+  const notificationPromise = self.registration.showNotification(notificationTitle, notificationOptions);
+
+  // Gửi tin nhắn đến client để cập nhật UI (ví dụ: unreadCount)
+  self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+    for (const client of clientList) {
+      client.postMessage({
+        type: 'NEW_NOTIFICATION',
+        payload: payload // Gửi toàn bộ payload để client có thể xử lý
+      });
+    }
+  });
+
+  return notificationPromise;
 });
 
 // (Tùy chọn) Xử lý khi người dùng click vào thông báo nền
 self.addEventListener('notificationclick', (event) => {
-  console.log('[firebase-messaging-sw.js] Notification click Received.', event.notification);
   event.notification.close(); // Đóng thông báo
 
   // Lấy dữ liệu từ thông báo (nếu có)

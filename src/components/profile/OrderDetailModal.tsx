@@ -23,7 +23,6 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ isOpen, onClose, or
       setError(null);
       try {
         const response = await getOrderbyId(orderId);
-        console.log(response)
         setOrder(response);
       } catch (err) {
         console.error('Error fetching order detail:', err);

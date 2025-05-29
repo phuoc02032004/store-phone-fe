@@ -7,7 +7,7 @@ import type { Notify } from '@/types/Notify';
 
 export const useFirebaseMessaging = () => {
   const [fcmToken, setFcmToken] = useState<string | null>(null);
-  const { showInfo, setNotifications, setUnreadCount } = useNotifications();
+  const { showInfo, fetchNotifications } = useNotifications();
 
   useEffect(() => {
     const requestToken = async () => {
@@ -16,7 +16,6 @@ export const useFirebaseMessaging = () => {
         setFcmToken(token);
         try {
           await updateFCMToken(token);
-          console.log("FCM token updated successfully.");
         } catch (error) {
           console.error("Failed to update FCM token: ", error);
         }
@@ -31,24 +30,10 @@ export const useFirebaseMessaging = () => {
     
     if (typeof window !== 'undefined') {
       unsubscribe = onMessageListener((payload: MessagePayload) => {
-        console.log("Receive foreground: ", payload);
         if (payload.notification && payload.data) {
-          // Hiển thị toast notification
           showInfo(payload.notification.title || "New Notification");
-
-          // Tạo notification object từ payload
-          const newNotification: Notify = {
-            _id: payload.data.notificationId as string,
-            title: payload.notification.title || "New Notification",
-            body: payload.notification.body || "",
-            read: false,
-            createdAt: new Date(),
-            data: payload.data
-          };
-
-          // Cập nhật notifications trong context
-          setNotifications((prev: Notify[]) => [newNotification, ...prev]);
-          setUnreadCount((prev: number) => prev + 1);
+          
+          fetchNotifications();
         }
       });
     }
@@ -58,7 +43,28 @@ export const useFirebaseMessaging = () => {
         unsubscribe();
       }
     };
-  }, [showInfo, setNotifications, setUnreadCount]);
+  }, [showInfo, fetchNotifications]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && navigator.serviceWorker) {
+      const handleServiceWorkerMessage = (event: MessageEvent) => {
+        if (event.data && event.data.type === 'NEW_NOTIFICATION') {
+          if (event.data.payload.notification) {
+            showInfo(event.data.payload.notification.title || "New Notification");
+          }
+          
+          fetchNotifications();
+        }
+      };
+
+      navigator.serviceWorker.addEventListener('message', handleServiceWorkerMessage);
+
+      return () => {
+        navigator.serviceWorker.removeEventListener('message', handleServiceWorkerMessage);
+      };
+    }
+  }, [fetchNotifications, showInfo]);
 
   return { fcmToken };
 };
+

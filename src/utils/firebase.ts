@@ -6,7 +6,7 @@ import { firebaseConfig } from '@/constants';
 if (!getApps().length) {
   initializeApp(firebaseConfig);
 } else {
-  getApp(); // if already initialized, use that one
+  getApp(); 
 }
 
 const messaging = typeof window !== "undefined" ? getMessaging() : null;
@@ -21,7 +21,7 @@ export const getMessagingToken = async () => {
       const vapidKey = import.meta.env.VITE_VAP_ID_KEY;
       if (!vapidKey) {
         console.error("VITE_VAPID_KEY is not defined in environment variables. FCM token retrieval aborted.");
-        return ""; // Return early if vapidKey is missing
+        return ""; 
       }
       currentToken = await getToken(messaging, { vapidKey });
     } else {

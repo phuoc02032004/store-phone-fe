@@ -84,7 +84,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
         }
         try {
           const zaloResponse = await createZaloPay(orderResponse._id);
-          console.log('ZaloPay response:', zaloResponse);
           if (zaloResponse && zaloResponse.data && zaloResponse.data.payUrl) { 
             setZalopayUrl(zaloResponse.data.payUrl);
             setViewState('zalopay_redirect');
