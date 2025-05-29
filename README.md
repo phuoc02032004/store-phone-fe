@@ -23,7 +23,11 @@ Dự án này là giao diện người dùng (frontend) cho một ứng dụng c
 -   Cập nhật số lượng sản phẩm trong giỏ hàng
 -   Xóa sản phẩm khỏi giỏ hàng
 -   Xóa toàn bộ giỏ hàng
--   (Có thể thêm các tính năng khác như đăng nhập, đăng ký, thanh toán, lịch sử đơn hàng...)
+-   Đăng nhập, đăng ký
+-   Thanh toán
+-   Xem lịch sử đơn hàng
+-   Xem chi tiết đơn hàng
+-   Hủy đơn hàng
 
 ## Cài đặt
 
