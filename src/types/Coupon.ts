@@ -1,9 +1,9 @@
 export type CouponType =
-    'PERCENTAGE_DISCOUNT' |  // Giảm theo % trên tổng đơn hoặc sản phẩm
-    'FIXED_AMOUNT_DISCOUNT' |  // Giảm số tiền cố định trên tổng đơn hoặc sản phẩm
-    'FREE_SHIPPING' | // Miễn phí vận chuyển
-    'BUY_X_GET_Y' | // Mua X tặng Y (có thể là sản phẩm hoặc dịch vụ)
-    'PRODUCT_GIFT'; // Tặng sản phẩm cụ thể khi mua hàng
+    'PERCENTAGE_DISCOUNT' |  // Percentage discount on total order or product
+    'FIXED_AMOUNT_DISCOUNT' |  // Fixed amount discount on total order or product
+    'FREE_SHIPPING' | // Free shipping
+    'BUY_X_GET_Y' | // Buy X Get Y (can be product or service)
+    'PRODUCT_GIFT'; // Specific product gift with purchase
 
 export interface Coupon {
     _id: string;

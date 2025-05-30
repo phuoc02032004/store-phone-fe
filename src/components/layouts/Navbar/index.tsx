@@ -17,24 +17,14 @@ const Navbar: React.FC = () => {
   const handleOpenNotification = () => {
     fetchNotifications();
   };
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isDesktopNotificationOpen && unreadCount > 0) {
-      timer = setTimeout(() => {
-        markAllNotificationsAsRead();
-      }, 3000);
-    }
-    return () => clearTimeout(timer);
-  }, [isDesktopNotificationOpen, unreadCount, markAllNotificationsAsRead]);
 
   useEffect(() => {
-    console.log('Navbar - unreadCount:', unreadCount);
   }, [unreadCount]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchNotifications();
-    }, 30000); 
+    }, 20000); 
 
     return () => clearInterval(intervalId);
   }, [fetchNotifications]);

@@ -14,6 +14,7 @@ export interface Order {
     isFreeShipping?: boolean,
     appliedCoupon?: string | null,
     discountAmount?: number,
+    finalAmount?: number,
 }
 
 export interface shippingAddress {

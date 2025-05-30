@@ -6,7 +6,7 @@ import type { Notify } from "@/types/Notify";
 import { Button } from "@/components/ui/button";
 
 const NotificationTable: React.FC = () => {
-  const { notifications } = useNotifications();
+  const { notifications, markNotificationAsRead, markAllNotificationsAsRead } = useNotifications();
 
   const [activeTab, setActiveTab] = React.useState<"all" | "unread">("all");
 
@@ -15,25 +15,31 @@ const NotificationTable: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-lg rounded-lg overflow-hidden">
+      <div className="text-3xl font-bold text-left pl-3 pb-3">Notifications</div>
       <div className="p-4 border-b border-border flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Thông báo</h2>
         <div className="flex space-x-2">
           <Button
             variant={activeTab === "all" ? "default" : "ghost"}
             onClick={() => setActiveTab("all")}
             className="rounded-full px-4 py-2 text-sm text-white"
           >
-            Tất cả
+            All
           </Button>
           <Button
             variant={activeTab === "unread" ? "default" : "ghost"}
             onClick={() => setActiveTab("unread")}
             className="rounded-full px-4 py-2 text-sm text-white"
           >
-            Chưa đọc
+            Unread
+          </Button>
+          <Button
+            variant="outline"
+            onClick={markAllNotificationsAsRead}
+            className="rounded-full px-4 py-2 text-sm text-black bg-white shadow-xl hover:text-white hover:bg-black hover:border-black transition-colors duration-500 font-semibold"
+          >
+            Mark All as Read
           </Button>
         </div>
-        {/* <a href="#" className="text-sm text-primary hover:underline">Xem tất cả</a> */}
       </div>
 
       <div className="max-h-[500px] overflow-y-auto custom-scrollbar">
@@ -45,9 +51,6 @@ const NotificationTable: React.FC = () => {
           </div>
         ) : (
           <div>
-            <div className="px-4 py-2 text-sm font-semibold text-muted-foreground">
-              Trước đó
-            </div>
             {filteredNotifications.map((notification: Notify) => (
               <div
                 key={notification._id}
@@ -60,16 +63,17 @@ const NotificationTable: React.FC = () => {
                       : "hover:bg-muted/50"
                   }
                 `}
+                onClick={() => notification._id && markNotificationAsRead(notification._id.toString())}
               >
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 mr-3 flex items-center justify-center text-gray-600 dark:text-gray-400 text-sm">
                   <img
-                    src="https://via.placeholder.com/40"
+                    src={notification.imageUrl || 'https://static.vecteezy.com/system/resources/previews/000/450/352/original/notification-vector-icon.jpg'}
                     alt="User Avatar"
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
 
-                <div className="flex flex-col justify-start">
+                <div className="flex flex-col text-left">
                   <p
                     className={`text-sm ${
                       !notification.read
@@ -94,13 +98,6 @@ const NotificationTable: React.FC = () => {
                         })
                       : "N/A"}
                   </p>
-                  {/* Action Buttons Placeholder (e.g., Join, Delete) */}
-                  {/* {notification.actions && (
-                    <div className="flex space-x-2 mt-2">
-                      <Button size="sm">Tham gia</Button>
-                      <Button size="sm" variant="outline">Xóa</Button>
-                    </div>
-                  )} */}
                 </div>
 
                 {!notification.read && (

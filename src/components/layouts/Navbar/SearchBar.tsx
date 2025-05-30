@@ -58,7 +58,7 @@ const SearchBar: React.FC = () => {
           value={searchTerm}
         />
         {isSearchOpen && (
-          <CommandList className="absolute top-16 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-[400px] overflow-y-auto z-10">
+          <CommandList className="absolute top-16 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-[400px] overflow-y-auto z-10 scrollbar-hide">
             <CommandEmpty>No results found.</CommandEmpty>
             {products.length > 0 ? (
               <CommandGroup heading="Products">

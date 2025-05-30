@@ -10,9 +10,9 @@ const ModalCategory: React.FC = () => {
     return(
         <DialogContent> 
             <DialogHeader>
-                <DialogTitle>Danh sách danh mục</DialogTitle>
+                <DialogTitle>Category List</DialogTitle>
                 <DialogDescription>
-                    Chọn một danh mục để xem sản phẩm. 
+                    Select a category to view products.
                 </DialogDescription>
             </DialogHeader>
             <div>

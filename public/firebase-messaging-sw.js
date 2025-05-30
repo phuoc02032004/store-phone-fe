@@ -23,10 +23,10 @@ const messaging = firebase.messaging();
 
 // Xử lý tin nhắn nền
 messaging.onBackgroundMessage((payload) => {
-  console.log(
-    "[firebase-messaging-sw.js] Received background message ",
-    payload
-  );
+  // console.log(
+  //   "[firebase-messaging-sw.js] Received background message ",
+  //   payload
+  // );
 
   // Tùy chỉnh thông báo ở đây
   const notificationTitle = payload.notification?.title || "Thông báo mới";

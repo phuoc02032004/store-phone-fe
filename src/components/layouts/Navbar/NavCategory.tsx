@@ -72,14 +72,13 @@ const NavCategory: React.FC = () => {
                         className="flex items-center gap-2 text-white w-full justify-center md:justify-start"
                     >
                         <AlignJustify className="h-4 w-auto" />
-                        <div className="w-20">Danh mục</div>
+                        <div className="w-20">Categories</div>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="w-full md:w-[600px] lg:w-[400px]">
                         <div className="grid grid-cols-2 md:grid-cols-[1fr_1.5fr] gap-x-4 p-2 ">
-                            {/* Parent Categories Column */}
                             <div className="flex flex-col space-y-1 md:border-r md:pr-4 border-gray-200 dark:border-gray-700">
                                 <p className="px-3 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                                    LOẠI
+                                    CATEGORIES
                                 </p>
                                 {parentCategories.length > 0 ? parentCategories.map(parent => (
                                     <button
@@ -93,7 +92,7 @@ const NavCategory: React.FC = () => {
                                         {parent.name}
                                     </button>
                                 )) : (
-                                    <p className="p-3 text-sm text-muted-foreground">Không có danh mục cha.</p>
+                                    <p className="p-3 text-sm text-muted-foreground">No parent categories.</p>
                                 )}
                             </div>
 
@@ -101,10 +100,10 @@ const NavCategory: React.FC = () => {
                                 {selectedParentId ? (
                                     <>
                                         <p className="px-3 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                                            {selectedParentName ? `CÁC ${selectedParentName.toUpperCase()}` : "DANH MỤC CON"}
+                                            {selectedParentName ? `CÁC LOẠI ${selectedParentName.toUpperCase()}` : "SUB-CATEGORIES"}
                                         </p>
                                         {loadingChildren ? (
-                                            <p className="p-3 text-sm text-muted-foreground">Đang tải...</p>
+                                            <p className="p-3 text-sm text-muted-foreground">Loading...</p>
                                         ) : childCategories.length > 0 ? (
                                             <ul className="space-y-1">
                                                 {childCategories.map(child => (
@@ -127,13 +126,13 @@ const NavCategory: React.FC = () => {
                                                 ))}
                                             </ul>
                                         ) : (
-                                            <p className="p-3 text-sm text-muted-foreground">Không có danh mục con.</p>
+                                            <p className="p-3 text-sm text-muted-foreground">No child categories.</p>
                                         )}
                                     </>
                                 ) : (
                                     <div className="flex h-full items-center justify-center">
                                         <p className="p-3 text-sm text-muted-foreground">
-                                            Vui lòng chọn một danh mục cha để xem chi tiết.
+                                            Please select a parent category to view details.
                                         </p>
                                     </div>
                                 )}

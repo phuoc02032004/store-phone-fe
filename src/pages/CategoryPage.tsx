@@ -118,7 +118,7 @@ const CategoryPage: React.FC = () => {
     <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8 min-h-screen text-white">
       <h1 className="text-4xl font-extrabold mb-8 text-center text-blue-400">{category.name}</h1>
 
-      <div className="bg-gray-800 p-6 rounded-xl shadow-2xl mb-10 border border-gray-700">
+      <div className="bg-black/50 p-6 rounded-xl shadow-2xl mb-10 border ">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
           <div className="md:col-span-1">
             <Label htmlFor="sort-order" className="text-gray-300 mb-2 block text-sm font-medium">Sort by</Label>
@@ -168,7 +168,7 @@ const CategoryPage: React.FC = () => {
           <div className="md:col-span-1">
             <Button
               onClick={handleFilterButtonClick}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md"
+              className="w-full bg-black hover:bg-white hover:text-black text-white border-black hover:border-black font-bold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md"
             >
               Apply Filters
             </Button>

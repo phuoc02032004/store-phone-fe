@@ -178,7 +178,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
       </div>
 
       <Button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="w-full bg-black hover:bg-white hover:text-black hover:border-black text-white font-bold py-2 px-4 rounded"
         size="lg"
         onClick={() => handleAddToCart(currentVariant || undefined)}
         disabled={!currentVariant || (displayStock !== undefined && displayStock <= 0)}

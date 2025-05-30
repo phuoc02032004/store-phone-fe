@@ -41,7 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </CardContent>
             <CardFooter className="p-4 pt-0">
                 <button
-                    className="w-full bg-black hover:bg-white text-white hover:text-black font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                    className="w-full bg-black hover:bg-white text-white hover:text-black hover:border-black font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
                     onClick={handleAddToCart}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

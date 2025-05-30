@@ -8,4 +8,4 @@ export const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
-export const SOCKET_IO_URL = import.meta.env.VITE_SOCKET_IO_URL || 'http://localhost:5173';
+export const SOCKET_IO_URL = import.meta.env.VITE_SOCKET_IO_URL || 'http://localhost:8080';

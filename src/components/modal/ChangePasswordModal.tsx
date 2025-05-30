@@ -110,7 +110,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ isOpen, onClo
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full">Submit</Button>
+                        <Button type="submit" className="w-full text-white">Submit</Button>
                     </form>
                 </Form>
             </DialogContent>

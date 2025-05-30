@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { myOrder, cancelOrder } from '@/api/order';
+import { myOrder } from '@/api/order';
 import { Button } from '../ui/button';
 
 import OrderDetailModal from './OrderDetailModal';
@@ -12,7 +12,6 @@ import {
   PaginationNext,
   PaginationEllipsis,
 } from "@/components/ui/pagination";
-import { id } from 'date-fns/locale';
 
 const OrderHistory: React.FC = () => {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -57,16 +56,6 @@ const OrderHistory: React.FC = () => {
     }
   };
 
-  const handleCancelOrder = async (id: string) => {
-    try {
-      const response  = await cancelOrder(id);
-      return response;
-    } catch (error) {
-      console.error('Error cancel order', error);
-      throw error;
-    }
-  }
-
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Order History</h2>
@@ -81,7 +70,7 @@ const OrderHistory: React.FC = () => {
                   <span>Date: {new Date(order.createdAt).toLocaleDateString()}</span>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <span className="font-semibold">Total: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.totalAmount)}</span>
+                  <span className="font-semibold">Total: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.finalAmount)}</span>
                     <div className='flex gap-2'>
                         {/* <Button onClick={() => handleCancelOrder(order._id)} className='text-white'>Cancel</Button> */}
                         <Button className='text-white' onClick={() => openModal(order._id)}>Detail</Button>

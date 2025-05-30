@@ -85,44 +85,48 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
   }, []); 
 
   useEffect(() => {
-    console.log('NotificationContext - unreadCount:', unreadCount);
   }, [unreadCount]);
 
   useEffect(() => {
-    const socket = io(SOCKET_IO_URL, {
-      transports: ['websocket'],
-    });
-
-    socket.on('connect', () => {
-      console.log('Connected to Socket.IO server');
-    });
-
-    socket.on('newNotification', (newNotification: Notify) => {
-      console.log('New notification received:', newNotification);
-      
-      const notificationWithReadStatus = { ...newNotification, read: false };
-      
-      setNotifications(prev => [notificationWithReadStatus, ...prev]);
-      setUnreadCount(prev => prev + 1);
-      
-      toast.info(newNotification.title, {
-        description: newNotification.body,
-        duration: 5000,
+    if (!socketRef.current) {
+      const socket = io(SOCKET_IO_URL, {
+        transports: ['websocket'],
       });
-    });
 
-    socket.on('disconnect', () => {
-      console.log('Disconnected from Socket.IO server');
-    });
+      socket.on('connect', () => {
+        console.log('Connected to Socket.IO server');
+      });
 
-    socket.on('connect_error', (err) => {
-      console.error('Socket.IO connection error:', err);
-    });
+      socket.on('newNotification', (newNotification: Notify) => {
+        console.log('New notification received:', newNotification);
+        
+        const notificationWithReadStatus = { ...newNotification, read: false };
+        
+        setNotifications(prev => [notificationWithReadStatus, ...prev]);
+        setUnreadCount(prev => prev + 1);
+        
+        toast.info(newNotification.title, {
+          description: newNotification.body,
+          duration: 5000,
+        });
+      });
 
-    socketRef.current = socket;
+      socket.on('disconnect', () => {
+        console.log('Disconnected from Socket.IO server');
+      });
+
+      socket.on('connect_error', (err) => {
+        console.error('Socket.IO connection error:', err);
+      });
+
+      socketRef.current = socket;
+    }
 
     return () => {
-      socket.disconnect();
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+        socketRef.current = null;
+      }
     };
   }, []);
 

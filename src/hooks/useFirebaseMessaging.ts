@@ -3,7 +3,6 @@ import { getMessagingToken, onMessageListener } from '@/utils/firebase';
 import type { MessagePayload } from 'firebase/messaging';
 import { updateFCMToken } from '@/api/user';
 import { useNotifications } from '@/context/NotificationContext';
-import type { Notify } from '@/types/Notify';
 
 export const useFirebaseMessaging = () => {
   const [fcmToken, setFcmToken] = useState<string | null>(null);
@@ -16,6 +15,7 @@ export const useFirebaseMessaging = () => {
         setFcmToken(token);
         try {
           await updateFCMToken(token);
+          console.log("FCM token updated successfully:", token);
         } catch (error) {
           console.error("Failed to update FCM token: ", error);
         }
