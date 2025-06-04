@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import NotificationTable from "@/components/notification/NotificationTable";
 import { useNotifications } from "@/context/NotificationContext";
+import { toast } from "sonner";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,6 +23,16 @@ const Navbar: React.FC = () => {
   }, [unreadCount]);
 
   useEffect(() => {
+    if( !localStorage.getItem("token") ) {
+      console.warn("No token found in localStorage. Notifications will not be fetched.");
+      return;
+    } else {
+      const token = localStorage.getItem("token");
+      if (token) {
+        fetchNotifications();
+      }
+    }
+
     const intervalId = setInterval(() => {
       fetchNotifications();
     }, 20000); 

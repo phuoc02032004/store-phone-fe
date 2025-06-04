@@ -15,7 +15,7 @@ const NotificationTable: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-lg rounded-lg overflow-hidden">
-      <div className="text-3xl font-bold text-left pl-3 pb-3">Notifications</div>
+      <div className="text-3xl font-bold text-left pl-4 pt-3">Notifications</div>
       <div className="p-4 border-b border-border flex items-center justify-between">
         <div className="flex space-x-2">
           <Button

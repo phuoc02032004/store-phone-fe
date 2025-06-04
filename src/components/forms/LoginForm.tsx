@@ -45,6 +45,7 @@ const LoginForm: React.FC = () => {
       if (response.status === 'success') {
         localStorage.setItem('token', response.data.token);
         navigate('/');
+        window.location.reload();
       }
     } catch (err) {
       setError("Invalid email or password");
