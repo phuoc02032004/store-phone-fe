@@ -53,6 +53,7 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
     try {
       const response = await getCouponByCode(couponCode);
       const applyResponse = await applyCoupon(couponCode);
+      console.log(applyResponse);
 
       setAppliedCoupon(response);
       toast.success(`Coupon "${couponCode}" applied successfully!`);
