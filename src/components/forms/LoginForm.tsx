@@ -88,6 +88,7 @@ const LoginForm: React.FC = () => {
                 <FormControl>
                   <Input 
                     type="password"
+                    placeholder="Password"
                     disabled={loading}
                     {...field} 
                   />
