@@ -73,7 +73,7 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
           onChange={(e) => setCouponCode(e.target.value)}
           className="flex-grow"
         />
-        <Button onClick={handleApplyCoupon}>Apply</Button>
+        <Button variant={'outline'} onClick={handleApplyCoupon} className='text-white'>Apply</Button>
       </div>
       {appliedCoupon && (
         <div className="text-sm text-green-600">
