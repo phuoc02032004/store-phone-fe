@@ -57,7 +57,7 @@ const CouponList: React.FC = () => {
                         </CardHeader>
                         <CardContent>
                             <p className="text-lg font-semibold mb-2">
-                                Discount: {coupon.type === 'PERCENTAGE_DISCOUNT' ? `${coupon.value}%` : `$${coupon.value}`}
+                                Discount: {coupon.type === 'PERCENTAGE_DISCOUNT' ? `${coupon.value}%` : `${coupon.value}₫`}
                             </p>
                             <p className="text-sm text-gray-600">
                                 Valid until: {new Date(coupon.endDate).toLocaleDateString()}

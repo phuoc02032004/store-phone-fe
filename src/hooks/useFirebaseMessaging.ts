@@ -15,7 +15,6 @@ export const useFirebaseMessaging = () => {
         setFcmToken(token);
         try {
           await updateFCMToken(token);
-          console.log("FCM token updated successfully:", token);
         } catch (error) {
           console.error("Failed to update FCM token: ", error);
         }

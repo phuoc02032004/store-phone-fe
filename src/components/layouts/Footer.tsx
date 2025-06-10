@@ -1,66 +1,63 @@
 import React from "react";
+import { Facebook, Instagram, Youtube } from "lucide-react"; 
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-gray-900 text-gray-300 py-10">
+        <footer className="bg-white text-gray-700 py-10 backdrop-blur-sm">
             <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-                {/* Company Info */}
                 <div>
-                    <h3 className="text-xl font-semibold text-white mb-4">Phone Store</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone Store</h3>
                     <p className="text-sm">
-                        Chuyên cung cấp các sản phẩm điện thoại di động chính hãng với giá cả cạnh tranh và dịch vụ hậu mãi tuyệt vời.
+                        Specializing in providing genuine mobile phone products at competitive prices and excellent after-sales service.
                     </p>
                     <p className="text-sm mt-2">
-                        Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM
+                        Address: 123 ABC Street, XYZ District, Ho Chi Minh City
                     </p>
                     <p className="text-sm">
-                        Điện thoại: (028) 1234 5678
+                        Phone: (028) 1234 5678
                     </p>
                     <p className="text-sm">
                         Email: info@phonestore.com
                     </p>
                 </div>
 
-                {/* Quick Links */}
                 <div>
-                    <h3 className="text-xl font-semibold text-white mb-4">Liên kết nhanh</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Links</h3>
                     <ul className="space-y-2">
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Trang chủ</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Sản phẩm</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Giới thiệu</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Liên hệ</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Home</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Products</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">About Us</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Contact</a></li>
                     </ul>
                 </div>
 
-                {/* Customer Service */}
                 <div>
-                    <h3 className="text-xl font-semibold text-white mb-4">Dịch vụ khách hàng</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Customer Service</h3>
                     <ul className="space-y-2">
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Chính sách bảo hành</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Chính sách đổi trả</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Hướng dẫn mua hàng</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors duration-200">Câu hỏi thường gặp</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Warranty Policy</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Return Policy</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">Buying Guide</a></li>
+                        <li><a href="#" className="hover:text-gray-900 transition-colors duration-200">FAQ</a></li>
                     </ul>
                 </div>
 
-                {/* Follow Us */}
                 <div>
-                    <h3 className="text-xl font-semibold text-white mb-4">Theo dõi chúng tôi</h3>
-                    <div className="flex space-x-4">
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                            <i className="fab fa-facebook-f text-2xl"></i> {/* Placeholder for Facebook icon */}
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Follow Us</h3>
+                    <div className="flex space-x-4  justify-center">
+                        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                            <Facebook size={24} />
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                            <i className="fab fa-twitter text-2xl"></i> {/* Placeholder for Twitter icon */}
+                        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                            <Instagram size={24} />
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                            <i className="fab fa-instagram text-2xl"></i> {/* Placeholder for Instagram icon */}
+                        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                             Zalo
                         </a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                            <i className="fab fa-linkedin-in text-2xl"></i> {/* Placeholder for LinkedIn icon */}
+                        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                            <Youtube size={24} /> 
                         </a>
                     </div>
-                    <p className="text-sm mt-6">&copy; {new Date().getFullYear()} Phone Store. All rights reserved.</p>
+                    <p className="text-sm mt-6 text-gray-600">&copy; {new Date().getFullYear()} Phone Store. All rights reserved.</p>
                 </div>
             </div>
         </footer>
