@@ -15,7 +15,11 @@ const Navbar: React.FC = () => {
   const [, setIsDesktopNotificationOpen] = useState(false);
 
   const handleOpenNotification = () => {
-    fetchNotifications();
+    if(!localStorage.getItem("token")){
+      return null;
+    } else {
+      fetchNotifications();
+    }
   };
 
   useEffect(() => {
@@ -33,7 +37,11 @@ const Navbar: React.FC = () => {
     }
 
     const intervalId = setInterval(() => {
-      fetchNotifications();
+      if (!localStorage.getItem("token")) {
+        clearInterval(intervalId);
+      } else {
+        fetchNotifications();
+      }
     }, 20000); 
 
     return () => clearInterval(intervalId);
@@ -86,13 +94,14 @@ const Navbar: React.FC = () => {
         <NavCategory />
         <SearchBar />
         <NavAction />
-        <Popover onOpenChange={(open) => { setIsDesktopNotificationOpen(open); handleOpenNotification(); }}>
+        {!localStorage.getItem("token") ?  null : 
+          <Popover onOpenChange={(open) => { setIsDesktopNotificationOpen(open); handleOpenNotification(); }}>
           <PopoverTrigger asChild>
             <div className="relative inline-block cursor-pointer">
               <Bell size={24}
                 className="w-5 h-5 text-white sm:w-6 sm:h-6 hover:text-gray-300 transition-all hover:scale-110"
               />
-              {unreadCount > 0 && (
+              {unreadCount > 0  && (
                 <span className="absolute -top-1 -right-1.5
                      bg-red-500 text-white
                      text-xs font-semibold
@@ -108,6 +117,8 @@ const Navbar: React.FC = () => {
             <NotificationTable />
           </PopoverContent>
         </Popover>
+        }
+        
       </div>
     </div>
   );

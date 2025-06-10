@@ -78,7 +78,11 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
     }
   }, [notifications]);
   useEffect(() => {
-    fetchNotifications();
+    if(!localStorage.getItem('token')){
+      return;
+    } else {
+      fetchNotifications();
+    }
   }, []); 
 
   useEffect(() => {

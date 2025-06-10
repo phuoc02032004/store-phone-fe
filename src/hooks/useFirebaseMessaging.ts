@@ -32,8 +32,11 @@ export const useFirebaseMessaging = () => {
       unsubscribe = onMessageListener((payload: MessagePayload) => {
         if (payload.notification && payload.data) {
           showInfo(payload.notification.title || "New Notification");
-          
-          fetchNotifications();
+          if(!localStorage.getItem('token')){
+            return null;
+          } else {
+            fetchNotifications();
+          }
         }
       });
     }
@@ -53,7 +56,11 @@ export const useFirebaseMessaging = () => {
             showInfo(event.data.payload.notification.title || "New Notification");
           }
           
-          fetchNotifications();
+          if(!localStorage.getItem('token')){
+            return null;
+          } else {
+            fetchNotifications();
+          }
         }
       };
 
