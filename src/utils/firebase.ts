@@ -2,6 +2,7 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import type { MessagePayload } from "firebase/messaging";
 import { firebaseConfig } from '@/constants';
+import { toast } from 'sonner'; 
 
 if (!getApps().length) {
   initializeApp(firebaseConfig);
@@ -26,6 +27,7 @@ export const getMessagingToken = async () => {
       currentToken = await getToken(messaging, { vapidKey });
     } else {
       console.log("Notification permission not granted.");
+      toast.error('Notification permission not granted.')
     }
   } catch (error) {
     console.error("An error occurred while retrieving token: ", error);
