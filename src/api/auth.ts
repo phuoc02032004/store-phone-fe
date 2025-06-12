@@ -30,4 +30,34 @@ const changePassword = async (oldPassword: string, newPassword: string) => {
     }
 }
 
-export { login, register, changePassword };
+const forgotPassword = async ( email: string ) => {
+    try{
+        const response = await axiosClient.post(`/auth/forgotpassword`, {email});
+        return response.data 
+    } catch (error) {
+        console.error('Error forgot password', error )
+        throw error
+    }
+}
+
+const resetPassword = async ( email:string, resetToken:string, newPassword: string) => {
+    try {
+        const response = await axiosClient.put(`/auth/resetpassword`, {email, resetToken, newPassword});
+        return response.data
+    } catch (error) {
+        console.error('Error reset password', error);
+        throw error
+    }
+}
+
+const verifyEmail = async (email:string, verificationCode: string) => {
+    try{
+        const response = await axiosClient.post(`/auth/verify-email`, {email, verificationCode});
+        return response.data
+    } catch (error) {
+        console.error('Error verify mail', error);
+        throw error
+    }
+}
+    
+export { login, register, changePassword, forgotPassword, resetPassword, verifyEmail };
