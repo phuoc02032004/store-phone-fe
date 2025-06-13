@@ -69,10 +69,15 @@ const NavCategory: React.FC = () => {
             <NavigationMenuList className="flex flex-col md:flex-row w-full ">
                 <NavigationMenuItem className="w-full">
                     <NavigationMenuTrigger
-                        className="flex items-center gap-2 text-white w-full justify-center md:justify-start"
+                        className="flex items-center gap-2 text-white w-full justify-center md:justify-start
+                     !bg-black/80
+                        bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                        backdrop-blur-[10px]
+                        border border-[rgba(255,255,255,0.18)]
+                        shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] "
                     >
                         <AlignJustify className="h-4 w-auto" />
-                        <div className="w-20">Categories</div>
+                        <div className="w-20 ">Categories</div>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="w-full md:w-[600px] lg:w-[400px]">
                         <div className="grid grid-cols-2 md:grid-cols-[1fr_1.5fr] gap-x-4 p-2 ">

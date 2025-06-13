@@ -45,7 +45,10 @@ const CouponList: React.FC = () => {
 
     return (
         <section className="container mx-auto py-8 md:py-12 lg:py-16 px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-white bg-black/50 p-5 rounded-2xl">Available Coupons</h2>
+            <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                backdrop-blur-[10px]
+                border border-[rgba(255,255,255,0.18)]
+                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">Available Coupons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {coupons.map((coupon) => (
                     <Card key={coupon._id} className="flex flex-col justify-between">

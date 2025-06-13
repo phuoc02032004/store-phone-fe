@@ -20,14 +20,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
 
     return(
-        <Card className="w-full max-w-sm rounded-xl overflow-hidden shadow-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white flex flex-col h-[420px]">
-            <div className="relative group w-full h-[200px] overflow-hidden">
+        <Card className="w-full max-w-sm rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-[450px]
+            bg-white
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] ">
+            <div className="relative group w-full h-[250px] overflow-hidden rounded-2xl">
                 <img
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 rounded-xl"
                     src={product.image}
                     alt={product.name}
                 />
-                <div className="absolute inset-0 bg-black opacity-0  transition-opacity duration-300"/>
             </div>
             <CardHeader className="p-4 flex-grow">
                 <CardTitle className="text-sm text-white font-bold bg-gray-800 rounded-2xl p-1 hover:text-gray-500 transition-colors duration-300 line-clamp-2">

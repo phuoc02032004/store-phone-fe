@@ -61,7 +61,11 @@ const Cart: React.FC = () => {
                 </Table>
               </div>
               <div className="lg:col-span-1">
-                <Card className="bg-gray-50 shadow-sm">
+                <Card className="bg-gray-50 
+                bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                backdrop-blur-[10px]
+                border border-[rgba(255,255,255,0.18)]
+                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] ">
                   <CardHeader className="border-b border-gray-200 p-4">
                     <CardTitle className="text-xl font-semibold text-gray-700">Order Summary</CardTitle>
                   </CardHeader>

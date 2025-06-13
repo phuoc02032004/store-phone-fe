@@ -39,7 +39,10 @@ const ProductSection: React.FC = () => {
     return (
         <div className="flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12 gap-8 md:gap-12 lg:gap-16 w-full mx-auto">
             <section className="w-full">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl">
+                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                backdrop-blur-[10px]
+                border border-[rgba(255,255,255,0.18)]
+                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                     New Arrival
                 </h2>
                 {productNew.length > 0 ? (
@@ -50,7 +53,10 @@ const ProductSection: React.FC = () => {
             </section>
 
             <section className="w-full">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl">
+                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                backdrop-blur-[10px]
+                border border-[rgba(255,255,255,0.18)]
+                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                     Best Seller
                 </h2>
                 {productBest.length > 0 ? (
