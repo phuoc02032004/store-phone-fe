@@ -6,17 +6,14 @@ const Logo: React.FC = () => {
     const navigate = useNavigate();
 
     return (        <div 
-            className="flex justify-start md:justify-start items-center w-full md:w-auto cursor-pointer" 
+            className="flex justify-start md:justify-start items-center cursor-pointer "
             onClick={() => navigate('/')}
         >
-            <h1 className="text-white ml-10 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center md:text-left transition-transform hover:scale-105">
-                STORE
-            </h1>
-            {/* <img
-            src=""
-            alt="logo"
-            className="h-8 sm:h-10 md:h-12 w-auto transition-transform hover:scale-105"
-             /> */}
+            <img
+            src="/images/apple_logo.svg"
+            alt="Apple Logo"
+            className="h-8 sm:h-10 md:h-12 w-8 sm:w-12 md:w-16 transition-transform hover:scale-105"
+             />
         </div>
         
     )

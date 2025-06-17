@@ -19,7 +19,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/category/:categoryId" element={<CategoryPage />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Route>
     </Routes>
   );

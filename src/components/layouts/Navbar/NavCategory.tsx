@@ -1,153 +1,130 @@
-import React, { useState, useEffect } from "react";
-import { AlignJustify } from 'lucide-react';
+import React from "react";
 import {
-  NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuTrigger,
   NavigationMenuContent,
-  NavigationMenuLink, 
+  NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
-import { getParents, getChild } from "@/api/category"; 
-import type { Category } from "@/types/Category";
-import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 
-const NavCategory: React.FC = () => {
-    const [parentCategories, setParentCategories] = useState<Category[]>([]);
-    const [childCategories, setChildCategories] = useState<Category[]>([]);
-    const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
-    const [selectedParentName, setSelectedParentName] = useState<string | null>(null);
-    const [loadingChildren, setLoadingChildren] = useState(false);
-    const [, setIsMenuOpen] = useState(false); 
+interface NavCategoryProps {
+  text: string;
+  href: string;
+  content: {
+    explore: { href?: string; title: string; description: string; items: { href: string; title: string; description: string; }[] };
+    buy: { href?: string; title: string; description: string; items: { href: string; title: string; description: string; }[] };
+    learnMore: { href?: string; title: string; description: string; items: { href: string; title: string; description: string; }[] };
+  };
+}
 
-    useEffect(() => {
-        const fetchParents = async () => {
-            try {
-                const response = await getParents();
-                setParentCategories(response);
-            } catch (error) {
-                console.error('Error fetching parent categories:', error);
-            }
-        };
-        fetchParents();
-    }, []);
-
-    useEffect(() => {
-        if (selectedParentId) {
-            const fetchChildren = async () => {
-                setLoadingChildren(true);
-                try {
-                    const response = await getChild(selectedParentId);
-                    setChildCategories(response);
-                } catch (error) {
-                    console.error(`Error fetching children for ${selectedParentId}:`, error);
-                    setChildCategories([]);
-                } finally {
-                    setLoadingChildren(false);
-                }
-            };
-            fetchChildren();
-        } else {
-            setChildCategories([]);
-        }
-    }, [selectedParentId]);
-
-    const handleParentClick = (parentId: string, parentName: string) => {
-        setSelectedParentId(parentId);
-        setSelectedParentName(parentName);
-    };
-
-    return (
-        <NavigationMenu onValueChange={(value) => {
-            if (!value) {
-                setIsMenuOpen(false);
-            } else {
-                setIsMenuOpen(true);
-            }
-        }} className="w-full">
-            <NavigationMenuList className="flex flex-col md:flex-row w-full ">
-                <NavigationMenuItem className="w-full">
-                    <NavigationMenuTrigger
-                        className="flex items-center gap-2 text-white w-full justify-center md:justify-start
-                     !bg-black/80
-                        bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
-                        backdrop-blur-[10px]
-                        border border-[rgba(255,255,255,0.18)]
-                        shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] "
-                    >
-                        <AlignJustify className="h-4 w-auto" />
-                        <div className="w-20 ">Categories</div>
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-full md:w-[600px] lg:w-[400px]">
-                        <div className="grid grid-cols-2 md:grid-cols-[1fr_1.5fr] gap-x-4 p-2 ">
-                            <div className="flex flex-col space-y-1 md:border-r md:pr-4 border-gray-200 dark:border-gray-700">
-                                <p className="px-3 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                                    CATEGORIES
-                                </p>
-                                {parentCategories.length > 0 ? parentCategories.map(parent => (
-                                    <button
-                                        key={parent._id}
-                                        onClick={() => handleParentClick(parent._id, parent.name)}
-                                        className={cn(
-                                            "w-full text-left rounded-md p-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground bg-transparent",
-                                            selectedParentId === parent._id && "bg-gray-200 text-accent-foreground font-semibold"
-                                        )}
-                                    >
-                                        {parent.name}
-                                    </button>
-                                )) : (
-                                    <p className="p-3 text-sm text-muted-foreground">No parent categories.</p>
-                                )}
-                            </div>
-
-                            <div className="flex flex-col space-y-1 mt-4 md:mt-0">
-                                {selectedParentId ? (
-                                    <>
-                                        <p className="px-3 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                                            {selectedParentName ? `CÁC LOẠI ${selectedParentName.toUpperCase()}` : "SUB-CATEGORIES"}
-                                        </p>
-                                        {loadingChildren ? (
-                                            <p className="p-3 text-sm text-muted-foreground">Loading...</p>
-                                        ) : childCategories.length > 0 ? (
-                                            <ul className="space-y-1">
-                                                {childCategories.map(child => (
-                                                    <li key={child._id}>
-                                                        <NavigationMenuLink asChild>
-                                                            <Link
-                                                                to={`/category/${child._id}`}
-                                                                className={cn(
-                                                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                                                                )}
-                                                                onClick={() => {
-                                                                    setSelectedParentId(null);
-                                                                    setSelectedParentName(null);
-                                                                }}
-                                                            >
-                                                                <div className="text-sm font-medium leading-none">{child.name}</div>
-                                                            </Link>
-                                                        </NavigationMenuLink>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p className="p-3 text-sm text-muted-foreground">No child categories.</p>
-                                        )}
-                                    </>
-                                ) : (
-                                    <div className="flex h-full items-center justify-center">
-                                        <p className="p-3 text-sm text-muted-foreground">
-                                            Please select a parent category to view details.
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-            </NavigationMenuList>
-        </NavigationMenu>
-    );
+const NavCategory: React.FC<NavCategoryProps> = ({ text, href, content }) => {
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className="bg-transparent text-[rgba(255,255,255,0.8)] hover:text-white hover:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-white">
+        {text}
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className="bg-white text-black border-none p-10 min-w-screen  grid grid-cols-3 gap-x-10">
+        <div>
+          <div className="text-xs text-gray-500 uppercase mb-4">
+            Khám Phá Mac
+          </div>
+          <ul className="grid gap-3">
+            <li className="row-span-3">
+              <NavigationMenuLink asChild>
+                <a
+                  className="flex h-full w-full select-none flex-col justify-start no-underline outline-none"
+                  href={content.explore.href || href}
+                >
+                  <div className="text-2xl font-bold mb-4">
+                    {content.explore.title}
+                  </div>
+                </a>
+              </NavigationMenuLink>
+            </li>
+            {content.explore.items.map((item, index) => (
+              <ListItem key={index} href={item.href} title={item.title}>
+                {item.description}
+              </ListItem>
+            ))}
+            <ListItem href="#" title="So Sánh Mac" />
+            <ListItem href="#" title="Chuyển Từ PC Sang Mac" />
+          </ul>
+        </div>
+        <div>
+          <div className="text-xs text-gray-500 uppercase mb-4">
+            Mua Mac
+          </div>
+          <ul className="grid gap-3">
+            <li className="row-span-3">
+              <NavigationMenuLink asChild>
+                <a
+                  className="flex h-full w-full select-none flex-col justify-start no-underline outline-none"
+                  href={content.buy.href || href}
+                >
+                  <div className="text-2xl font-bold mb-4">
+                    {content.buy.title}
+                  </div>
+                </a>
+              </NavigationMenuLink>
+            </li>
+            {content.buy.items.map((item, index) => (
+              <ListItem key={index} href={item.href} title={item.title}>
+                {item.description}
+              </ListItem>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div className="text-xs text-gray-500 uppercase mb-4">
+            Tìm Hiểu Thêm Về Mac
+          </div>
+          <ul className="grid gap-3">
+            <li className="row-span-3">
+              <NavigationMenuLink asChild>
+                <a
+                  className="flex h-full w-full select-none flex-col justify-start no-underline outline-none"
+                  href={content.learnMore.href || href}
+                >
+                  <div className="text-2xl font-bold mb-4">
+                    {content.learnMore.title}
+                  </div>
+                </a>
+              </NavigationMenuLink>
+            </li>
+            {content.learnMore.items.map((item, index) => (
+              <ListItem key={index} href={item.href} title={item.title}>
+                {item.description}
+              </ListItem>
+            ))}
+          </ul>
+        </div>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  );
 };
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm text-gray-700 font-normal">{title}</div>
+          {/* Removed description as per image */}
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
 
 export default NavCategory;

@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/poppins": "^5.2.6",
     "@hookform/resolvers": "^5.0.1",
+    "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-navigation-menu": "^1.2.13",
@@ -37,6 +38,7 @@
     "react-hook-form": "^7.56.4",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
+    "sass": "^1.89.2",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.3.0",
     "tailwind-scrollbar-hide": "^2.0.0",

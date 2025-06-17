@@ -1,12 +1,17 @@
 import React from "react";
 
-const Link: React.FC = () => {
-    return (
-        <div className="flex gap-4">
-            <a className="text-gray-700 hover:text-blue-600 transition-colors" href="/">HOME</a>
-            <a className="text-gray-700 hover:text-blue-600 transition-colors" href="/products">PRODUCT</a>
-        </div>
-    )
+interface NavLinkProps {
+  text: string;
+  href: string;
+  onClick?: () => void; 
 }
 
-export default Link;
+const NavLink: React.FC<NavLinkProps> = ({ text, href, onClick }) => {
+  return (
+    <a className="hover:text-white/50 text-white transition-colors" href={href} onClick={onClick}>
+      {text}
+    </a>
+  );
+};
+
+export default NavLink; 

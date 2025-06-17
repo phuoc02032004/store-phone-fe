@@ -96,3 +96,15 @@ button:focus-visible {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.product-display-gradient {
+  background: linear-gradient(
+    to bottom,
+    #0c1247 0%,
+    #30337d 18%,
+    #505dad 33%,
+    #7d8ed1 49%,
+    #aebce6 73%,
+    #fafafc 100%
+  );
+}

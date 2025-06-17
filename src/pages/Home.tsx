@@ -1,15 +1,24 @@
 import React from "react";
 import HeroSection from "@/components/home/HeroSection";
-import ProductSection from "@/components/home/ProductSection";
-import CouponList from '../components/coupon/CouponList';
+import IphoneSection from "@/components/home/IphoneSection";
+import AppleWatchSeries10Section from "@/components/home/AppleWatchSeries10Section";
+import AppleWatchUltra2Section from "@/components/home/AppleWatchUltra2Section";
+import AirPods4Section from "@/components/home/AirPods4Section";
+import AirPodsMaxSection from "@/components/home/AirPodsMaxSection";
+import AirPodsPro2Section from "@/components/home/AirPodsPro2Section";
 
 const Home: React.FC = () => {
-    return (
-        <main className="flex flex-col justify-center items-center px-4 md:px-8">
-            <HeroSection />
-            <ProductSection/>
-            <CouponList />
-        </main>
-    );
-}
+  return (
+    <main className="flex flex-col items-center justify-center">
+      <HeroSection />
+      <IphoneSection />
+      <AppleWatchSeries10Section />
+      <AppleWatchUltra2Section />
+      <AirPods4Section />
+      <AirPodsPro2Section />
+      <AirPodsMaxSection />
+    </main>
+  );
+};
+
 export default Home;

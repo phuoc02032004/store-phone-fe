@@ -10,6 +10,10 @@ export default {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
+      colors: {
+        primary: '#007bff', // Ví dụ màu chính
+        secondary: '#6c757d', // Ví dụ màu phụ
+      },
     },
   },
   plugins: [

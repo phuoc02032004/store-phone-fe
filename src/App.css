@@ -158,3 +158,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.product-display-gradient {
+  background: linear-gradient(180deg, #0C1247 0%, #30337D 18%, #505DAD 33%, #7D8ED1 49%, #AEBCE6 73%, #FAFAFC 100%);
+}
