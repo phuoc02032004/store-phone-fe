@@ -607,71 +607,71 @@ export const categoryPageData = {
           imageSrc: "/images/ipadpro_light__bbws9fokxn3m_large.svg",
           imageAlt: "iPad Pro icon",
           text: "iPad Pro",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/pa_ipadair13_gen6_ipadair11_gen6_light__des6pp5gjg2u_large.svg",
           imageAlt: "iPad Air icon",
           text: "iPad Air",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/pa_ipadair_gen5_light__cboe3o98m36u_large.svg",
           imageAlt: "iPad icon",
           text: "iPad",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/ipadmini_light__chl9hj51b9qq_large.svg",
           imageAlt: "iPad mini icon",
           text: "iPad mini",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/ipad_compare_light__29tc9jjpoeqe_large.svg",
           imageAlt: "Compare iPads icon",
           text: "Compare",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/apple_pencil_light__kv36e49avuq2_large.svg",
           imageAlt: "Apple Pencil icon",
           text: "Apple Pencil",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/keyboard_light__f5t6yntcyq2q_large.svg",
           imageAlt: "Keyboards icon",
           text: "Keyboards",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/pa_case_ipad_gen10_light__b2tng4s4n9n6_large.svg",
           imageAlt: "iPad Accessories icon",
           text: "Accessories",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/ipados_light__ebqgefp11ogi_large.svg",
           imageAlt: "iPadOS 18 icon",
           text: "iPadOS 18",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/shop_ipad_light__btk7x6ps41yq_large.svg",
           imageAlt: "Shop iPad icon",
           text: "Shop iPad",
-          linkHref: "#" 
+          linkHref: "#"
         }
       ]
     },
     hero: {
       title: "iPad",
       description: "Touch, draw, and type\non one magical device.",
-      imageSrc: "/images/iphone_and_mac.jpg", 
+      imageSrc: "/images/ipad_hero.png",
       imageAlt: "iPad hero image",
       linkText: "Shop",
-      linkHref: "#" 
+      linkHref: "#"
     },
     get_to_know: {
       title: "Get to know iPad.",
@@ -682,7 +682,7 @@ export const categoryPageData = {
           title: "Productivity",
           description: "Your workplace\ncan be any place.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/fc_creativity__gcfv7x90x42u_large.jpg",
@@ -690,7 +690,7 @@ export const categoryPageData = {
           title: "Creativity",
           description: "Take your inner artist\nout and about.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/fc_learning__es1tt702bf6u_large.jpg",
@@ -698,7 +698,7 @@ export const categoryPageData = {
           title: "Learning",
           description: "Your classroom\ncan be anywhere.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/fc_entertainment__dcynvyyoe7iq_large.jpg",
@@ -706,39 +706,39 @@ export const categoryPageData = {
           title: "Entertainment",
           description: "Kick back. Tune in.\nGame on.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/fc_pencil__coz76i7lwsuq_large.jpg",
           imageAlt: "Apple Pencil",
-          title: "Apple Pencil",
+          title: "Apple Pencil",
           description: "Dream it up.\nJot it down.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/fc_ipados__urrua12bwaqy_large.jpg",
           imageAlt: "iPadOS + Apps",
           title: "iPadOS + Apps",
-          description: "Everyday superpowers.\nBuilt right in.",
+          description: "Everyday superpowers.\nBuilt right in.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         }
       ]
     },
     explore_lineup: {
       title: "Explore the lineup.",
       linkText: "Compare all models",
-      linkHref: "#", 
+      linkHref: "#",
       products: [
         {
           imageSrc: "/images/pt_ipad_pro__6bgrkek0jnm2_large.png",
           imageAlt: "iPad Pro",
-          title: "iPad Pro",
+          title: "iPad Pro",
           description: "The ultimate iPad experience with the most\nadvanced technology.",
-          price: "From $999 or $83.25/mo. for 12 mo.",
-          learnMoreLink: "#", 
-          buyLink: "#", 
+          price: "From $999 or $83.25/mo. for 12 mo.",
+          learnMoreLink: "#",
+          buyLink: "#",
           features: [
             "13″ or 11″",
             "Ultra Retina XDR display",
@@ -749,31 +749,31 @@ export const categoryPageData = {
             "12MP Wide camera",
             "4K video, ProRes",
             "Landscape 12MP Ultra Wide front camera",
-            "TrueDepth camera system",
-            "Supports Apple Pencil Pro",
-            "Supports Apple Pencil (USB‑C)",
-            "Supports Magic Keyboard for iPad Pro (M4)"
+            "TrueDepth camera system",
+            "Supports Apple Pencil Pro",
+            "Supports Apple Pencil (USB‑C)",
+            "Supports Magic Keyboard for iPad Pro (M4)"
           ]
         },
         {
           imageSrc: "/images/pt_ipad_air__cr381zljqdiu_large.png",
           imageAlt: "iPad Air",
-          title: "iPad Air",
-          description: "Serious performance in a thin and\nlight design.",
-          price: "From $599 or $49.91/mo. for 12 mo.",
-          learnMoreLink: "#", 
-          buyLink: "#", 
+          title: "iPad Air",
+          description: "Serious performance in a thin and\nlight design.",
+          price: "From $599 or $49.91/mo. for 12 mo.",
+          learnMoreLink: "#",
+          buyLink: "#",
           features: [
             "13″ or 11″",
-            "Liquid Retina display",
+            "Liquid Retina display",
             "P3 wide color",
-            "M2 chip",
+            "M2 chip",
             "12MP Wide camera",
             "4K video",
             "Landscape 12MP Ultra Wide front camera",
-            "Supports Apple Pencil Pro",
-            "Supports Apple Pencil (USB‑C)",
-            "Supports Magic Keyboard"
+            "Supports Apple Pencil Pro",
+            "Supports Apple Pencil (USB‑C)",
+            "Supports Magic Keyboard"
           ]
         },
         {
@@ -781,40 +781,40 @@ export const categoryPageData = {
           imageAlt: "iPad 10th generation",
           title: "iPad",
           description: "The colorful, all‑screen iPad for the things\nyou do every day.",
-          price: "From $349 or $29.08/mo. for 12 mo.",
-          learnMoreLink: "#", 
-          buyLink: "#", 
+          price: "From $349 or $29.08/mo. for 12 mo.",
+          learnMoreLink: "#",
+          buyLink: "#",
           features: [
             "10.9″",
-            "Liquid Retina display",
+            "Liquid Retina display",
             "sRGB color",
-            "A14 Bionic chip",
+            "A14 Bionic chip",
             "12MP Wide camera",
             "4K video",
             "Landscape 12MP Ultra Wide front camera",
-            "Supports Apple Pencil (USB‑C)",
-            "Supports Apple Pencil (1st generation)",
-            "Supports Magic Keyboard Folio"
+            "Supports Apple Pencil (USB‑C)",
+            "Supports Apple Pencil (1st generation)",
+            "Supports Magic Keyboard Folio"
           ]
         },
         {
           imageSrc: "/images/pt_ipad_mini__f3iy3qb50gia_large.png",
           imageAlt: "iPad mini",
-          title: "iPad mini",
-          description: "The full iPad experience in an\nultraportable design.",
-          price: "From $499 or $41.58/mo. for 12 mo.",
-          learnMoreLink: "#", 
-          buyLink: "#", 
+          title: "iPad mini",
+          description: "The full iPad experience in an\nultraportable design.",
+          price: "From $499 or $41.58/mo. for 12 mo.",
+          learnMoreLink: "#",
+          buyLink: "#",
           features: [
             "8.3″",
-            "Liquid Retina display",
+            "Liquid Retina display",
             "P3 wide color",
-            "A15 Bionic chip",
+            "A15 Bionic chip",
             "12MP Wide camera",
             "4K video",
             "12MP Ultra Wide front camera",
-            "Supports Apple Pencil (2nd generation)",
-            "Supports Apple Pencil (USB‑C)",
+            "Supports Apple Pencil (2nd generation)",
+            "Supports Apple Pencil (USB‑C)",
             "Supports Bluetooth keyboards"
           ]
         }
@@ -822,16 +822,16 @@ export const categoryPageData = {
     },
     essentials: {
       title: "iPad essentials.",
-      linkText: "All iPad accessories", 
-      linkHref: "#", 
+      linkText: "All iPad accessories",
+      linkHref: "#",
       products: [
         {
           imageSrc: "/images/bc_pencil__b1ze600aojyq_large.png",
           imageAlt: "Apple Pencil",
-          title: "Apple Pencil",
+          title: "Apple Pencil",
           description: "Dream it up. Jot it down.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/bc_keyboard__b2j4vh67cw76_large.png",
@@ -839,70 +839,70 @@ export const categoryPageData = {
           title: "Keyboards for iPad",
           description: "Type it out. Take it with you.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         }
       ]
     },
     why_buy: {
-      title: "Why Apple is the best place to buy iPad.",
+      title: "Why Apple is the best\nplace to buy iPad.",
       linkText: "Shop iPad",
-      linkHref: "#", 
+      linkHref: "#",
       products: [
         {
           imageSrc: "/images/icon_creditcard__ey9kuvs3up0m_large.png",
           imageAlt: "Apple Card icon",
-          title: "Pay over time, interest‑free.",
-          description: "When you choose to check out\nwith Apple Card Monthly\nInstallments.",
+          title: "Pay over time,\ninterest‑free.",
+          description: "When you choose to check out\nwith Apple Card Monthly\nInstallments.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_arrow_2_squarepath_devices__6qbnrk2ojsyy_large.png",
           imageAlt: "Trade In icon",
-          title: "Save up to $520 with Apple Trade In.",
+          title: "Save up to $520\nwith Apple Trade In.",
           description: "Get credit toward your next iPad\nwhen you trade in an eligible\ndevice.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_truck_box__cn8nn37cisk2_large.png",
           imageAlt: "Delivery icon",
-          title: "Get flexible delivery\nand easy pickup.",
-          description: "Choose two‑hour delivery from an\nApple Store, free delivery, or easy\npickup options.",
+          title: "Get flexible delivery\nand easy pickup.",
+          description: "Choose two‑hour delivery from an\nApple Store, free delivery, or easy\npickup options.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_emoji_face_grinning__c13dz0261e6a_large.png",
           imageAlt: "Personalize icon",
-          title: "Personalize your iPad for free.",
-          description: "Engrave your new iPad with a mix\nof emoji, names, initials\nand numbers.",
+          title: "Personalize your\niPad for free.",
+          description: "Engrave your new iPad with a mix\nof emoji, names, initials\nand numbers.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_person_macwindow__djxzm5q9ja6a_large.png",
           imageAlt: "Specialist icon",
-          title: "Shop live with\na Specialist.",
+          title: "Shop live with\na Specialist.",
           description: "Let us guide you live over video\nand answer all of your questions.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_person_alt__cyipsvpk8nue_large.png",
           imageAlt: "Personal Setup icon",
-          title: "Meet your new iPad\nwith Personal Setup.",
-          description: "Jump into online sessions with a\nSpecialist to set up your iPad and\ndiscover new features.",
+          title: "Meet your new iPad\nwith Personal Setup.",
+          description: "Jump into online sessions with a\nSpecialist to set up your iPad and\ndiscover new features.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         },
         {
           imageSrc: "/images/icon_app_applestore__fc3s3j1a0muu_large.png",
           imageAlt: "Apple Store App icon",
-          title: "Explore a shopping\nexperience designed\naround you.",
-          description: "Use the Apple Store app to get a\nmore personal way to shop.",
+          title: "Explore a shopping\nexperience designed\naround you.",
+          description: "Use the Apple Store app to get a\nmore personal way to shop.",
           linkText: "Learn more",
-          linkHref: "#" 
+          linkHref: "#"
         }
       ]
     },
@@ -910,28 +910,28 @@ export const categoryPageData = {
       title: "Significant others.",
       products: [
         {
-          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg", 
+          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg",
           imageAlt: "iPad and iPhone working together",
           title: "iPad and iPhone",
           description: "iPad is perfect for taking the content you\ncapture on iPhone and bringing it to life\non an immersive canvas. You can shoot\nvideos and photos on your iPhone and\nuse the large display of your iPad to edit,\nadd animations, and more. You can also\npick up wherever you left off with\nHandoff.",
-          linkText: "Learn more", 
-          linkHref: "#" 
+          linkText: "Learn more",
+          linkHref: "#"
         },
         {
-          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg", 
+          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg",
           imageAlt: "iPad and Mac working together",
           title: "iPad and Mac",
-          description: "", 
-          linkText: "Learn more", 
-          linkHref: "#" 
+          description: "",
+          linkText: "Learn more",
+          linkHref: "#"
         },
         {
-          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg", 
+          imageSrc: "/images/ia_ipad_iphone__cycr5ovszwmu_large.jpg",
           imageAlt: "iPad and Apple Watch working together",
           title: "iPad and Apple Watch",
-          description: "", 
-          linkText: "Learn more", 
-          linkHref: "#" 
+          description: "",
+          linkText: "Learn more",
+          linkHref: "#"
         }
       ]
     },

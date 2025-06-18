@@ -19,285 +19,285 @@ import {
 
 const macContent = {
   explore: {
-    title: "Khám Phá Tất Cả Mac",
-    description: "MacBook Air, MacBook Pro, iMac, Mac mini, Mac Studio, Mac Pro, Màn Hình",
+    title: "Explore All Mac",
+    description: "MacBook Air, MacBook Pro, iMac, Mac mini, Mac Studio, Mac Pro, Displays",
     items: [
-      { href: "/macbook-air", title: "MacBook Air", description: "Mỏng nhẹ, mạnh mẽ." },
-      { href: "/macbook-pro", title: "MacBook Pro", description: "Hiệu năng vượt trội." },
-      { href: "/imac", title: "iMac", description: "Tất cả trong một." },
-      { href: "/mac-mini", title: "Mac mini", description: "Nhỏ gọn, đa năng." },
-      { href: "/mac-studio", title: "Mac Studio", description: "Sức mạnh tối thượng." },
-      { href: "/mac-pro", title: "Mac Pro", description: "Dành cho chuyên gia." },
-      { href: "/mac-display", title: "Màn Hình", description: "Trải nghiệm hình ảnh đỉnh cao." },
+      { href: "/macbook-air", title: "MacBook Air", description: "Thin, light, and powerful." },
+      { href: "/macbook-pro", title: "MacBook Pro", description: "Exceptional performance." },
+      { href: "/imac", title: "iMac", description: "All in one." },
+      { href: "/mac-mini", title: "Mac mini", description: "Compact and versatile." },
+      { href: "/mac-studio", title: "Mac Studio", description: "Ultimate power." },
+      { href: "/mac-pro", title: "Mac Pro", description: "For professionals." },
+      { href: "/mac-display", title: "Displays", description: "Experience peak visuals." },
     ],
   },
   buy: {
-    title: "Mua Mac",
-    description: "Mua Mac, Phụ Kiện Mac, Apple Trade In, Tài Chính",
+    title: "Shop Mac",
+    description: "Shop Mac, Mac Accessories, Apple Trade In, Finance",
     items: [
-      { href: "/buy-mac", title: "Mua Mac", description: "Tìm hiểu cách mua Mac." },
-      { href: "/mac-accessories", title: "Phụ Kiện Mac", description: "Khám phá phụ kiện cho Mac." },
-      { href: "/apple-trade-in", title: "Apple Trade In", description: "Đổi cũ lấy mới." },
-      { href: "/mac-finance", title: "Tài Chính", description: "Các lựa chọn tài chính." },
+      { href: "/buy-mac", title: "Shop Mac", description: "Learn how to buy a Mac." },
+      { href: "/mac-accessories", title: "Mac Accessories", description: "Explore accessories for Mac." },
+      { href: "/apple-trade-in", title: "Apple Trade In", description: "Trade in your old device." },
+      { href: "/mac-finance", title: "Finance", description: "Financing options." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Mac",
-    description: "Hỗ Trợ Mac, AppleCare+ cho Mac, macOS Sequoia, Apple Intelligence, Các Ứng Dụng Của Apple, Tính Liên Tục, iCloud+, Mac Cho Doanh Nghiệp, Giáo Dục",
+    title: "Learn More About Mac",
+    description: "Mac Support, AppleCare+ for Mac, macOS Sequoia, Apple Intelligence, Apple Apps, Continuity, iCloud+, Mac for Business, Education",
     items: [
-      { href: "/mac-support", title: "Hỗ Trợ Mac", description: "Nhận hỗ trợ cho Mac của bạn." },
-      { href: "/applecare-plus-mac", title: "AppleCare+ cho Mac", description: "Bảo vệ Mac của bạn." },
-      { href: "/macos-sequoia", title: "macOS Sequoia", description: "Hệ điều hành mới nhất." },
-      { href: "/apple-intelligence", title: "Apple Intelligence", description: "Trải nghiệm thông minh." },
-      { href: "/apple-apps", title: "Các Ứng Dụng Của Apple", description: "Khám phá ứng dụng của Apple." },
-      { href: "/continuity", title: "Tính Liên Tục", description: "Làm việc liền mạch." },
-      { href: "/icloud-plus", title: "iCloud+", description: "Lưu trữ đám mây an toàn." },
-      { href: "/mac-for-business", title: "Mac Cho Doanh Nghiệp", description: "Giải pháp cho doanh nghiệp." },
-      { href: "/mac-for-education", title: "Giáo Dục", description: "Mac trong giáo dục." },
+      { href: "/mac-support", title: "Mac Support", description: "Get support for your Mac." },
+      { href: "/applecare-plus-mac", title: "AppleCare+ for Mac", description: "Protect your Mac." },
+      { href: "/macos-sequoia", title: "macOS Sequoia", description: "The latest operating system." },
+      { href: "/apple-intelligence", title: "Apple Intelligence", description: "Intelligent experience." },
+      { href: "/apple-apps", title: "Apple Apps", description: "Discover Apple apps." },
+      { href: "/continuity", title: "Continuity", description: "Work seamlessly." },
+      { href: "/icloud-plus", title: "iCloud+", description: "Secure cloud storage." },
+      { href: "/mac-for-business", title: "Mac for Business", description: "Solutions for business." },
+      { href: "/mac-for-education", title: "Education", description: "Mac in education." },
     ],
   },
 };
 
 const ipadContent = {
   explore: {
-    title: "Khám Phá Tất Cả iPad",
+    title: "Explore All iPad",
     description: "iPad Pro, iPad Air, iPad, iPad mini",
     items: [
-      { href: "/ipad-pro", title: "iPad Pro", description: "Sức mạnh vượt trội." },
-      { href: "/ipad-air", title: "iPad Air", description: "Mỏng nhẹ, mạnh mẽ." },
-      { href: "/ipad-mini", title: "iPad mini", description: "Nhỏ gọn, tiện lợi." },
+      { href: "/ipad-pro", title: "iPad Pro", description: "Exceptional power." },
+      { href: "/ipad-air", title: "iPad Air", description: "Thin, light, and powerful." },
+      { href: "/ipad-mini", title: "iPad mini", description: "Compact and convenient." },
     ],
   },
   buy: {
-    title: "Mua iPad",
-    description: "Mua iPad, Phụ Kiện iPad, Apple Trade In, Tài Chính",
+    title: "Shop iPad",
+    description: "Shop iPad, iPad Accessories, Apple Trade In, Finance",
     items: [
-      { href: "/buy-ipad", title: "Mua iPad", description: "Tìm hiểu cách mua iPad." },
-      { href: "/ipad-accessories", title: "Phụ Kiện iPad", description: "Khám phá phụ kiện cho iPad." },
+      { href: "/buy-ipad", title: "Shop iPad", description: "Learn how to buy an iPad." },
+      { href: "/ipad-accessories", title: "iPad Accessories", description: "Explore accessories for iPad." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về iPad",
-    description: "Hỗ Trợ iPad, AppleCare+ cho iPad, iPadOS",
+    title: "Learn More About iPad",
+    description: "iPad Support, AppleCare+ for iPad, iPadOS",
     items: [
-      { href: "/ipad-support", title: "Hỗ Trợ iPad", description: "Nhận hỗ trợ cho iPad của bạn." },
-      { href: "/applecare-plus-ipad", title: "AppleCare+ cho iPad", description: "Bảo vệ iPad của bạn." },
+      { href: "/ipad-support", title: "iPad Support", description: "Get support for your iPad." },
+      { href: "/applecare-plus-ipad", title: "AppleCare+ for iPad", description: "Protect your iPad." },
     ],
   },
 };
 
 const iphoneContent = {
   explore: {
-    title: "Khám Phá Tất Cả iPhone",
+    title: "Explore All iPhone",
     description: "iPhone 15 Pro, iPhone 15, iPhone SE",
     items: [
-      { href: "/iphone-15-pro", title: "iPhone 15 Pro", description: "Đỉnh cao công nghệ." },
-      { href: "/iphone-15", title: "iPhone 15", description: "Mạnh mẽ và đẹp mắt." },
-      { href: "/iphone-se", title: "iPhone SE", description: "Hiệu năng mạnh mẽ, giá phải chăng." },
+      { href: "/iphone-15-pro", title: "iPhone 15 Pro", description: "Peak technology." },
+      { href: "/iphone-15", title: "iPhone 15", description: "Powerful and beautiful." },
+      { href: "/iphone-se", title: "iPhone SE", description: "Powerful performance, affordable price." },
     ],
   },
   buy: {
-    title: "Mua iPhone",
-    description: "Mua iPhone, Phụ Kiện iPhone, Apple Trade In, Tài Chính",
+    title: "Shop iPhone",
+    description: "Shop iPhone, iPhone Accessories, Apple Trade In, Finance",
     items: [
-      { href: "/buy-iphone", title: "Mua iPhone", description: "Tìm hiểu cách mua iPhone." },
-      { href: "/iphone-accessories", title: "Phụ Kiện iPhone", description: "Khám phá phụ kiện cho iPhone." },
+      { href: "/buy-iphone", title: "Shop iPhone", description: "Learn how to buy an iPhone." },
+      { href: "/iphone-accessories", title: "iPhone Accessories", description: "Explore accessories for iPhone." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về iPhone",
-    description: "Hỗ Trợ iPhone, AppleCare+ cho iPhone, iOS",
+    title: "Learn More About iPhone",
+    description: "iPhone Support, AppleCare+ for iPhone, iOS",
     items: [
-      { href: "/iphone-support", title: "Hỗ Trợ iPhone", description: "Nhận hỗ trợ cho iPhone của bạn." },
-      { href: "/applecare-plus-iphone", title: "AppleCare+ cho iPhone", description: "Bảo vệ iPhone của bạn." },
+      { href: "/iphone-support", title: "iPhone Support", description: "Get support for your iPhone." },
+      { href: "/applecare-plus-iphone", title: "AppleCare+ for iPhone", description: "Protect your iPhone." },
     ],
   },
 };
 
 const watchContent = {
   explore: {
-    title: "Khám Phá Tất Cả Watch",
+    title: "Explore All Watch",
     description: "Apple Watch Ultra, Apple Watch Series, Apple Watch SE",
     items: [
-      { href: "/apple-watch-ultra", title: "Apple Watch Ultra", description: "Bền bỉ, mạnh mẽ." },
-      { href: "/apple-watch-series", title: "Apple Watch Series", description: "Tính năng vượt trội." },
-      { href: "/apple-watch-se", title: "Apple Watch SE", description: "Giá cả phải chăng." },
+      { href: "/apple-watch-ultra", title: "Apple Watch Ultra", description: "Durable and powerful." },
+      { href: "/apple-watch-series", title: "Apple Watch Series", description: "Exceptional features." },
+      { href: "/apple-watch-se", title: "Apple Watch SE", description: "Affordable price." },
     ],
   },
   buy: {
-    title: "Mua Watch",
-    description: "Mua Watch, Phụ Kiện Watch, Tài Chính",
+    title: "Shop Watch",
+    description: "Shop Watch, Watch Accessories, Finance",
     items: [
-      { href: "/buy-watch", title: "Mua Watch", description: "Tìm hiểu cách mua Watch." },
-      { href: "/watch-accessories", title: "Phụ Kiện Watch", description: "Khám phá phụ kiện cho Watch." },
+      { href: "/buy-watch", title: "Shop Watch", description: "Learn how to buy a Watch." },
+      { href: "/watch-accessories", title: "Watch Accessories", description: "Explore accessories for Watch." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Watch",
-    description: "Hỗ Trợ Watch, watchOS",
+    title: "Learn More About Watch",
+    description: "Watch Support, watchOS",
     items: [
-      { href: "/watch-support", title: "Hỗ Trợ Watch", description: "Nhận hỗ trợ cho Watch của bạn." },
-      { href: "/watchos", title: "watchOS", description: "Hệ điều hành Watch." },
+      { href: "/watch-support", title: "Watch Support", description: "Get support for your Watch." },
+      { href: "/watchos", title: "watchOS", description: "Watch operating system." },
     ],
   },
 };
 
 const visionContent = {
   explore: {
-    title: "Khám Phá Apple Vision Pro",
-    description: "Trải nghiệm không gian mới.",
+    title: "Explore Apple Vision Pro",
+    description: "Experience a new space.",
     items: [
-      { href: "/vision-pro", title: "Vision Pro", description: "Công nghệ đột phá." },
+      { href: "/vision-pro", title: "Vision Pro", description: "Breakthrough technology." },
     ],
   },
   buy: {
-    title: "Mua Vision Pro",
-    description: "Mua Vision Pro, Tài Chính",
+    title: "Shop Vision Pro",
+    description: "Shop Vision Pro, Finance",
     items: [
-      { href: "/buy-vision-pro", title: "Mua Vision Pro", description: "Tìm hiểu cách mua Vision Pro." },
+      { href: "/buy-vision-pro", title: "Shop Vision Pro", description: "Learn how to buy Vision Pro." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Vision Pro",
-    description: "Hỗ Trợ Vision Pro",
+    title: "Learn More About Vision Pro",
+    description: "Vision Pro Support",
     items: [
-      { href: "/vision-pro-support", title: "Hỗ Trợ Vision Pro", description: "Nhận hỗ trợ cho Vision Pro." },
+      { href: "/vision-pro-support", title: "Vision Pro Support", description: "Get support for Vision Pro." },
     ],
   },
 };
 
 const airpodsContent = {
   explore: {
-    title: "Khám Phá Tất Cả AirPods",
+    title: "Explore All AirPods",
     description: "AirPods Pro, AirPods, AirPods Max",
     items: [
-      { href: "/airpods-pro", title: "AirPods Pro", description: "Âm thanh sống động." },
-      { href: "/airpods", title: "AirPods", description: "Kết nối dễ dàng." },
-      { href: "/airpods-max", title: "AirPods Max", description: "Âm thanh chất lượng cao." },
+      { href: "/airpods-pro", title: "AirPods Pro", description: "Immersive sound." },
+      { href: "/airpods", title: "AirPods", description: "Easy connection." },
+      { href: "/airpods-max", title: "AirPods Max", description: "High-quality sound." },
     ],
   },
   buy: {
-    title: "Mua AirPods",
-    description: "Mua AirPods, Phụ Kiện AirPods",
+    title: "Shop AirPods",
+    description: "Shop AirPods, AirPods Accessories",
     items: [
-      { href: "/buy-airpods", title: "Mua AirPods", description: "Tìm hiểu cách mua AirPods." },
-      { href: "/airpods-accessories", title: "Phụ Kiện AirPods", description: "Khám phá phụ kiện cho AirPods." },
+      { href: "/buy-airpods", title: "Shop AirPods", description: "Learn how to buy AirPods." },
+      { href: "/airpods-accessories", title: "AirPods Accessories", description: "Explore accessories for AirPods." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về AirPods",
-    description: "Hỗ Trợ AirPods",
+    title: "Learn More About AirPods",
+    description: "AirPods Support",
     items: [
-      { href: "/airpods-support", title: "Hỗ Trợ AirPods", description: "Nhận hỗ trợ cho AirPods." },
+      { href: "/airpods-support", title: "AirPods Support", description: "Get support for AirPods." },
     ],
   },
 };
 
 const tvHomeContent = {
   explore: {
-    title: "Khám Phá TV & Home",
+    title: "Explore TV & Home",
     description: "Apple TV, HomePod, HomePod mini",
     items: [
-      { href: "/apple-tv", title: "Apple TV", description: "Giải trí tại gia." },
-      { href: "/homepod", title: "HomePod", description: "Âm thanh thông minh." },
+      { href: "/apple-tv", title: "Apple TV", description: "Home entertainment." },
+      { href: "/homepod", title: "HomePod", description: "Smart sound." },
     ],
   },
   buy: {
-    title: "Mua TV & Home",
-    description: "Mua Apple TV, HomePod",
+    title: "Shop TV & Home",
+    description: "Shop Apple TV, HomePod",
     items: [
-      { href: "/buy-apple-tv", title: "Mua Apple TV", description: "Tìm hiểu cách mua Apple TV." },
-      { href: "/buy-homepod", title: "Mua HomePod", description: "Tìm hiểu cách mua HomePod." },
+      { href: "/buy-apple-tv", title: "Shop Apple TV", description: "Learn how to buy Apple TV." },
+      { href: "/buy-homepod", title: "Shop HomePod", description: "Learn how to buy HomePod." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về TV & Home",
-    description: "Hỗ Trợ TV & Home",
+    title: "Learn More About TV & Home",
+    description: "TV & Home Support",
     items: [
-      { href: "/tv-home-support", title: "Hỗ Trợ TV & Home", description: "Nhận hỗ trợ cho TV & Home." },
+      { href: "/tv-home-support", title: "TV & Home Support", description: "Get support for TV & Home." },
     ],
   },
 };
 
 const entertainmentContent = {
   explore: {
-    title: "Giải Trí",
+    title: "Entertainment",
     description: "Apple Music, Apple TV+, Apple Arcade, Apple Books, App Store",
     items: [
-      { href: "/apple-music", title: "Apple Music", description: "Thế giới âm nhạc." },
-      { href: "/apple-tv-plus", title: "Apple TV+", description: "Phim và chương trình TV." },
-      { href: "/apple-arcade", title: "Apple Arcade", description: "Trò chơi không giới hạn." },
-      { href: "/apple-books", title: "Apple Books", description: "Sách và sách nói." },
-      { href: "/app-store", title: "App Store", description: "Ứng dụng và trò chơi." },
+      { href: "/apple-music", title: "Apple Music", description: "World of music." },
+      { href: "/apple-tv-plus", title: "Apple TV+", description: "Movies and TV shows." },
+      { href: "/apple-arcade", title: "Apple Arcade", description: "Unlimited games." },
+      { href: "/apple-books", title: "Apple Books", description: "Books and audiobooks." },
+      { href: "/app-store", title: "App Store", description: "Apps and games." },
     ],
   },
   buy: {
-    title: "Đăng Ký Dịch Vụ",
-    description: "Đăng ký Apple Music, Apple TV+, Apple Arcade",
+    title: "Subscribe to Services",
+    description: "Subscribe to Apple Music, Apple TV+, Apple Arcade",
     items: [
-      { href: "/subscribe-music", title: "Apple Music", description: "Đăng ký Apple Music." },
-      { href: "/subscribe-tv-plus", title: "Apple TV+", description: "Đăng ký Apple TV+." },
+      { href: "/subscribe-music", title: "Apple Music", description: "Subscribe to Apple Music." },
+      { href: "/subscribe-tv-plus", title: "Apple TV+", description: "Subscribe to Apple TV+." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Giải Trí",
-    description: "Hỗ Trợ Giải Trí",
+    title: "Learn More About Entertainment",
+    description: "Entertainment Support",
     items: [
-      { href: "/entertainment-support", title: "Hỗ Trợ Giải Trí", description: "Nhận hỗ trợ cho các dịch vụ giải trí." },
+      { href: "/entertainment-support", title: "Entertainment Support", description: "Get support for entertainment services." },
     ],
   },
 };
 
 const accessoriesContent = {
   explore: {
-    title: "Khám Phá Phụ Kiện",
-    description: "Phụ kiện cho iPhone, iPad, Mac, Watch, AirPods",
+    title: "Explore Accessories",
+    description: "Accessories for iPhone, iPad, Mac, Watch, AirPods",
     items: [
-      { href: "/iphone-accessories", title: "Phụ kiện iPhone", description: "Bao da, ốp lưng, sạc." },
-      { href: "/ipad-accessories", title: "Phụ kiện iPad", description: "Bàn phím, bút Apple Pencil." },
-      { href: "/mac-accessories", title: "Phụ kiện Mac", description: "Chuột, bàn phím, hub." },
+      { href: "/iphone-accessories", title: "iPhone Accessories", description: "Cases, covers, chargers." },
+      { href: "/ipad-accessories", title: "iPad Accessories", description: "Keyboards, Apple Pencil." },
+      { href: "/mac-accessories", title: "Mac Accessories", description: "Mice, keyboards, hubs." },
     ],
   },
   buy: {
-    title: "Mua Phụ Kiện",
-    description: "Mua phụ kiện chính hãng Apple",
+    title: "Shop Accessories",
+    description: "Shop genuine Apple accessories",
     items: [
-      { href: "/buy-accessories", title: "Mua Phụ Kiện", description: "Tìm hiểu cách mua phụ kiện." },
+      { href: "/buy-accessories", title: "Shop Accessories", description: "Learn how to buy accessories." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Phụ Kiện",
-    description: "Hỗ Trợ Phụ Kiện",
+    title: "Learn More About Accessories",
+    description: "Accessories Support",
     items: [
-      { href: "/accessories-support", title: "Hỗ Trợ Phụ Kiện", description: "Nhận hỗ trợ cho phụ kiện." },
+      { href: "/accessories-support", title: "Accessories Support", description: "Get support for accessories." },
     ],
   },
 };
 
 const supportContent = {
   explore: {
-    title: "Hỗ Trợ",
-    description: "Hỗ trợ kỹ thuật, sửa chữa, bảo hành",
+    title: "Support",
+    description: "Technical support, repairs, warranty",
     items: [
-      { href: "/get-support", title: "Nhận Hỗ Trợ", description: "Tìm kiếm giải pháp cho vấn đề của bạn." },
-      { href: "/repair", title: "Sửa Chữa", description: "Đặt lịch hẹn sửa chữa." },
-      { href: "/warranty", title: "Bảo Hành", description: "Kiểm tra tình trạng bảo hành." },
+      { href: "/get-support", title: "Get Support", description: "Find solutions to your issues." },
+      { href: "/repair", title: "Repairs", description: "Schedule a repair." },
+      { href: "/warranty", title: "Warranty", description: "Check warranty status." },
     ],
   },
   buy: {
-    title: "Dịch Vụ Hỗ Trợ",
+    title: "Support Services",
     description: "AppleCare, AppleCare+",
     items: [
-      { href: "/applecare", title: "AppleCare", description: "Bảo hành mở rộng." },
-      { href: "/applecare-plus", title: "AppleCare+", description: "Bảo vệ toàn diện." },
+      { href: "/applecare", title: "AppleCare", description: "Extended warranty." },
+      { href: "/applecare-plus", title: "AppleCare+", description: "Comprehensive protection." },
     ],
   },
   learnMore: {
-    title: "Tìm Hiểu Thêm Về Hỗ Trợ",
-    description: "Trung tâm hỗ trợ, cộng đồng",
+    title: "Learn More About Support",
+    description: "Support center, community",
     items: [
-      { href: "/support-center", title: "Trung Tâm Hỗ Trợ", description: "Truy cập tài nguyên hỗ trợ." },
-      { href: "/support-community", title: "Cộng Đồng Hỗ Trợ", description: "Tham gia thảo luận." },
+      { href: "/support-center", title: "Support Center", description: "Access support resources." },
+      { href: "/support-community", title: "Support Community", description: "Join discussions." },
     ],
   },
 };
@@ -306,7 +306,7 @@ const supportContent = {
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  
+
   const handleLinkClick = () => {
     setIsOpen(false);
   };
@@ -336,7 +336,7 @@ const Navbar: React.FC = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      
+
 
       <div className="md:hidden flex items-center space-x-4">
         <ShoppingBag size={20} className="cursor-pointer hover:text-white transition-colors" />
@@ -385,7 +385,7 @@ const Navbar: React.FC = () => {
           </SheetContent>
         </Sheet>
       </div>
-     
+
     </div>
   );
 };
