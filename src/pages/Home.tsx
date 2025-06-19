@@ -6,6 +6,7 @@ import AppleWatchUltra2Section from "@/components/home/AppleWatchUltra2Section";
 import AirPods4Section from "@/components/home/AirPods4Section";
 import AirPodsMaxSection from "@/components/home/AirPodsMaxSection";
 import AirPodsPro2Section from "@/components/home/AirPodsPro2Section";
+import ProductSection from "@/components/home/ProductSection";
 
 const Home: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
       <AirPods4Section />
       <AirPodsPro2Section />
       <AirPodsMaxSection />
+      <ProductSection />
     </main>
   );
 };

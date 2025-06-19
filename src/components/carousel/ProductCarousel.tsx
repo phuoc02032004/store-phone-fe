@@ -10,23 +10,22 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "../product/ProductCard"
-import { Link } from "react-router-dom"
+import type { Product } from "@/types/Product"
 
 interface ProductCarouselProps {
-  products: any[]
+  products: Product[]
 }
 
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }))
 
   return (
-    <div className="relative py-8 mx-auto max-w-[1400px]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <Carousel
         plugins={[plugin.current]}
-        className="w-full px-4"
+        className="w-full"
         opts={{
           align: "start",
-          slidesToScroll: 1,
         }}
         onMouseEnter={() => plugin.current.stop()}
         onMouseLeave={() => plugin.current.reset()}
@@ -35,18 +34,16 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
           {products.slice().reverse().slice().map((product) => (
             <CarouselItem
               key={product._id}
-              className="basis-full sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+              className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
             >
-              <Link to={`/product/${product._id}`} className="block cursor-pointer">
-                <div className="p-2">
-                  <ProductCard product={product} />
-                </div>
-              </Link>
+              <ProductCard product={product} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="h-8 w-8 -left-2 sm:h-10 sm:w-10 sm:-left-6 md:h-12 md:w-12 md:-left-8 border-2 border-blue-600 bg-white hover:bg-blue-50 hidden sm:flex" />
-        <CarouselNext className="h-8 w-8 -right-2 sm:h-10 sm:w-10 sm:-right-6 md:h-12 md:w-12 md:-right-8 border-2 border-blue-600 bg-white hover:bg-blue-50 hidden sm:flex" />
+        <div className="flex justify-center mt-8 space-x-4">
+          <CarouselPrevious className="static text-white bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]" />
+          <CarouselNext className="static text-white bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]" />
+        </div>
       </Carousel>
     </div>
   )

@@ -1,12 +1,22 @@
 import axiosClient from "./axiosClient";
 import type { Category } from "@/types/Category";
 
-const getCategory = async (p0: string): Promise<Category[]> => {
+const getAllCategories = async (): Promise<Category[]> => {
     try {
         const response = await axiosClient.get('/categories')
         return response.data
     } catch (error){
-        console.error('Error', error)
+        console.error('Error fetching all categories', error)
+        throw error
+    }
+}
+
+const getCategoryById = async (id: string): Promise<Category | null> => {
+    try {
+        const response = await axiosClient.get(`/categories/${id}`)
+        return response.data
+    } catch (error) {
+        console.error(`Error fetching category with ID ${id}`, error)
         throw error
     }
 }
@@ -31,4 +41,4 @@ const getChild = async (id: string): Promise<Category[]> => {
     }
 }
 
-export { getCategory, getParents, getChild }
+export { getAllCategories, getCategoryById, getParents, getChild }

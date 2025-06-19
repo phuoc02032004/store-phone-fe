@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductbyCategory } from "@/api/product";
-import { getCategory } from "@/api/category";
+import { getCategoryById } from "@/api/category";
 import type { Product } from "@/types/Product";
 import type { Category } from "@/types/Category";
-import ChildCategoryFeatured from "@/components/category/child/ChildCategoryFeatured";
-import ChildCategorySpecifications from "@/components/category/child/ChildCategorySpecifications";
 import ChildCategoryFilteredList from "@/components/category/child/ChildCategoryFilteredList";
+import ChildCategoryHeroSection from "@/components/category/child/ChildCategoryHeroSection";
+import ProductSection from "@/components/home/ProductSection";
 
 const ChildCategoryPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -15,17 +15,15 @@ const ChildCategoryPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch products and category data
   useEffect(() => {
     const loadPageData = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // Fetch products and category info in parallel
         const [productsResponse, categoryResponse] = await Promise.all([
           getProductbyCategory(categoryId ?? ''),
-          getCategory(categoryId ?? '')
+          getCategoryById(categoryId ?? '')
         ]);
 
         if (productsResponse && productsResponse.groupedProducts) {
@@ -38,7 +36,7 @@ const ChildCategoryPage: React.FC = () => {
         } else {
           setProducts([]);
         }
-        setCategory(categoryResponse.length > 0 ? categoryResponse[0] : null);
+        setCategory(categoryResponse);
       } catch (err) {
         console.error('Error loading page data:', err);
         setError("Failed to load page data");
@@ -88,15 +86,16 @@ const ChildCategoryPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <ChildCategoryHeroSection categoryName={category.name} />
 
-      <ChildCategoryFeatured products={products} />
-
-      <ChildCategorySpecifications products={products} />
-
-      <ChildCategoryFilteredList 
-        products={products} 
+      <ChildCategoryFilteredList
+        products={products}
         categoryName={category.name}
       />
+
+      <ProductSection />
+
+      
     </div>
   );
 };

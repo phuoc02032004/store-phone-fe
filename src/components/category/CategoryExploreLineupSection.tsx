@@ -62,9 +62,9 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   }, [activeTab, groupedProducts]);
 
   return (
-    <section className="bg-[#f5f5f7] py-12 md:py-16 text-[#1d1d1f]">
+    <section className="bg-[#f5f5f7] py-20 md:py-24 text-[#1d1d1f] p-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-baseline mb-8 md:mb-10">
+        <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold">
             {explore_lineup.title}
           </h2>
@@ -78,20 +78,20 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
           </div>
         </div>
 
-        <div className="mb-8 md:mb-12">
-          <div className="flex space-x-1 bg-neutral-200/70 p-[3px] rounded-full w-max">
+        <div className="mb-12 md:mb-16">
+          <div className="flex space-x-1 bg-gray-100 p-[3px] rounded-full w-max">
             {tabs.map((tabName) => (
-              <button
+              <Button
                 key={tabName}
                 onClick={() => setActiveTab(tabName)}
                 className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
                   ${activeTab === tabName
                     ? 'bg-white text-black shadow-sm'
-                    : 'text-white/40 hover:bg-neutral-300/60 '
+                    : 'text-gray-500 hover:bg-gray-300/60'
                   }`}
               >
                 {tabName}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

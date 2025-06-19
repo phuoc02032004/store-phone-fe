@@ -3,8 +3,6 @@ import { CURRENCY_LOCALE, CURRENCY_CODE } from "@/config/currencyConfig";
 import {
   Card,
   CardContent,
-  CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

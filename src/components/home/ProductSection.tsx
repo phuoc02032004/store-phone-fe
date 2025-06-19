@@ -1,72 +1,141 @@
 import React, { useEffect, useState } from "react";
-import ProductCarousel from "../carousel/ProductCarousel";
+import { Button } from "@/components/ui/button";
+import ProductCard from "@/components/product/ProductCard";
 import { getProducts } from "@/api/product";
 import type { Product } from "@/types/Product";
 
 const ProductSection: React.FC = () => {
-    const [productBest, setProductBest ] = useState<Product[]>([]);
-    const [productNew, setProductNew] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string>('New Arrival');
+  const [productsData, setProductsData] = useState<Record<string, Product[]>>({});
+  const [products, setProducts] = useState<Product[]>([]);
+  const [tabs, setTabs] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [displayLimit, setDisplayLimit] = useState<number>(8); 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const newArrivals = await getProducts({ isNewArrival: true });
-                const bestSellers = await getProducts({ isBestSeller: true });
-                setProductNew(newArrivals);
-                setProductBest(bestSellers);
-            } catch (err) {
-                console.error("Error fetching products:", err);
-                setError("Failed to fetch products.");
-            } finally {
-                setLoading(false);
-            }
+  useEffect(() => {
+    const fetchProductsData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const newArrivals = await getProducts({ isNewArrival: true });
+        const bestSellers = await getProducts({ isBestSeller: true });
+
+        const fetchedProducts: Record<string, Product[]> = {
+          'New Arrival': newArrivals,
+          'Best Seller': bestSellers,
         };
 
-        fetchData();
-    }, []);
+        setProductsData(fetchedProducts);
+        const availableTabs = Object.keys(fetchedProducts).filter(key => fetchedProducts[key].length > 0);
+        setTabs(availableTabs);
 
-    if (loading) {
-        return <div className="text-center text-white py-10">Loading products...</div>;
+        if (availableTabs.length > 0) {
+          const initialTab = availableTabs.includes('New Arrival') ? 'New Arrival' : availableTabs[0];
+          setActiveTab(initialTab);
+          setProducts(fetchedProducts[initialTab]);
+          setDisplayLimit(8); 
+        } else {
+          setProducts([]);
+          setDisplayLimit(8);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+        setError("Failed to load products. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProductsData();
+  }, []);
+
+  useEffect(() => {
+    if (activeTab && productsData) {
+      setProducts(productsData[activeTab] || []);
+      setDisplayLimit(8);
     }
+  }, [activeTab, productsData]);
 
-    if (error) {
-        return <div className="text-center text-red-500 py-10">{error}</div>;
-    }
+  const handleShowMore = () => {
+    setDisplayLimit(prevLimit => prevLimit + 8); 
+  };
 
-    return (
-        <div className="flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12 gap-8 md:gap-12 lg:gap-16 w-full mx-auto">
-            <section className="w-full">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
-                backdrop-blur-[10px]
-                border border-[rgba(255,255,255,0.18)]
-                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
-                    New Arrival
-                </h2>
-                {productNew.length > 0 ? (
-                    <ProductCarousel products={productNew} />
-                ) : (
-                    <p className="text-center text-white py-4">No new arrival products found.</p>
-                )}
-            </section>
+  const handleCollapse = () => {
+    setDisplayLimit(prevLimit => Math.max(8, prevLimit - 8));
+  };
 
-            <section className="w-full">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center mb-4 md:mb-6 lg:mb-8 bg-black/50 p-5 rounded-2xl bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
-                backdrop-blur-[10px]
-                border border-[rgba(255,255,255,0.18)]
-                shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
-                    Best Seller
-                </h2>
-                {productBest.length > 0 ? (
-                    <ProductCarousel products={productBest} />
-                ) : (
-                    <p className="text-center text-white py-4">No best seller products found.</p>
-                )}
-            </section>
+  return (
+    <section className="bg-[#f5f5f7] py-20 md:py-24 text-[#1d1d1f] w-full p-6">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-baseline mb-10 md:mb-14">
+          <h2 className="text-[32px] md:text-[40px] font-bold">
+            Explore Our Products
+          </h2>
+          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-[#0071e3] font-normal">
+            <a href="#" className="hover:underline">Help me choose ›</a>
+            <a href="#" className="hover:underline">Compare all models ›</a>
+          </div>
         </div>
-    );
+
+        <div className="mb-12 md:mb-16">
+          <div className="flex space-x-1 bg-gray-100 p-[3px] rounded-full w-max">
+            {tabs.map((tabName) => (
+              <button
+                key={tabName}
+                onClick={() => setActiveTab(tabName)}
+                className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
+                  ${activeTab === tabName
+                    ? 'bg-white text-black shadow-sm'
+                    : 'text-gray-500 hover:bg-gray-300/60'
+                  }`}
+              >
+                {tabName}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {loading ? (
+          <p className="text-center text-gray-500 py-10">Loading products...</p>
+        ) : error ? (
+          <p className="text-center text-red-500 py-10">{error}</p>
+        ) : products.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+            {products.slice(0, displayLimit).map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 py-10">No products available yet.</p>
+        )}
+
+        {(products.length > displayLimit || displayLimit > 8) && (
+          <div className="flex justify-center mt-12 md:mt-16 space-x-4">
+            {displayLimit < products.length && (
+              <Button
+                onClick={handleShowMore}
+                className="bg-[#0071e3] text-white px-8 py-3 rounded-full text-base font-medium hover:bg-[#0077ed] transition-colors duration-200"
+              >
+                Show More
+              </Button>
+            )}
+            {displayLimit > 8 && (
+              <Button
+                onClick={handleCollapse}
+                className="bg-gray-200 text-gray-800 px-8 py-3 rounded-full text-base font-medium hover:bg-gray-300 transition-colors duration-200"
+              >
+                Collapse
+              </Button>
+            )}
+          </div>
+        )}
+        
+        {products.length > 0 && <hr className="mt-12 md:mt-16 border-neutral-300/80" />}
+
+      </div>
+    </section>
+  );
 };
 
 export default ProductSection;

@@ -9,12 +9,6 @@ import ProductInfo from '@/components/product/ProductInfo';
 import ReviewList from '@/components/product/reviews/ReviewList';
 import ReviewForm from '@/components/product/reviews/ReviewForm';
 import { getProductReviews } from '@/api/review';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
 import { toast } from "sonner"
 import { addItem } from '@/store/cartSlice';
 
@@ -98,36 +92,34 @@ const Products: React.FC = () => {
     return <div className="text-center py-8">Product not found.</div>;
   }
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Card className="border-none shadow-md bg-white rounded-xl overflow-hidden">
-        <CardHeader className="border-b border-gray-200 p-6">
-          <CardTitle className="text-3xl font-bold text-gray-800">{product.name}</CardTitle>
-        </CardHeader>
-        <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="md:border-r border-gray-200 md:pr-8 pb-6 md:pb-0">
-              <ProductImageGallery productName={product.name} image={Array.isArray(product.image) ? product.image.filter((img): img is string => !!img) : [product.image].filter((img): img is string => !!img)} />
-            </div>
-            <div className="space-y-8">
-              <ProductInfo
-                product={product}
-                quantity={quantity}
-                handleQuantityChange={handleQuantityChange}
-                handleAddToCart={handleAddToCart}
-              />
-            </div>
+    <div className="min-h-screen bg-white text-[#1d1d1f]">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">{product.name}</h1>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex justify-center items-center">
+            <ProductImageGallery productName={product.name} image={Array.isArray(product.image) ? product.image.filter((img): img is string => !!img) : [product.image].filter((img): img is string => !!img)} />
           </div>
-        </CardContent>
-      </Card>
+          <div className="space-y-6">
+            <ProductInfo
+              product={product}
+              quantity={quantity}
+              handleQuantityChange={handleQuantityChange}
+              handleAddToCart={handleAddToCart}
+            />
+          </div>
+        </div>
 
-      {reviewsLoading ? (
-        <div className="text-center py-4">Loading reviews...</div>
-      ) : reviewsError ? (
-        <div className="text-center py-4 text-red-500">{reviewsError}</div>
-      ) : (
-        <ReviewList reviews={reviews || []} />
-      )}
-      <ReviewForm productId={product._id} onReviewSubmit={fetchReviews} />
+        <div className="mt-12 md:mt-16 bg-white p-6 rounded-lg shadow-sm">
+          {reviewsLoading ? (
+            <div className="text-center py-4">Loading reviews...</div>
+          ) : reviewsError ? (
+            <div className="text-center py-4 text-red-500">{reviewsError}</div>
+          ) : (
+            <ReviewList reviews={reviews || []} />
+          )}
+          <ReviewForm productId={product._id} onReviewSubmit={fetchReviews} />
+        </div>
+      </div>
     </div>
   );
 };

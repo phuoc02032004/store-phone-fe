@@ -1,7 +1,6 @@
-import type { Product } from "@/types/Product";
 
 export const childCategoryPageData = {
-  "6853a004ccdd9eb4d90582b8": { // Changed key to match the provided categoryId
+  "6853a004ccdd9eb4d90582b8": { 
     hero: {
       title: "iPhone",
       description: "The ultimate smartphone.\nPowerful. Beautiful. Magical.",
