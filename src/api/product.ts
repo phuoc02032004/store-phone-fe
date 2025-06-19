@@ -1,4 +1,4 @@
-import type { Product } from '@/types/Product'
+import type { Product, CategoryProductResponse } from '@/types/Product'
 import axiosClient from "./axiosClient";
 
 const getProducts = async (params?: { isNewArrival?: boolean; isBestSeller?: boolean }): Promise<Product[]> => {
@@ -11,7 +11,7 @@ const getProducts = async (params?: { isNewArrival?: boolean; isBestSeller?: boo
     }
 };
 
-const getProductbyCategory = async (category: string): Promise<Product[]> => {
+const getProductbyCategory = async (category: string): Promise<CategoryProductResponse> => {
     try {
         const response = await axiosClient.get(`/products/category/${category}`)
         return response.data

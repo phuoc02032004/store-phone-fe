@@ -5,8 +5,9 @@ const Logo: React.FC = () => {
 
     const navigate = useNavigate();
 
-    return (        <div 
-            className="flex justify-start md:justify-start items-center cursor-pointer "
+    return (       
+         <div 
+            className="flex items-center cursor-pointer"
             onClick={() => navigate('/')}
         >
             <img

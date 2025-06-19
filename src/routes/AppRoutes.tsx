@@ -7,7 +7,8 @@ import Product from "@/pages/product/Product";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import Profile from "@/pages/Profile";
-import CategoryPage from "@/pages/CategoryPage";
+import CategoryPage from "@/pages/category/CategoryPage";
+import ChildCategoryPage from "@/pages/category/ChildCategoryPage";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -19,7 +20,8 @@ const AppRoutes: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/category/:categoryName/:categoryId" element={<CategoryPage />} />
+        <Route path="/category/child/:categoryId" element={<ChildCategoryPage />} />
       </Route>
     </Routes>
   );

@@ -39,3 +39,20 @@ export interface Variant {
     sku: string;
 }
 
+
+interface GroupedProductCategory {
+    categoryName: string;
+    categoryLevel: number;
+    products: Product[];
+}
+
+export interface CategoryProductResponse {
+    category: {
+        id: string;
+        name: string;
+        level: number;
+    };
+    productsCount: number;
+    categoriesCount: number;
+    groupedProducts: Record<string, GroupedProductCategory>;
+}

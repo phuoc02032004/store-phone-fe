@@ -4,20 +4,18 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"; // Adjust path if needed
+} from "@/components/ui/accordion"; 
 
-// Product interface remains the same, assuming imageSrc is the large image for the right panel
 interface Product {
   imageSrc: string;
   imageAlt: string;
-  title: string; // This will be the AccordionTrigger text
-  description: string; // This will be the AccordionContent text
-  // linkText and linkHref are not used in this specific design, can be removed if not needed elsewhere
+  title: string; 
+  description: string;
 }
 
 interface CategorySignificantOthersSectionProps {
   significant_others: {
-    title: string; // e.g., "Significant others."
+    title: string;
     products: Product[];
   };
 }
@@ -71,7 +69,7 @@ const CategorySignificantOthersSection: React.FC<CategorySignificantOthersSectio
               >
                 {significant_others.products.map((product) => (
                   <AccordionItem key={product.title} value={product.title} className="border-b border-gray-200 last:border-b-0">
-                    <AccordionTrigger className="py-5 text-left text-lg font-semibold text-gray-800 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md">
+                    <AccordionTrigger className="py-5 text-left text-lg font-semibold text-white hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md">
                       {product.title}
                     </AccordionTrigger>
                     <AccordionContent className="pt-1 pb-5 text-sm text-gray-600 leading-relaxed">

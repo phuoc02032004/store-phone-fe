@@ -1,7 +1,7 @@
 import axiosClient from "./axiosClient";
 import type { Category } from "@/types/Category";
 
-const getCategory = async (): Promise<Category[]> => {
+const getCategory = async (p0: string): Promise<Category[]> => {
     try {
         const response = await axiosClient.get('/categories')
         return response.data

@@ -270,7 +270,7 @@ export const supportContent = {
     description: "AppleCare, AppleCare+",
     items: [
       { href: "/applecare", title: "AppleCare", description: "Extended warranty." },
-      { href: "/applecare-plus", title: "AppleCare+", description: "Comprehensive protection." },
+      { href: "/applecare-plus", title: "Comprehensive protection." },
     ],
   },
   learnMore: {

@@ -1,4 +1,5 @@
 import React from "react";
+import { CURRENCY_LOCALE, CURRENCY_CODE } from "@/config/currencyConfig";
 import {
   Card,
   CardContent,
@@ -6,53 +7,76 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { toast } from "sonner"
+import { Button } from "@/components/ui/button";
 import type { Product } from "@/types/Product";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+    const navigate = useNavigate();
 
-    const handleAddToCart = () => {
-         toast(`Open ${product.name}`);    
+    const handleViewDetails = () => {
+        navigate(`/product/${product._id}`)
     };
 
     return(
-        <Card className="w-full max-w-sm rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-[450px]
-            bg-white
-            backdrop-blur-[10px]
-            border border-[rgba(255,255,255,0.18)]
-            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] ">
-            <div className="relative group w-full h-[250px] overflow-hidden rounded-2xl">
+        <Card className="w-full max-w-sm rounded-2xl overflow-hidden group
+            bg-white border border-gray-200 shadow-md
+            hover:shadow-lg hover:border-gray-300 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.01]">
+            {/* Product Image */}
+            <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 rounded-xl"
                     src={product.image}
                     alt={product.name}
+                    className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-300"
                 />
+                {product.variants?.some(variant => variant.price < product.price) && (
+                    <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Sale
+                    </div>
+                )}
             </div>
-            <CardHeader className="p-4 flex-grow">
-                <CardTitle className="text-sm text-white font-bold bg-gray-800 rounded-2xl p-1 hover:text-gray-500 transition-colors duration-300 line-clamp-2">
+
+            {/* Product Info */}
+            <CardContent className="p-6">
+                <CardTitle className="text-xl font-semibold text-gray-900 mb-2 truncate">
                     {product.name}
                 </CardTitle>
-            </CardHeader>
-            <CardContent className="p-2 pt-0">
-                <p className="text-2xl font-bold text-black">
-                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price || product.variants?.[0]?.price)}
+                <p className="text-gray-700 text-sm mb-4 line-clamp-2">
+                    {product.description}
                 </p>
+                <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                        {product.variants?.length > 0 ? (
+                            <>
+                                <p className="text-lg font-bold text-gray-900">
+                                    From {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(Math.min(...product.variants.map(v => v.price)))}
+                                </p>
+                                {Math.min(...product.variants.map(v => v.price)) < product.price && (
+                                    <p className="text-sm text-gray-600 line-through">
+                                        {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(product.price)}
+                                    </p>
+                                )}
+                            </>
+                        ) : (
+                            <p className="text-lg font-bold text-white">
+                                {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(product.price)}
+                            </p>
+                        )}
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="bg-gray-100 hover:bg-gray-200 text-gray-900 border-gray-300 hover:border-gray-400"
+                        onClick={handleViewDetails}
+                    >
+                        View Details
+                    </Button>
+                </div>
             </CardContent>
-            <CardFooter className="p-4 pt-0">
-                <button
-                    className="w-full bg-black hover:bg-white text-white hover:text-black hover:border-black font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
-                    onClick={handleAddToCart}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-                    </svg>
-                    <span>Buy Now</span>
-                </button>
-            </CardFooter>
         </Card>
     )
 }

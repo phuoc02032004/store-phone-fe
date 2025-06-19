@@ -251,34 +251,34 @@ export const categoryPageData = {
       ]
     },
     significant_others: {
-      title: "Significant others.",
-      products: [
-        {
-          imageSrc: "/images/world_mac_iphone.jpg",
-          imageAlt: "Mac and iPhone working together",
-          title: "Mac and iPhone",
-          description: "You can answer calls or messages from\nyour iPhone directly on your Mac. Copy\nimages, video, or text on your iPhone,\nthen paste into another app on your\nnearby Mac. With iCloud, you can access\nyour favorite files from either your iPhone\nor your Mac. And so much more.",
-          linkText: "Learn more", 
-          linkHref: "#" 
-        },
-        {
-          imageSrc: "/images/world_mac_iphone.jpg",
-          imageAlt: "Mac and iPad working together",
-          title: "Mac and iPad",
-          description: "", 
-          linkText: "Learn more", 
-          linkHref: "#" 
-        },
-        {
-          imageSrc: "/images/world_mac_iphone.jpg",
-          imageAlt: "Mac and Apple Watch working together",
-          title: "Mac and Apple Watch",
-          description: "", 
-          linkText: "Learn more", 
-          linkHref: "#" 
-        }
-      ]
-    }
+        "title": "Significant others.",
+        "products": [
+          {
+            "imageSrc": "/images/world_mac_iphone.jpg",
+            "imageAlt": "Mac and iPhone working together",
+            "title": "Mac and iPhone",
+            "description": "You can answer calls or messages from\nyour iPhone directly on your Mac. Copy\nimages, video, or text on your iPhone,\nthen paste into another app on your\nnearby Mac. With iCloud, you can access\nyour favorite files from either your iPhone\nor your Mac. And so much more.",
+            "linkText": "Learn more",
+            "linkHref": "#"
+          },
+          {
+            "imageSrc": "/images/world_mac_ipad.jpg", // Cập nhật ảnh nếu có
+            "imageAlt": "Mac and iPad working together",
+            "title": "Mac and iPad",
+            "description": "Transform your workflow by pairing your Mac\nwith iPad. Use Sidecar to extend or mirror\nyour Mac display, giving you more room\nto work or a way to use your iPad as a\nhigh-precision input device with Apple Pencil.\nWith Universal Control, a single keyboard and\nmouse can work seamlessly between your Mac\nand iPad. Drag and drop content, sketch on\niPad and see it live on Mac, or use Handoff\nto start a task on one device and pick it up\non the other. iCloud keeps all your files,\nnotes, and creative projects in sync across\nboth devices effortlessly.",
+            "linkText": "Learn more",
+            "linkHref": "#"
+          },
+          {
+            "imageSrc": "/images/world_mac_watch.jpg", // Cập nhật ảnh nếu có
+            "imageAlt": "Mac and Apple Watch working together",
+            "title": "Mac and Apple Watch",
+            "description": "Experience convenience like never before when\nyour Mac and Apple Watch work in concert.\nUnlock your Mac automatically just by wearing\nyour Apple Watch – no password typing needed.\nApprove authentications for things like app\ninstallations or viewing locked notes with a\nsimple double-click on the side button of your\nWatch. You can even use your Apple Watch to\ncontrol media playback on your Mac or quickly\nlocate your Mac if it's nearby. It’s all designed\nto make your interactions faster, more secure,\nand incredibly seamless.",
+            "linkText": "Learn more",
+            "linkHref": "#"
+          }
+        ]
+      } 
   },
   iphone: {
     apple_intelligence: {

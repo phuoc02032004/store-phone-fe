@@ -10,11 +10,10 @@ import {
 interface Product {
   imageSrc: string;
   imageAlt: string;
-  category: string;
-  headline: string; 
-  bgColor?: string; 
-  textColor?: string; 
-  isLightBackground?: boolean;
+  title: string;
+  description: string;
+  linkText: string;
+  linkHref: string;
 }
 
 interface CategoryGetToKnowSectionProps {
@@ -39,11 +38,21 @@ const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const imageBackgroundMap: { [key: string]: { bgColor: string; isLightBackground: boolean } } = {
+  "/images/mac_ease.jpg": { bgColor: "#242426", isLightBackground: false },
+  "/images/mac_performance.jpg": { bgColor: "#242426", isLightBackground: false },
+  "/images/mac_iphone.jpg": { bgColor: "#FAFAFA", isLightBackground: true },
+  "/images/mac_compatibility.jpg": { bgColor: "#FAFAFA", isLightBackground: true },
+  "/images/mac_security.jpg": { bgColor: "#242426", isLightBackground: false },
+  "/images/mac_durability.jpg": { bgColor: "#FAFAFA", isLightBackground: true },
+  "/images/mac_values.jpg": { bgColor: "#FAFAFA", isLightBackground: true },
+};
+
 const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get_to_know }) => {
   return (
     <section className="bg-white py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[40px] font-bold text-[#1d1d1f] mb-10 md:mb-12">
+        <h2 className="text-[54px] font-bold text-[#1d1d1f] leading-[1.108] tracking-[-0.005em] mb-10 md:mb-12">
           {get_to_know.title}
         </h2>
         <Carousel
@@ -59,8 +68,8 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
                 className="pl-4 md:pl-5 basis-[80%] sm:basis-[45%] md:basis-[31%] lg:basis-[24%]"
               >
                 <div
-                  className="relative rounded-[18px] overflow-hidden group h-[480px] md:h-[500px] w-full"
-                  style={{ backgroundColor: product.bgColor }}
+                  className="relative rounded-[28px] overflow-hidden group h-[480px] md:h-[500px] w-full"
+                  style={{ backgroundColor: imageBackgroundMap[product.imageSrc]?.bgColor || 'transparent' }}
                 >
                   <img
                     src={product.imageSrc}
@@ -69,55 +78,54 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
                   />
                   <div
                     className={`absolute inset-0 p-5 md:p-6 flex flex-col justify-between ${
-                      !product.isLightBackground && !product.textColor
+                      !imageBackgroundMap[product.imageSrc]?.isLightBackground
                         ? "bg-gradient-to-t from-black/30 via-black/10 to-transparent"
                         : ""
                     }`}
                   >
                     <div>
                       <p
-                        className={`text-xs font-semibold uppercase tracking-wider ${
-                          product.textColor ||
-                          (product.isLightBackground
-                            ? "text-gray-700" 
-                            : "text-white/90") 
-                        }`}
+                        className={`text-[17px] font-semibold uppercase leading-[1.235] tracking-[-0.022em] ${
+                           imageBackgroundMap[product.imageSrc]?.isLightBackground
+                             ? "text-[#1D1D1F]"
+                             : "text-[#F5F5F7]"
+                         }`}
                       >
-                        {product.category}
+                        {product.title}
                       </p>
                       <h3
-                        className={`mt-1 text-2xl md:text-[27px] font-bold leading-tight ${ 
-                          product.textColor ||
-                          (product.isLightBackground
-                            ? "text-black"
-                            : "text-white")
-                        }`}
+                        className={`mt-1 text-[27px] font-bold leading-[1.18] tracking-[0.007em] ${
+                           imageBackgroundMap[product.imageSrc]?.isLightBackground
+                             ? "text-[#1D1D1F]"
+                             : "text-[#F5F5F7]"
+                         }`}
                       >
-                        {product.headline}
+                        {product.description}
                       </h3>
                     </div>
 
-                    <button
-                      className="absolute bottom-4 right-4 w-9 h-9 md:w-10 md:h-10 bg-[#3B3B3B] hover:bg-[#2c2c2c] rounded-full flex items-center justify-center text-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#3B3B3B] focus-visible:ring-white"
-                      aria-label={`Learn more about ${product.category}`}
+                    <a
+                      href={product.linkHref}
+                      aria-label={product.linkText}
+                      className="absolute bottom-4 right-4 w-9 h-9 md:w-10 md:h-10 bg-[#333336] hover:bg-[#2c2c2c] rounded-[18px] flex items-center justify-center text-[#D6D6D7] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#333336] focus-visible:ring-white"
                     >
                       <PlusIcon className="w-5 h-5 md:w-[22px] md:h-[22px]" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-end items-center mt-6 md:mt-8 space-x-2 pr-1 md:pr-0">
+          <div className="flex justify-end items-center mt-6 md:mt-8 -space-x-20 pr-1 md:pr-0">
             <CarouselPrevious
-              className="relative w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600
-                         disabled:bg-gray-50 disabled:text-gray-300 disabled:cursor-not-allowed
+              className="relative w-[50px] h-[50px] rounded-[36px] bg-[#D2D2D7]/64 hover:bg-[#D2D2D7]/80 text-black/56
+                         disabled:bg-[#D2D2D7]/30 disabled:text-black/30 disabled:cursor-not-allowed
                          border-none shadow-sm transition-colors
                          focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             />
             <CarouselNext
-              className="relative w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600
-                         disabled:bg-gray-50 disabled:text-gray-300 disabled:cursor-not-allowed
+              className="relative w-[50px] h-[50px] rounded-[36px] bg-[#D2D2D7]/64 hover:bg-[#D2D2D7]/80 text-black/56
+                         disabled:bg-[#D2D2D7]/30 disabled:text-black/30 disabled:cursor-not-allowed
                          border-none shadow-sm transition-colors
                          focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             />
@@ -129,47 +137,3 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
 };
 
 export default CategoryGetToKnowSection;
-
-
-// const SampleGetToKnowPage = () => {
-//   const getToKnowData = {
-//     title: "Get to know Mac.",
-//     products: [
-//       {
-//         imageSrc: "/images/mac-get-to-know-1.jpg", // Replace with your actual image path
-//         imageAlt: "Colorful abstract waves with hello text",
-//         category: "Getting Started",
-//         headline: "Easy to use. Easy to love.",
-//         // textColor: "text-white", // Handled by default for dark backgrounds
-//       },
-//       {
-//         imageSrc: "/images/mac-get-to-know-2.jpg", // Replace with your actual image path
-//         imageAlt: "Person working on a MacBook in an airy location",
-//         category: "Performance and Battery Life",
-//         headline: "Go fast. Go far.",
-//         // textColor: "text-white", // Handled by default
-//       },
-//       {
-//         imageSrc: "/images/mac-get-to-know-3.jpg", // Replace with your actual image path (screenshot of Mac & iPhone)
-//         imageAlt: "Mac and iPhone screens showing continuity features",
-//         category: "Mac and iPhone",
-//         headline: "Dream team.",
-//         bgColor: "#E9E5F2", // Light purple background
-//         isLightBackground: true, // Hint for text color
-//         // textColor: "text-black", // Or specify directly
-//       },
-//       {
-//         imageSrc: "/images/mac-get-to-know-4.jpg", // Replace with actual image (app icons grid)
-//         imageAlt: "Grid of popular application icons",
-//         category: "Compatibility",
-//         headline: "Mac runs your favorite apps.",
-//         bgColor: "#F5F5F7", // Light gray background
-//         isLightBackground: true,
-//         // textColor: "text-black",
-//       },
-//       // Add more products as needed
-//     ],
-//   };
-
-//   return <CategoryGetToKnowSection get_to_know={getToKnowData} />;
-// };
