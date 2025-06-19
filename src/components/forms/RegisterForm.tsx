@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
@@ -31,6 +30,8 @@ const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
   const [showVerifyForm, setShowVerifyForm] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,17 +45,21 @@ const RegisterForm: React.FC = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
+      setLoading(true);
+      setError(null);
       const response = await register(data.email, data.password, data.username);
       if(response.status === 'success'){
         setRegisteredEmail(data.email);
         setShowVerifyForm(true);
         toast.success("Registration successful! Please verify your email.");
       } else {
-        form.setError("root", { message: response.message || "Registration failed." });
+        setError(response.message || "Registration failed.");
       }
-    } catch (error: any) {
-      console.error(error);
-      form.setError("root", { message: error.response?.data?.message || "An unexpected error occurred." });
+    } catch (err: any) {
+      console.error(err);
+      setError(err.response?.data?.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -63,7 +68,13 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="w-[90%] sm:w-[450px] md:w-[500px] mx-auto p-4 sm:p-6 rounded-md shadow-md bg-white/80">
+    <div className="w-[90%] sm:w-[400px] mx-auto
+     bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            rounded-[20px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
+            m-10 p-8">
       {showVerifyForm ? (
         <VerifyForm initialEmail={registeredEmail} onSuccess={handleVerificationSuccess} />
       ) : (
@@ -74,9 +85,15 @@ const RegisterForm: React.FC = () => {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed">Username</FormLabel>
-                  <FormControl className="flex items-center">
-                    <Input className="h-10 border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John Doe" {...field} />
+                  <FormControl>
+                    <div className="relative flex items-center">
+                      <Input
+                        placeholder="Username"
+                        disabled={loading}
+                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        {...field}
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -87,9 +104,16 @@ const RegisterForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed">Email</FormLabel>
-                  <FormControl className="flex items-center">
-                    <Input className="h-10 border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="shadcn@example.com" {...field} />
+                  <FormControl>
+                    <div className="relative flex items-center">
+                      <Input
+                        placeholder="Email or Phone Number"
+                        type="email"
+                        disabled={loading}
+                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        {...field}
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,9 +124,14 @@ const RegisterForm: React.FC = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed">Password</FormLabel>
-                  <FormControl className="flex items-center">
-                    <Input className="h-10 border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" type="password" {...field} />
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      disabled={loading}
+                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,25 +142,49 @@ const RegisterForm: React.FC = () => {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed">Confirm Password</FormLabel>
-                  <FormControl className="flex items-center">
-                    <Input className="h-10 border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" type="password" {...field} />
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Confirm Password"
+                      disabled={loading}
+                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full text-white">Submit</Button>
-            {form.formState.errors.root && (
-              <FormMessage>{form.formState.errors.root.message}</FormMessage>
+            {error && (
+              <div className="text-red-500 text-sm mb-4">{error}</div>
             )}
+            <Button
+              type="submit"
+              className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-lg py-6 mt-6 text-2xl font-bold"
+              disabled={loading}
+            >
+              {loading ? 'Registering...' : 'Register'}
+            </Button>
           </form>
         </Form>
       )}
-      <div className="flex items-center justify-center mt-4 space-x-2">
-        <div>Already have an account?</div>
-        <a href="/login">Login</a>
+      <div className="mt-8 text-center text-sm text-gray-600">
+        <span>Already have an Apple Account? </span>
+        <a href="/login" className="text-blue-600 hover:underline">
+          Sign in to Apple Store <span className="ml-1">{'>'}</span>
+        </a>
       </div>
+      {showVerifyForm && (
+        <div className="mt-4 text-center text-sm">
+          <button
+            type="button"
+            onClick={() => setShowVerifyForm(false)}
+            className="text-white hover:underline"
+          >
+            Back to Register
+          </button>
+        </div>
+      )}
     </div>
   );
 };

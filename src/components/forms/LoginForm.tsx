@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
@@ -67,7 +66,13 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="w-[90%] sm:w-[450px] md:w-[500px] mx-auto p-4 sm:p-6 rounded-md shadow-md backdrop-blur-3xl bg-white/80">
+    <div className="w-[90%] sm:w-[400px] mx-auto
+     bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            rounded-[20px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
+            m-10 p-8">
       {showForgotPassword ? (
         <ForgotPasswordForm onSuccess={handleForgotPasswordSuccess} />
       ) : showResetPassword ? (
@@ -83,14 +88,17 @@ const LoginForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  {/* <FormLabel>Email</FormLabel> */}
                   <FormControl>
-                    <Input
-                      placeholder="email@example.com"
-                      type="email"
-                      disabled={loading}
-                      {...field}
-                    />
+                    <div className="relative flex items-center">
+                      <Input
+                        placeholder="Email or Phone Number"
+                        type="email"
+                        disabled={loading}
+                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        {...field}
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,18 +110,19 @@ const LoginForm: React.FC = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  {/* <FormLabel>Password</FormLabel> */}
                   <FormControl>
                     <Input
                       type="password"
                       placeholder="Password"
                       disabled={loading}
+                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                       {...field}
                     />
                   </FormControl>
                   <div
                     onClick={() => setShowForgotPassword(true)}
-                    className=" hover:underline text-sm text-right block mt-1 text-black cursor-pointer"
+                    className="text-blue-600 hover:underline text-sm text-right block mt-2 cursor-pointer"
                   >
                     Forgot password?
                   </div>
@@ -126,7 +135,7 @@ const LoginForm: React.FC = () => {
             )}
             <Button
               type="submit"
-              className="w-full text-white"
+              className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-lg py-6 mt-6 text-2xl font-bold"
               disabled={loading}
             >
               {loading ? 'Logging in...' : 'Login'}
@@ -135,10 +144,10 @@ const LoginForm: React.FC = () => {
         </Form>
       )}
 
-      <div className="mt-4 text-center text-sm">
-        <span>Don't have an account? </span>
-        <a href="/register" className="text-primary hover:underline">
-          Register
+      <div className="mt-8 text-center text-sm text-gray-600">
+        <span>Don't have an Apple Account? </span>
+        <a href="/register" className="text-blue-600 hover:underline">
+          Create Your Apple Account <span className="ml-1">{'>'}</span>
         </a>
       </div>
       {(showForgotPassword || showResetPassword) && (

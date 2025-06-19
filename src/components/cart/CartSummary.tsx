@@ -10,9 +10,10 @@ import { toast } from 'sonner';
 import type { Coupon } from '@/types/Coupon'; 
 
 interface CartSummaryProps {
+  onOrderSuccess: () => void;
 }
 
-const CartSummary: React.FC<CartSummaryProps> = () => {
+const CartSummary: React.FC<CartSummaryProps> = ({ onOrderSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponCode, setCouponCode] = useState<string>(''); 
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null); 
@@ -99,7 +100,7 @@ const CartSummary: React.FC<CartSummaryProps> = () => {
       <div className="flex justify-center">
         <Button size="lg" className="w-full md:w-auto text-white" onClick={openModal}>Proceed to Checkout</Button>
       </div>
-      <CheckoutModal isOpen={isModalOpen} onClose={closeModal} items={transformedItems} coupon={appliedCoupon ? appliedCoupon.code : null} />
+      <CheckoutModal isOpen={isModalOpen} onClose={closeModal} items={transformedItems} coupon={appliedCoupon ? appliedCoupon.code : null} onOrderSuccess={onOrderSuccess} />
     </div>
   );
 };

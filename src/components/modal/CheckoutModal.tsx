@@ -7,8 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createOrder } from '@/api/order';
 import { createZaloPay } from '@/api/zalopay';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '@/store/cartSlice';
 
 import type { Items } from '@/types/Order';
 
@@ -17,12 +15,12 @@ interface CheckoutModalProps {
   onClose: () => void;
   items: Items[];
   coupon: string | null;
+  onOrderSuccess: () => void; // New prop for success callback
 }
 
-type ViewState = 'form' | 'zalopay_redirect' | 'cod_thankyou';
+type ViewState = 'form' | 'zalopay_redirect'; // Removed 'cod_thankyou'
 
-const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, coupon }) => {
-  const dispatch = useDispatch();
+const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, coupon, onOrderSuccess }) => {
   const initialShippingAddress = { street: '', city: '', state: '', phone: '' };
   const [shippingAddress, setShippingAddress] = useState(initialShippingAddress);
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -44,19 +42,16 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
 
   useEffect(() => {
     if (isOpen) {
-      // resetModalState(); 
+      // resetModalState();
     } else {
       resetModalState();
     }
   }, [isOpen]);
 
   const handleModalClose = () => {
-    if (viewState === 'cod_thankyou' || viewState === 'zalopay_redirect') {
-      dispatch(clearCart());
-    }
+    // Reset state on close
     resetModalState();
     onClose();
-    // navigate('/'); 
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,7 +79,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
         }
         try {
           const zaloResponse = await createZaloPay(orderResponse._id);
-          if (zaloResponse && zaloResponse.data && zaloResponse.data.payUrl) { 
+          if (zaloResponse && zaloResponse.data && zaloResponse.data.payUrl) {
             setZalopayUrl(zaloResponse.data.payUrl);
             setViewState('zalopay_redirect');
           } else {
@@ -96,7 +91,10 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
           setError('Error processing ZaloPay payment. Please try again.');
         }
       } else if (paymentMethod == "COD") {
-        setViewState('cod_thankyou');
+        if (onOrderSuccess) { // Add check before calling
+          onOrderSuccess(); // Call success callback for COD
+        }
+        onClose(); // Close modal immediately for COD
       }
     } catch (orderError) {
       console.error('Error creating order:', orderError);
@@ -170,7 +168,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                 <Label htmlFor="paymentMethod">Payment Method</Label>
                 <Select
                   onValueChange={(value) => setPaymentMethod(value)}
-                  value={paymentMethod} 
+                  value={paymentMethod}
                   required
                   disabled={isLoading}
                 >
@@ -238,23 +236,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                     </Button>
                 </div>
             </>
-        )}
-
-        {viewState === 'cod_thankyou' && (
-          <>
-            <DialogHeader>
-              <DialogTitle>Thank You!</DialogTitle>
-              <DialogDescription>
-                Your order has been placed successfully.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="py-6 text-center">
-              <p>We have received your order and will process it shortly. You will be contacted for confirmation.</p>
-              <Button onClick={handleModalClose} className="mt-4 w-full text-white">
-                Close
-              </Button>
-            </div>
-          </>
         )}
       </DialogContent>
     </Dialog>

@@ -64,7 +64,12 @@ const OrderHistory: React.FC = () => {
         ) : (
           <div className="space-y-4">
             {currentOrders.map((order: any) => (
-              <div key={order._id} className="border p-4 m-4 rounded-xl shadow-2xl">
+              <div key={order._id} className=" p-4 m-4
+              bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+              backdrop-blur-[10px]
+              rounded-[20px]
+              border border-[rgba(255,255,255,0.18)]
+              shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                 <div className="flex justify-between">
                   <span className="font-semibold">Order ID: {order._id}</span>
                   <span>Date: {new Date(order.createdAt).toLocaleDateString()}</span>
@@ -81,10 +86,20 @@ const OrderHistory: React.FC = () => {
           </div>
         )}
       {totalPages > 1 && (
-        <Pagination>
-          <PaginationContent>
+        <Pagination className="mt-4 bg-transparent">
+          <PaginationContent
+            className="p-2 rounded-2xl
+            bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
+            "
+          >
             <PaginationItem>
-              <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+              <PaginationPrevious
+                onClick={() => handlePageChange(currentPage - 1)}
+                className="!text-black"
+              />
             </PaginationItem>
             {(() => {
               const pageNumbers: (number | string)[] = [];
@@ -142,11 +157,16 @@ const OrderHistory: React.FC = () => {
                 return finalCleanedItems.map((page, index) => (
                   <PaginationItem key={index}>
                     {page === '...' ? (
-                      <PaginationEllipsis />
+                      <PaginationEllipsis className="!text-black" />
                     ) : (
                       <PaginationLink
                         onClick={() => handlePageChange(page as number)}
                         isActive={currentPage === page}
+                        className={`!text-black ${
+                          page === currentPage
+                            ? "bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] rounded-[20px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
+                            : ""
+                        }`}
                       >
                         {page}
                       </PaginationLink>
@@ -160,6 +180,11 @@ const OrderHistory: React.FC = () => {
                   <PaginationLink
                     onClick={() => handlePageChange(page as number)}
                     isActive={currentPage === page}
+                    className={`!text-black ${
+                      page === currentPage
+                        ? "bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] rounded-[20px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
+                        : ""
+                    }`}
                   >
                     {page}
                   </PaginationLink>
@@ -167,7 +192,10 @@ const OrderHistory: React.FC = () => {
               ));
             })()}
             <PaginationItem>
-              <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
+              <PaginationNext
+                onClick={() => handlePageChange(currentPage + 1)}
+                className="!text-black"
+              />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

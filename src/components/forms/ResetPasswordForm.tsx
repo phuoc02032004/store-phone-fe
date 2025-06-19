@@ -74,7 +74,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({ initialEmail, onS
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="hidden">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="m@example.com" {...field} disabled />
