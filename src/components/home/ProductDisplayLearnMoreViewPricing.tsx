@@ -12,7 +12,7 @@ const ProductDisplayLearnMoreViewPricing: React.FC = () => {
         textColor="text-appleLightGray"
         buttonBorderColor="border-appleLightGray"
         buttonHoverBgColor="hover:bg-appleLightGray"
-        buttonHoverTextColor="hover:text-black"
+        buttonHoverTextColor="hover:text-lightText"
         preorderText="Pre-order starting 9.13 Available starting 9.20"
         footnote="*"
         footnoteText="Apple Intelligence coming this fall"

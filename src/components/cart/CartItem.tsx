@@ -72,6 +72,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           variant="destructive"
           size="sm"
           onClick={() => handleRemoveItem(item._id, item.selectedVariant?._id)}
+          className='text-white'
         >
           Remove
         </Button>

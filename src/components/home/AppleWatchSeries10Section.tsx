@@ -9,7 +9,7 @@ const AppleWatchSeries10Section: React.FC = () => {
 
   const descriptionClasses = useFigmaGradient
     ? "text-lg md:text-[23.0625px] leading-[1.2140921409214092em] tracking-[0.9365853901478011%] font-normal mb-4 text-white max-w-[600px]"
-    : "text-lg md:text-xl leading-[1.2] font-normal text-black pt-15";
+    : "text-lg md:text-xl leading-[1.2] font-normal text-lightText pt-15";
 
   return (
     <section className={sectionClasses}>
@@ -18,7 +18,7 @@ const AppleWatchSeries10Section: React.FC = () => {
         alt="Apple Watch Series 10"
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] md:max-w-[1000px] lg:max-w-[1200px] h-auto object-contain"
       />
-      <div className={`flex-col max-w-xl md:max-w-4xl lg:max-w-5xl pt-20 ${useFigmaGradient ? "text-white" : "text-black"}`}>
+      <div className={`flex-col max-w-xl md:max-w-4xl lg:max-w-5xl pt-20 ${useFigmaGradient ? "text-white" : "text-lightText"}`}>
         
         <div className="flex justify-center">
               <img

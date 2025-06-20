@@ -111,7 +111,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
         handleModalClose();
       }
     }}>
-      <DialogContent className="sm:max-w-[425px] [&>button]:bg-transparent [&>button]:text-black [&>button]:hover:bg-transparent">
+      <DialogContent className="sm:max-w-[425px] [&>button]:bg-transparent [&>button]:text-lightText [&>button]:hover:bg-transparent">
         {viewState === 'form' && (
           <>
             <DialogHeader>

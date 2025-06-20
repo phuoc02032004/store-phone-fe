@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import type { Review } from '@/types/Review';
-import ReviewCard from './ReviewCard';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useMemo } from "react";
+import type { Review } from "@/types/Review";
+import ReviewCard from "./ReviewCard";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Pagination,
   PaginationContent,
@@ -9,7 +9,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
+} from "@/components/ui/pagination";
 
 interface ReviewListProps {
   reviews: Review[];
@@ -22,23 +22,34 @@ const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
   const currentReviews = useMemo(() => {
     const indexOfLastReview = currentPage * reviewsPerPage;
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
-    return reviews.slice().reverse().slice(indexOfFirstReview, indexOfLastReview);
+    return reviews
+      .slice()
+      .reverse()
+      .slice(indexOfFirstReview, indexOfLastReview);
   }, [reviews, currentPage, reviewsPerPage]);
 
   const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
- 
-
   return (
-    <Card className="mt-8 shadow-md">
+    <Card
+      className="mt-8 
+      bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
+    >
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Customer Reviews ({reviews.length})</CardTitle>
+        <CardTitle className="text-2xl font-bold">
+          Customer Reviews ({reviews.length})
+        </CardTitle>
       </CardHeader>
       <CardContent>
         {reviews.length === 0 ? (
-          <p className="text-gray-600">No reviews yet. Be the first to review this product!</p>
+          <p className="text-gray-600">
+            No reviews yet. Be the first to review this product!
+          </p>
         ) : (
           <>
             <div className="space-y-4">
@@ -52,7 +63,11 @@ const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
                   <PaginationItem>
                     <PaginationPrevious
                       onClick={() => paginate(currentPage - 1)}
-                      className={currentPage === 1 ? 'pointer-events-none opacity-50' : undefined}
+                      className={
+                        currentPage === 1
+                          ? "pointer-events-none opacity-50"
+                          : undefined
+                      }
                     />
                   </PaginationItem>
                   {Array.from({ length: totalPages }, (_, i) => (
@@ -68,7 +83,11 @@ const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
                   <PaginationItem>
                     <PaginationNext
                       onClick={() => paginate(currentPage + 1)}
-                      className={currentPage === totalPages ? 'pointer-events-none opacity-50' : undefined}
+                      className={
+                        currentPage === totalPages
+                          ? "pointer-events-none opacity-50"
+                          : undefined
+                      }
                     />
                   </PaginationItem>
                 </PaginationContent>

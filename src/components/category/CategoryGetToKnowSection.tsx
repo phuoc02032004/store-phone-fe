@@ -52,7 +52,7 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
   return (
     <section className="bg-white py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[54px] font-bold text-appleBlack leading-[1.108] tracking-[-0.005em] mb-10 md:mb-12">
+        <h2 className="text-[54px] font-bold text-lightText leading-[1.108] tracking-[-0.005em] mb-10 md:mb-12">
           {get_to_know.title}
         </h2>
         <Carousel
@@ -109,7 +109,7 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
                       aria-label={product.linkText}
                       className="absolute bottom-4 right-4 w-9 h-9 md:w-10 md:h-10 bg-appleDarkGray hover:bg-appleDarkGrayHover rounded-[18px] flex items-center justify-center text-appleLightGray transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-appleDarkGray focus-visible:ring-white"
                     >
-                      <PlusIcon className="w-5 h-5 md:w-[22px] md:h-[22px]" />
+                      <PlusIcon className="w-5 h-5 md:w-[22px] md:h-[22px] text-white" />
                     </a>
                   </div>
                 </div>
@@ -118,14 +118,14 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
           </CarouselContent>
           <div className="flex justify-end items-center mt-6 md:mt-8 -space-x-20 pr-1 md:pr-0">
             <CarouselPrevious
-              className="relative w-[50px] h-[50px] rounded-[36px] bg-appleButtonGray/64 hover:bg-appleButtonGray/80 text-black/56
-                         disabled:bg-appleButtonGray/30 disabled:text-black/30 disabled:cursor-not-allowed
+              className="relative w-[50px] h-[50px] rounded-[36px] bg-appleButtonGray/64 hover:bg-appleButtonGray/80 text-lightText/56
+                         disabled:bg-appleButtonGray/30 disabled:text-lightText/30 disabled:cursor-not-allowed
                          border-none shadow-sm transition-colors
                          focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             />
             <CarouselNext
-              className="relative w-[50px] h-[50px] rounded-[36px] bg-appleButtonGray/64 hover:bg-appleButtonGray/80 text-black/56
-                         disabled:bg-appleButtonGray/30 disabled:text-black/30 disabled:cursor-not-allowed
+              className="relative w-[50px] h-[50px] rounded-[36px] bg-appleButtonGray/64 hover:bg-appleButtonGray/80 text-lightText/56
+                         disabled:bg-appleButtonGray/30 disabled:text-lightText/30 disabled:cursor-not-allowed
                          border-none shadow-sm transition-colors
                          focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             />

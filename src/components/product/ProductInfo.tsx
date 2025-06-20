@@ -92,7 +92,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
                   const firstCapacityForColor = product.variants?.find(v => v.color === color)?.capacity;
                   setSelectedCapacity(firstCapacityForColor || null);
                 }}
-                className={selectedColor === color ? "bg-black text-white" : "bg-white text-black border-black"}
+                className={selectedColor === color ? "bg-black text-white" : "bg-white text-lightText border-black"}
               >
                 {color}
               </Button>
@@ -110,7 +110,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
                 key={capacity}
                 variant={selectedCapacity === capacity ? "default" : "outline"}
                 onClick={() => setSelectedCapacity(capacity)}
-                className={selectedCapacity === capacity ? "bg-black text-white" : "bg-white text-black border-black"}
+                className={selectedCapacity === capacity ? "bg-black text-white" : "bg-white text-lightText border-black"}
               >
                 {capacity}
               </Button>
@@ -178,7 +178,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
       </div>
 
       <Button
-        className="w-full bg-black hover:bg-white hover:text-black hover:border-black text-white font-bold py-2 px-4 rounded"
+        className="w-full bg-black hover:bg-white hover:text-lightText hover:border-black text-white font-bold py-2 px-4 rounded"
         size="lg"
         onClick={() => handleAddToCart(currentVariant || undefined)}
         disabled={!currentVariant || (displayStock !== undefined && displayStock <= 0)}

@@ -51,7 +51,7 @@ const CategorySignificantOthersSection: React.FC<CategorySignificantOthersSectio
   }
 
   return (
-    <section className="bg-white py-12 md:py-16 text-gray-900">
+    <section className="bg-white py-12 md:py-16 text-lightText">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-10 md:mb-12">
           {significant_others.title}
@@ -69,7 +69,7 @@ const CategorySignificantOthersSection: React.FC<CategorySignificantOthersSectio
               >
                 {significant_others.products.map((product) => (
                   <AccordionItem key={product.title} value={product.title} className="border-b border-gray-200 last:border-b-0">
-                    <AccordionTrigger className="py-5 text-left text-lg font-semibold text-white hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md">
+                    <AccordionTrigger className="py-5 text-left text-lg font-semibold text-white hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md !bg-lightText/80">
                       {product.title}
                     </AccordionTrigger>
                     <AccordionContent className="pt-1 pb-5 text-sm text-gray-600 leading-relaxed">

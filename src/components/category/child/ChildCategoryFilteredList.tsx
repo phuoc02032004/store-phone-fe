@@ -37,7 +37,7 @@ const ChildCategoryFilteredList: React.FC<ChildCategoryFilteredListProps> = ({
                 key={range.label}
                 variant="outline"
                 size="sm"
-                className="text-white hover:bg-gray-100 hover:text-black"
+                className="text-white hover:bg-gray-100 hover:text-lightText"
               >
                 {range.label}
               </Button>

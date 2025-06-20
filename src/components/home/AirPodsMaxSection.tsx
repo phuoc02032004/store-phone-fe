@@ -17,7 +17,7 @@ const AirPodsMaxSection: React.FC = () => {
     : "text-base leading-normal tracking-tight font-medium";
 
   const buttonClasses = useFigmaGradient
-    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-base leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
+    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-lightText font-normal text-base leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
     : `px-6 py-3 rounded-full text-appleTextGray border-appleTextGray hover:bg-appleTextGray hover:text-white font-normal text-base leading-normal tracking-tight`;
 
   return (

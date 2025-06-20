@@ -86,7 +86,7 @@ const ProductSection: React.FC = () => {
                 onClick={() => setActiveTab(tabName)}
                 className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
                   ${activeTab === tabName
-                    ? 'bg-white text-black shadow-sm'
+                    ? 'bg-white text-lightText shadow-sm'
                     : 'text-gray-500 hover:bg-gray-300/60'
                   }`}
               >

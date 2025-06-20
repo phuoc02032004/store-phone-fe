@@ -12,7 +12,7 @@ const ProductDisplayLearnMoreBuy: React.FC = () => {
         textColor="text-appleLightGray"
         buttonBorderColor="border-appleLightGray"
         buttonHoverBgColor="hover:bg-appleLightGray"
-        buttonHoverTextColor="hover:text-black"
+        buttonHoverTextColor="hover:text-lightText"
         footnote="5"
         footnoteText="test, aid,"
         links={[

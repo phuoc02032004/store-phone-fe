@@ -66,7 +66,11 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
   };
 
   return (
-    <Card className="mt-8 shadow-md">
+    <Card className="mt-8 
+    bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Reviews</CardTitle>
       </CardHeader>
@@ -94,11 +98,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onReviewSubmit }) =>
               onChange={(e) => setComment(e.target.value)}
               rows={5}
               required
+              className='
+              
+            mt-2'
             />
           </div>
           {error && <p className="text-red-500 text-sm">{error}</p>}
           {success && <p className="text-green-500 text-sm">{success}</p>}
-          <Button type="submit" disabled={loading} className='text-white bg-black hover:bg-white hover:text-black transition-colors'>
+          <Button type="submit" disabled={loading} className='text-white bg-black hover:bg-white hover:text-lightText transition-colors'>
             {loading ? 'Submitting...' : 'Submit Review'}
           </Button>
         </form>

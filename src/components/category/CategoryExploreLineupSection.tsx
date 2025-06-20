@@ -62,14 +62,14 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   }, [activeTab, groupedProducts]);
 
   return (
-    <section className="bg-appleGray py-20 md:py-24 text-appleBlack p-10">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-appleGray py-20 md:py-24 text-lightText p-10 ">
+      <div className=" container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold">
             {explore_lineup.title}
           </h2>
           <div className="hidden sm:flex items-center space-x-5 text-[13px] text-appleBlue font-normal">
-            <a href="#" className="hover:underline">Help me choose ›</a>
+            <a href="#" className="hover:underline !text-lightText">Help me choose ›</a>
             {explore_lineup.compareLinkText && explore_lineup.compareLinkHref && (
                 <a href={explore_lineup.compareLinkHref} className="hover:underline">
                     {explore_lineup.compareLinkText} ›
@@ -86,8 +86,8 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
                 onClick={() => setActiveTab(tabName)}
                 className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
                   ${activeTab === tabName
-                    ? 'bg-white text-black shadow-sm'
-                    : 'text-gray-500 hover:bg-gray-300/60'
+                    ? 'bg-white text-lightText shadow-sm'
+                    : 'text-black hover:bg-gray-300/60 !bg-lightText/60'
                   }`}
               >
                 {tabName}

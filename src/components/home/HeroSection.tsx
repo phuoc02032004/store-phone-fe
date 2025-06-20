@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
         </h2>
         <Button
           variant="outline"
-          className="mt-4 px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black
+          className="mt-4 px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-lightText
           font-normal text-[17px] leading-[1.1764] tracking-[-2.2000%]"
         >
           Watch the event

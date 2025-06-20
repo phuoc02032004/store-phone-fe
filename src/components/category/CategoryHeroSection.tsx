@@ -17,10 +17,10 @@ const CategoryHeroSection: React.FC<CategoryHeroSectionProps> = ({ hero }) => {
   return (
     <section className="bg-white min-h-screen py-10 md:py-16 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="flex justify-between items-baseline mb-8 md:mb-10 lg:mb-12">
-        <h1 className="text-[77.5px] font-bold leading-tight text-appleBlack">
+        <h1 className="text-[77.5px] font-bold leading-tight text-lightText">
           {hero.title}
         </h1>
-        <p className="text-[27px] font-bold leading-tight text-appleBlack text-right pt-2">
+        <p className="text-[27px] font-bold leading-tight text-lightText text-right pt-2">
           {taglineLines[0]}
           {taglineLines.length > 1 && <br />}
           {taglineLines[1]}
@@ -46,7 +46,7 @@ const CategoryHeroSection: React.FC<CategoryHeroSectionProps> = ({ hero }) => {
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
             fill="currentColor" 
-            className="w-5 h-5 md:w-6 md:h-6 text-black" 
+            className="w-5 h-5 md:w-6 md:h-6 text-lightText" 
           >
             <path 
               fillRule="evenodd" 

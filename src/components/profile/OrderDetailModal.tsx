@@ -65,7 +65,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] md:max-w-[600px]  [&>button]:bg-transparent [&>button]:text-black [&>button]:hover:bg-transparent">
+      <DialogContent className="sm:max-w-[425px] md:max-w-[600px]  [&>button]:bg-transparent [&>button]:text-lightText [&>button]:hover:bg-transparent">
         <DialogHeader>
           <DialogTitle>Order Details</DialogTitle>
           <DialogDescription>
@@ -146,7 +146,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
           (order.orderStatus === "CANCELLED" ||
           order.orderStatus === "SHIPPED" ? (
             <Button
-              className="text-black shadow-2xl"
+              className="text-lightText shadow-2xl"
               disabled={true}
               onClick={() => {
                 handleCancelOrder(order._id);
@@ -156,7 +156,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
             </Button>
           ) : (
             <Button
-              className="text-black shadow-2xl"
+              className="text-lightText shadow-2xl"
               onClick={() => {
                 handleCancelOrder(order._id);
               }}

@@ -1,8 +1,7 @@
-/* app.css */
-@import "tailwindcss"; /* Đảm bảo cái này là @tailwind base; @tailwind components; @tailwind utilities; hoặc tương đương */
+@import "tailwindcss"; 
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *)); /* Giữ nguyên nếu hệ thống theme cần */
+@custom-variant dark (&:is(.dark *)); 
 
 #root {
   width: 100%;
@@ -49,18 +48,109 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* ===== TÍCH HỢP CÁC MÀU TÙY CHỈNH CỦA BẠN VÀO ĐÂY ===== */
-  /* Các màu cơ bản tùy chỉnh (nếu khác với hệ thống) */
+ /* Các màu cơ bản tùy chỉnh (nếu khác với hệ thống) */
+ --color-custom-primary: #007bff;
+ --color-custom-secondary: #6c757d;
+ --color-custom-black: #000000;
+
+ --color-midnight: #121063;
+ --color-tahiti: #3ab7bf;
+ --color-bermuda: #78dcca;
+
+ --color-appleBlack: #1d1d1f;
+ --color-appleGray: #f5f5f7;
+ --color-appleBlue: #0071e3;
+ --color-appleBlueHover: #0077ed;
+ --color-appleNavbarText: rgba(255,255,255,0.8);
+ --color-appleDarkGray: #333336;
+ --color-appleDarkGrayHover: #2c2c2c;
+ --color-appleLightGray: #D6D6D7;
+ --color-appleOffWhite: #fbfbfd;
+ --color-appleTextGray: #6E6E73;
+ --color-appleDarkBg: #242426;
+ --color-appleLightBg: #FAFAFA;
+ --color-appleButtonGray: #D2D2D7;
+
+ --color-scrollbarTrack: #f1f1f1;
+ --color-scrollbarThumb: #888;
+ --color-scrollbarThumbHover: #555;
+
+ --color-product-display-gradient-start: #0c1247;
+ --color-product-display-gradient-stop1: #30337d;
+ --color-product-display-gradient-stop2: #505dad;
+ --color-product-display-gradient-stop3: #7d8ed1;
+ --color-product-display-gradient-stop4: #aebce6;
+ --color-product-display-gradient-end: #fafafc;
+
+
+ --color-darkText: var(--foreground);
+ --color-lightText: var(--foreground);
+
+
+
+
+  /* Button Colors */
+  --color-button-primary-bg: var(--primary);
+  --color-button-primary-foreground: var(--primary-foreground);
+  --color-button-primary-hover-bg: var(--primary);
+  --color-button-destructive-bg: var(--destructive);
+  --color-button-destructive-foreground: var(--white);
+  --color-button-destructive-hover-bg: var(--destructive);
+  --color-button-outline-border: var(--border);
+  --color-button-outline-bg: var(--background);
+  --color-button-outline-hover-bg: var(--accent);
+  --color-button-outline-hover-foreground: var(--accent-foreground);
+  --color-button-secondary-bg: var(--secondary);
+  --color-button-secondary-foreground: var(--secondary-foreground);
+  --color-button-secondary-hover-bg: var(--secondary);
+  --color-button-ghost-hover-bg: var(--accent);
+  --color-button-ghost-hover-foreground: var(--accent-foreground);
+  --color-button-link-foreground: var(--primary);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff; /* White */
+  --foreground: #000000; /* Black */
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #000000; /* Black for primary actions */
+  --primary-foreground: #ffffff; /* White text on black primary */
+  --secondary: #f0f0f0; /* Light gray for secondary */
+  --secondary-foreground: #000000; /* Black text on light gray secondary */
+  --muted: #f8f8f8; /* Very light gray for muted elements */
+  --muted-foreground: #666666; /* Dark gray for muted text */
+  --accent: #e0e0e0; /* Gray for accent */
+  --accent-foreground: #000000; /* Black text on gray accent */
+  --destructive: #cc0000; /* Red for destructive actions */
+  --border: #cccccc; /* Light gray border */
+  --input: #eeeeee; /* Light gray input background */
+  --ring: #000000; /* Black ring for focus */
+  --chart-1: #333333;
+  --chart-2: #666666;
+  --chart-3: #999999;
+  --chart-4: #cccccc;
+  --chart-5: #eeeeee;
+  --sidebar: #f5f5f5; /* Light gray sidebar */
+  --sidebar-foreground: #000000; /* Black text in sidebar */
+  --sidebar-primary: #000000; /* Black for sidebar primary */
+  --sidebar-primary-foreground: #ffffff; /* White text in sidebar primary */
+  --sidebar-accent: #e0e0e0; /* Gray for sidebar accent */
+  --sidebar-accent-foreground: #000000; /* Black text in sidebar accent */
+  --sidebar-border: #cccccc; /* Light gray sidebar border */
+  --sidebar-ring: #000000; /* Black sidebar ring */
+
+  /* Custom Colors */
   --color-custom-primary: #007bff;
   --color-custom-secondary: #6c757d;
   --color-custom-black: #000000;
-
   --color-midnight: #121063;
   --color-tahiti: #3ab7bf;
   --color-bermuda: #78dcca;
-
   --color-appleBlack: #1d1d1f;
-  --color-appleGray: #f5f5f7; 
+  --color-appleGray: #f5f5f7;
   --color-appleBlue: #0071e3;
   --color-appleBlueHover: #0077ed;
   --color-appleNavbarText: rgba(255,255,255,0.8);
@@ -69,98 +159,91 @@
   --color-appleLightGray: #D6D6D7;
   --color-appleOffWhite: #fbfbfd;
   --color-appleTextGray: #6E6E73;
-  --color-appleDarkBg: #242426;  
+  --color-appleDarkBg: #242426;
   --color-appleLightBg: #FAFAFA;
   --color-appleButtonGray: #D2D2D7;
-
   --color-scrollbarTrack: #f1f1f1;
   --color-scrollbarThumb: #888;
   --color-scrollbarThumbHover: #555;
-
   --color-product-display-gradient-start: #0c1247;
   --color-product-display-gradient-stop1: #30337d;
   --color-product-display-gradient-stop2: #505dad;
   --color-product-display-gradient-stop3: #7d8ed1;
   --color-product-display-gradient-stop4: #aebce6;
   --color-product-display-gradient-end: #fafafc;
-
-
   --color-darkText: var(--foreground);
   --color-lightText: var(--foreground);
 }
 
-
-:root {
-  --radius: 0.625rem;
-
-  /* Light Theme Mặc định (sử dụng oklch) */
-  --background: oklch(1 0 0); /* Màu trắng */
-  --foreground: oklch(0.145 0 0); /* Màu đen rất tối */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.495 0.222 270.83); /* Màu tím sáng hơn (ví dụ) */
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325); /* Màu đỏ */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.495 0.222 270.83); /* Thường là màu --primary cho ring */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
 .dark {
-  --background: oklch(0.145 0 0); /* Màu đen rất tối */
-  --foreground: oklch(0.985 0 0); /* Màu trắng rất sáng */
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.564 0.221 270.7); /* Màu tím sáng hơn cho dark (ví dụ) */
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216); /* Màu đỏ cho dark */
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.564 0.221 270.7); /* Thường là màu --primary cho ring */
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #000000; /* Black */
+  --foreground: #ffffff; /* White */
+  --card: #1a1a1a; /* Dark gray for cards */
+  --card-foreground: #ffffff; /* White text on dark gray card */
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff; /* White for primary actions */
+  --primary-foreground: #000000; /* Black text on white primary */
+  --secondary: #333333; /* Darker gray for secondary */
+  --secondary-foreground: #ffffff; /* White text on darker gray secondary */
+  --muted: #222222; /* Dark gray for muted elements */
+  --muted-foreground: #999999; /* Light gray for muted text */
+  --accent: #444444; /* Dark gray for accent */
+  --accent-foreground: #ffffff; /* White text on dark gray accent */
+  --destructive: #ff3333; /* Red for destructive actions */
+  --border: #333333; /* Dark gray border */
+  --input: #222222; /* Dark gray input background */
+  --ring: #ffffff; /* White ring for focus */
+  --chart-1: #cccccc;
+  --chart-2: #999999;
+  --chart-3: #666666;
+  --chart-4: #333333;
+  --chart-5: #111111;
+  --sidebar: #1a1a1a; /* Dark gray sidebar */
+  --sidebar-foreground: #ffffff; /* White text in sidebar */
+  --sidebar-primary: #ffffff; /* White for sidebar primary */
+  --sidebar-primary-foreground: #000000; /* Black text in sidebar primary */
+  --sidebar-accent: #444444; /* Dark gray for sidebar accent */
+  --sidebar-accent-foreground: #ffffff; /* White text in sidebar accent */
+  --sidebar-border: #333333; /* Dark gray sidebar border */
+  --sidebar-ring: #ffffff; /* White sidebar ring */
 
-  /* --appleGray: var(--color-appleDarkGray); (ví dụ) */
+  /* Custom Colors for Dark Mode */
+  --color-custom-primary: #66b3ff; /* Lighter blue for dark mode primary */
+  --color-custom-secondary: #99a3ac; /* Lighter gray for dark mode secondary */
+  --color-custom-black: #ffffff; /* White in dark mode */
+
+  --color-midnight: #34317a; /* Darker midnight */
+  --color-tahiti: #6ac7cf; /* Lighter tahiti */
+  --color-bermuda: #98eccc; /* Lighter bermuda */
+
+  --color-appleBlack: #f5f5f7; /* Light gray in dark mode */
+  --color-appleGray: #1d1d1f; /* Dark gray in dark mode */
+  --color-appleBlue: #3399ff; /* Lighter blue for dark mode */
+  --color-appleBlueHover: #4da6ff; /* Lighter blue hover for dark mode */
+  --color-appleNavbarText: rgba(0,0,0,0.8); /* Dark text for dark mode navbar */
+  --color-appleDarkGray: #f5f5f7; /* Light gray in dark mode */
+  --color-appleDarkGrayHover: #e0e0e0; /* Lighter gray hover in dark mode */
+  --color-appleLightGray: #333336; /* Darker gray in dark mode */
+  --color-appleOffWhite: #1a1a1a; /* Darker off-white in dark mode */
+  --color-appleTextGray: #999999; /* Lighter gray text in dark mode */
+  --color-appleDarkBg: #fbfbfd; /* Light background in dark mode */
+  --color-appleLightBg: #242426; /* Dark background in dark mode */
+  --color-appleButtonGray: #666666; /* Darker button gray in dark mode */
+
+  --color-scrollbarTrack: #333333; /* Darker scrollbar track */
+  --color-scrollbarThumb: #666666; /* Lighter scrollbar thumb */
+  --color-scrollbarThumbHover: #999999; /* Even lighter scrollbar thumb hover */
+
+  --color-product-display-gradient-start: #1a1a1a;
+  --color-product-display-gradient-stop1: #333333;
+  --color-product-display-gradient-stop2: #4c4c4c;
+  --color-product-display-gradient-stop3: #666666;
+  --color-product-display-gradient-stop4: #808080;
+  --color-product-display-gradient-end: #999999;
+
+  --color-darkText: var(--foreground);
+  --color-lightText: var(--foreground);
 }
 
 @layer base {
@@ -191,7 +274,6 @@
   background: var(--color-scrollbarThumbHover);
 }
 
-/* Product Display Gradient (Sử dụng biến đã có tiền tố --color-) */
 .product-display-gradient {
   background: linear-gradient(
     to bottom,

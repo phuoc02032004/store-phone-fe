@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     return(
         <Card className="w-full max-w-sm rounded-2xl overflow-hidden group
-            bg-white border border-gray-200 shadow-md
+            bg-lightBg border border-gray-200 shadow-md
             hover:shadow-lg hover:border-gray-300 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.01]">
             {/* Product Image */}
             <div className="relative aspect-[4/3] overflow-hidden">
@@ -40,17 +40,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
             {/* Product Info */}
             <CardContent className="p-6">
-                <CardTitle className="text-xl font-semibold text-gray-900 mb-2 truncate">
+                <CardTitle className="text-xl font-semibold text-lightText mb-2 truncate">
                     {product.name}
                 </CardTitle>
-                <p className="text-gray-700 text-sm mb-4 line-clamp-2">
+                <p className="text-lightText text-sm mb-4 line-clamp-2">
                     {product.description}
                 </p>
                 <div className="flex items-center justify-between">
                     <div className="space-y-1">
                         {product.variants?.length > 0 ? (
                             <>
-                                <p className="text-lg font-bold text-gray-900">
+                                <p className="text-lg font-bold text-lightText">
                                     From {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(Math.min(...product.variants.map(v => v.price)))}
                                 </p>
                                 {Math.min(...product.variants.map(v => v.price)) < product.price && (
@@ -60,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 )}
                             </>
                         ) : (
-                            <p className="text-lg font-bold text-white">
+                            <p className="text-lg font-bold text-lightText">
                                 {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(product.price)}
                             </p>
                         )}
@@ -68,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <Button
                         variant="outline"
                         size="sm"
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-900 border-gray-300 hover:border-gray-400"
+                        className="bg-gray-100 hover:bg-buttonOutlineHoverBg text-lightText border-buttonOutlineBorder"
                         onClick={handleViewDetails}
                     >
                         View Details

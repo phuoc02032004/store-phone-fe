@@ -21,8 +21,8 @@ const AirPods4Section: React.FC = () => {
     : "text-base leading-normal tracking-tight font-medium";
 
   const buttonClasses = useFigmaGradient
-    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
-    : `px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black font-normal text-base leading-normal tracking-tight`;
+    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-lightText font-normal text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
+    : `px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-lightText font-normal text-base leading-normal tracking-tight`;
 
   return (
     <section className={sectionClasses}>

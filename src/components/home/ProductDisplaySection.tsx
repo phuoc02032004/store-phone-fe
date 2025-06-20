@@ -29,7 +29,7 @@ const ProductDisplaySection: React.FC<ProductDisplaySectionProps> = ({
   textColor = "text-white",
   buttonBorderColor = "border-white",
   buttonHoverBgColor = "hover:bg-white",
-  buttonHoverTextColor = "hover:text-black",
+  buttonHoverTextColor = "hover:text-lightText",
   preorderText,
   footnote,
   footnoteText,
@@ -53,7 +53,7 @@ const ProductDisplaySection: React.FC<ProductDisplaySectionProps> = ({
     : "text-base leading-normal tracking-tight font-medium";
 
   const buttonClasses = useFigmaGradient
-    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
+    ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-lightText font-normal text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
     : `px-6 py-3 rounded-full ${textColor} ${buttonBorderColor} ${buttonHoverBgColor} ${buttonHoverTextColor} font-normal text-base leading-normal tracking-tight`;
 
   return (

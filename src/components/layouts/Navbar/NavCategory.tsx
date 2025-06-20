@@ -67,7 +67,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
       <NavigationMenuTrigger className="bg-transparent text-[rgba(255,255,255,0.8)] hover:text-white hover:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-white">
         {text}
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="bg-neutral-50 text-black border-none p-10 w-[1000px] grid grid-cols-3 gap-x-10 shadow-xl">
+      <NavigationMenuContent className="bg-neutral-50 text-text-lightText border-none p-10 w-[1000px] grid grid-cols-3 gap-x-10 shadow-xl">
         <div>
           <div className="text-xs text-neutral-500 uppercase mb-5">
             Khám Phá {text}

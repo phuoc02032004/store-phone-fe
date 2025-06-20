@@ -98,7 +98,7 @@ const OrderHistory: React.FC = () => {
             <PaginationItem>
               <PaginationPrevious
                 onClick={() => handlePageChange(currentPage - 1)}
-                className="!text-black"
+                className="!text-lightText"
               />
             </PaginationItem>
             {(() => {
@@ -157,12 +157,12 @@ const OrderHistory: React.FC = () => {
                 return finalCleanedItems.map((page, index) => (
                   <PaginationItem key={index}>
                     {page === '...' ? (
-                      <PaginationEllipsis className="!text-black" />
+                      <PaginationEllipsis className="!text-lightText" />
                     ) : (
                       <PaginationLink
                         onClick={() => handlePageChange(page as number)}
                         isActive={currentPage === page}
-                        className={`!text-black ${
+                        className={`!text-lightText ${
                           page === currentPage
                             ? "bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] rounded-[20px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
                             : ""
@@ -180,7 +180,7 @@ const OrderHistory: React.FC = () => {
                   <PaginationLink
                     onClick={() => handlePageChange(page as number)}
                     isActive={currentPage === page}
-                    className={`!text-black ${
+                    className={`!text-lightText ${
                       page === currentPage
                         ? "bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)] backdrop-blur-[10px] rounded-[20px] border border-[rgba(255,255,255,0.18)] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
                         : ""
@@ -194,7 +194,7 @@ const OrderHistory: React.FC = () => {
             <PaginationItem>
               <PaginationNext
                 onClick={() => handlePageChange(currentPage + 1)}
-                className="!text-black"
+                className="!text-lightText"
               />
             </PaginationItem>
           </PaginationContent>

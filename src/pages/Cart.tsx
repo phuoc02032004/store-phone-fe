@@ -35,7 +35,7 @@ const Cart: React.FC = () => {
 
   const handleOrderSuccess = () => {
     setShowThankYouMessage(true);
-    setIsCheckoutModalOpen(false); // Close the modal
+    setIsCheckoutModalOpen(false); 
   };
 
   return (
