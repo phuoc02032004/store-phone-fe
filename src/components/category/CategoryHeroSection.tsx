@@ -17,10 +17,10 @@ const CategoryHeroSection: React.FC<CategoryHeroSectionProps> = ({ hero }) => {
   return (
     <section className="bg-white min-h-screen py-10 md:py-16 px-4 sm:px-8 md:px-12 lg:px-16">
       <div className="flex justify-between items-baseline mb-8 md:mb-10 lg:mb-12">
-        <h1 className="text-[77.5px] font-bold leading-tight text-[#1D1D1F]">
+        <h1 className="text-[77.5px] font-bold leading-tight text-appleBlack">
           {hero.title}
         </h1>
-        <p className="text-[27px] font-bold leading-tight text-[#1D1D1F] text-right pt-2">
+        <p className="text-[27px] font-bold leading-tight text-appleBlack text-right pt-2">
           {taglineLines[0]}
           {taglineLines.length > 1 && <br />}
           {taglineLines[1]}
@@ -36,7 +36,7 @@ const CategoryHeroSection: React.FC<CategoryHeroSectionProps> = ({ hero }) => {
         <button
           className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 
                      w-10 h-10 sm:w-11  md:w-12 md:h-12 
-                     bg-[#F5F5F7]/80 hover:bg-[#F5F5F7]/100 backdrop-blur-sm 
+                     bg-appleLightGray/80 hover:bg-appleLightGray/100 backdrop-blur-sm
                      rounded-full flex items-center justify-center 
                      transition-all duration-200 ease-in-out
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"

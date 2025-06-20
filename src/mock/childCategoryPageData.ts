@@ -15,7 +15,7 @@ export const childCategoryPageData = {
           imageAlt: "iPhone 15 Pro",
           category: "NEW",
           headline: "iPhone 15 Pro",
-          bgColor: "#000000",
+          bgColor: "black",
           isLightBackground: false
         },
         {
@@ -23,7 +23,7 @@ export const childCategoryPageData = {
           imageAlt: "iPhone 15",
           category: "NEW",
           headline: "iPhone 15",
-          bgColor: "#fbfbfd",
+          bgColor: "appleOffWhite",
           isLightBackground: true
         },
         {
@@ -31,7 +31,7 @@ export const childCategoryPageData = {
           imageAlt: "iPhone 14",
           category: "Popular",
           headline: "iPhone 14",
-          bgColor: "#fbfbfd",
+          bgColor: "appleOffWhite",
           isLightBackground: true
         }
       ]
@@ -87,9 +87,9 @@ export const childCategoryPageData = {
           description: "The most powerful iPhone ever.",
           priceInfo: "From $999",
           colors: [
-            { name: "Natural Titanium", hex: "#9B8E83" },
+            { name: "Natural Titanium", hex: "#9B8E83" }, // Keep specific hex for product colors
             { name: "Blue Titanium", hex: "#45536C" },
-            { name: "White Titanium", hex: "#F5F5F7" },
+            { name: "White Titanium", hex: "appleLightGray" },
             { name: "Black Titanium", hex: "#3D3D3D" }
           ],
           learnMoreLink: "#",
@@ -103,7 +103,7 @@ export const childCategoryPageData = {
           description: "A total powerhouse.",
           priceInfo: "From $799",
           colors: [
-            { name: "Pink", hex: "#FAE0D8" },
+            { name: "Pink", hex: "#FAE0D8" }, // Keep specific hex for product colors
             { name: "Yellow", hex: "#EDE1BE" },
             { name: "Green", hex: "#D5E0D5" },
             { name: "Blue", hex: "#C9E2EE" },

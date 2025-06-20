@@ -9,7 +9,7 @@ const AirPods4Section: React.FC = () => {
   }`;
 
   const titleClasses = useFigmaGradient
-    ? "text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-[#F5F5F7]"
+    ? "text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-appleLightGray"
     : "text-5xl md:text-6xl lg:text-7xl leading-[1.0714] tracking-[-0.01em] font-bold mb-2";
 
   const descriptionClasses = useFigmaGradient
@@ -22,7 +22,7 @@ const AirPods4Section: React.FC = () => {
 
   const buttonClasses = useFigmaGradient
     ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
-    : `px-6 py-3 rounded-full text-[#F5F5F7] border-[#F5F5F7] hover:bg-[#F5F5F7] hover:text-black font-normal text-base leading-normal tracking-tight`;
+    : `px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black font-normal text-base leading-normal tracking-tight`;
 
   return (
     <section className={sectionClasses}>
@@ -31,10 +31,10 @@ const AirPods4Section: React.FC = () => {
         alt="AirPods 4"
         className="absolute  left-1/2 -translate-x-1/2 min-h-screen h-auto object-cover"
       />
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>   
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
       </div>
 
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <h3 className={titleClasses}>
           AirPods 4
         </h3>

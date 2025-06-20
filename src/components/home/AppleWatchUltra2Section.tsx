@@ -15,7 +15,7 @@ const AppleWatchUltra2Section: React.FC = () => {
 
   const buttonClasses = useFigmaGradient
     ? `px-4 py-2 md:px-6 md:py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-base leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
-    : `px-4 py-2 md:px-6 md:py-3 rounded-full text-[#F5F5F7] border-[#F5F5F7] hover:bg-[#F5F5F7] hover:text-black font-normal text-base leading-normal tracking-tight`;
+    : `px-4 py-2 md:px-6 md:py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black font-normal text-base leading-normal tracking-tight`;
 
   return (
     <section className={sectionClasses}>
@@ -25,14 +25,14 @@ const AppleWatchUltra2Section: React.FC = () => {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] h-auto object-contain"
       />
 
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <img
           src="/images/logo_watch_ultra_2__1xqo1s2atgyq_large.png"
           alt="Apple Watch Ultra 2 Logo"
           className="mx-auto mb-4 w-[100px] md:w-[150px] lg:w-[200px]"
           style={{ maxWidth: useFigmaGradient ? "100px" : "200px" }}
         />
-        <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+        <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <p className={descriptionClasses}>
           The ultimate sports and adventure watch features a stunning new black titanium case. With connectivity, health, and safety features for the everyday. And the most accurate GPS in a sports watch.
         </p>

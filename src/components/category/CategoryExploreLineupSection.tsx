@@ -62,13 +62,13 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   }, [activeTab, groupedProducts]);
 
   return (
-    <section className="bg-[#f5f5f7] py-20 md:py-24 text-[#1d1d1f] p-10">
+    <section className="bg-appleGray py-20 md:py-24 text-appleBlack p-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold">
             {explore_lineup.title}
           </h2>
-          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-[#0071e3] font-normal">
+          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-appleBlue font-normal">
             <a href="#" className="hover:underline">Help me choose ›</a>
             {explore_lineup.compareLinkText && explore_lineup.compareLinkHref && (
                 <a href={explore_lineup.compareLinkHref} className="hover:underline">

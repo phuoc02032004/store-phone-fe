@@ -41,7 +41,7 @@ const ProductDisplaySection: React.FC<ProductDisplaySectionProps> = ({
   }`;
 
   const titleClasses = useFigmaGradient
-    ? "text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-[#F5F5F7]"
+    ? "text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-appleLightGray"
     : "text-5xl md:text-6xl lg:text-7xl leading-[1.0714] tracking-[-0.01em] font-bold mb-2";
 
   const descriptionClasses = useFigmaGradient

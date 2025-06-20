@@ -92,7 +92,7 @@ const Products: React.FC = () => {
     return <div className="text-center py-8">Product not found.</div>;
   }
   return (
-    <div className="min-h-screen bg-white text-[#1d1d1f]">
+    <div className="min-h-screen bg-white text-appleBlack">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">{product.name}</h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-white p-6 rounded-lg shadow-sm">

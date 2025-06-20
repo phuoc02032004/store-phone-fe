@@ -12,7 +12,6 @@ const ChildCategoryFilteredList: React.FC<ChildCategoryFilteredListProps> = ({
   products,
   categoryName,
 }) => {
-  // Example price ranges, adjust based on your actual data
   const priceRanges = [
     { min: 0, max: 500, label: 'Under $500' },
     { min: 500, max: 1000, label: '$500 - $1000' },
@@ -38,7 +37,7 @@ const ChildCategoryFilteredList: React.FC<ChildCategoryFilteredListProps> = ({
                 key={range.label}
                 variant="outline"
                 size="sm"
-                className="text-gray-700 hover:bg-gray-100"
+                className="text-white hover:bg-gray-100 hover:text-black"
               >
                 {range.label}
               </Button>

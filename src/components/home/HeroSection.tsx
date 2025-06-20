@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
         className="absolute inset-0 w-full h-full object-contain"
       />
       <div className="relative z-10 p-4 pb-10 md:pb-20 max-w-4xl mx-auto">
-        <h2 className="text-xl md:text-[28px] lg:text-3xl leading-[1.2] font-bold mb-4 text-[#F5F5F7] rounded-lg
+        <h2 className="text-xl md:text-[28px] lg:text-3xl leading-[1.2] font-bold mb-4 text-appleLightGray rounded-lg
             bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
             backdrop-blur-[10px]
             border border-[rgba(255,255,255,0.18)]
@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
         </h2>
         <Button
           variant="outline"
-          className="mt-4 px-6 py-3 rounded-full text-[#F5F5F7] border-[#F5F5F7] hover:bg-[#F5F5F7] hover:text-black
+          className="mt-4 px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black
           font-normal text-[17px] leading-[1.1764] tracking-[-2.2000%]"
         >
           Watch the event

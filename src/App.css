@@ -1,61 +1,29 @@
-@import "tailwindcss";
+/* app.css */
+@import "tailwindcss"; /* Đảm bảo cái này là @tailwind base; @tailwind components; @tailwind utilities; hoặc tương đương */
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *)); /* Giữ nguyên nếu hệ thống theme cần */
+
 #root {
   width: 100%;
   text-align: center;
   background-color: black;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-@theme inline {
+@theme inline { 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+
+  --color-background: var(--background); 
+  --color-foreground: var(--foreground); 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
+  --color-black: #000000;
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -80,17 +48,59 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ===== TÍCH HỢP CÁC MÀU TÙY CHỈNH CỦA BẠN VÀO ĐÂY ===== */
+  /* Các màu cơ bản tùy chỉnh (nếu khác với hệ thống) */
+  --color-custom-primary: #007bff;
+  --color-custom-secondary: #6c757d;
+  --color-custom-black: #000000;
+
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+
+  --color-appleBlack: #1d1d1f;
+  --color-appleGray: #f5f5f7; 
+  --color-appleBlue: #0071e3;
+  --color-appleBlueHover: #0077ed;
+  --color-appleNavbarText: rgba(255,255,255,0.8);
+  --color-appleDarkGray: #333336;
+  --color-appleDarkGrayHover: #2c2c2c;
+  --color-appleLightGray: #D6D6D7;
+  --color-appleOffWhite: #fbfbfd;
+  --color-appleTextGray: #6E6E73;
+  --color-appleDarkBg: #242426;  
+  --color-appleLightBg: #FAFAFA;
+  --color-appleButtonGray: #D2D2D7;
+
+  --color-scrollbarTrack: #f1f1f1;
+  --color-scrollbarThumb: #888;
+  --color-scrollbarThumbHover: #555;
+
+  --color-product-display-gradient-start: #0c1247;
+  --color-product-display-gradient-stop1: #30337d;
+  --color-product-display-gradient-stop2: #505dad;
+  --color-product-display-gradient-stop3: #7d8ed1;
+  --color-product-display-gradient-stop4: #aebce6;
+  --color-product-display-gradient-end: #fafafc;
+
+
+  --color-darkText: var(--foreground);
+  --color-lightText: var(--foreground);
 }
+
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+
+  /* Light Theme Mặc định (sử dụng oklch) */
+  --background: oklch(1 0 0); /* Màu trắng */
+  --foreground: oklch(0.145 0 0); /* Màu đen rất tối */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(1 0 0);
+  --primary: oklch(0.495 0.222 270.83); /* Màu tím sáng hơn (ví dụ) */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -98,10 +108,10 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.577 0.245 27.325); /* Màu đỏ */
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.495 0.222 270.83); /* Thường là màu --primary cho ring */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -118,13 +128,13 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.145 0 0); /* Màu đen rất tối */
+  --foreground: oklch(0.985 0 0); /* Màu trắng rất sáng */
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: oklch(0.564 0.221 270.7); /* Màu tím sáng hơn cho dark (ví dụ) */
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -132,10 +142,10 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.704 0.191 22.216); /* Màu đỏ cho dark */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.564 0.221 270.7); /* Thường là màu --primary cho ring */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -149,17 +159,47 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* --appleGray: var(--color-appleDarkGray); (ví dụ) */
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50; 
   }
   body {
-    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif; 
+    @apply bg-background text-foreground; 
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
   }
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-scrollbarTrack);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbarThumb);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbarThumbHover);
+}
+
+/* Product Display Gradient (Sử dụng biến đã có tiền tố --color-) */
 .product-display-gradient {
-  background: linear-gradient(180deg, #0C1247 0%, #30337D 18%, #505DAD 33%, #7D8ED1 49%, #AEBCE6 73%, #FAFAFC 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--color-product-display-gradient-start) 0%,
+    var(--color-product-display-gradient-stop1) 18%,
+    var(--color-product-display-gradient-stop2) 33%,
+    var(--color-product-display-gradient-stop3) 49%,
+    var(--color-product-display-gradient-stop4) 73%,
+    var(--color-product-display-gradient-end) 100%
+  );
 }

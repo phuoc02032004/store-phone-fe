@@ -39,13 +39,13 @@ const Cart: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1d1d1f]">
+    <div className="min-h-screen bg-white text-appleBlack">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {!localStorage.getItem('token') ? (
           <div className="flex flex-col items-center justify-center py-10">
             <p className="text-lg text-gray-600 mb-4">Please log in to view your cart.</p>
             <Button
-              className="bg-[#0071e3] text-white px-6 py-3 rounded-full text-base font-medium hover:bg-[#0077ed] transition-colors duration-200"
+              className="bg-appleBlue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-appleBlueHover transition-colors duration-200"
               onClick={() => navigate('/login')}
             >
               Login
@@ -61,7 +61,7 @@ const Cart: React.FC = () => {
                   Your order has been placed successfully. We have received your order and will process it shortly. You will be contacted for confirmation.
                 </p>
                 <Button
-                  className="bg-[#0071e3] text-white px-6 py-3 rounded-full text-base font-medium hover:bg-[#0077ed] transition-colors duration-200 mt-6"
+                  className="bg-appleBlue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-appleBlueHover transition-colors duration-200 mt-6"
                   onClick={() => {
                     setShowThankYouMessage(false);
                     navigate('/');

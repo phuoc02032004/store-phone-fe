@@ -66,13 +66,13 @@ const ProductSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-[#f5f5f7] py-20 md:py-24 text-[#1d1d1f] w-full p-6">
+    <section className="bg-appleGray py-20 md:py-24 text-appleBlack w-full p-6">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
-          <h2 className="text-[32px] md:text-[40px] font-bold">
+          <h2 className="text-[32px] md:text-[40px] font-bold text-primary">
             Explore Our Products
           </h2>
-          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-[#0071e3] font-normal">
+          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-appleBlue font-normal">
             <a href="#" className="hover:underline">Help me choose ›</a>
             <a href="#" className="hover:underline">Compare all models ›</a>
           </div>
@@ -115,7 +115,7 @@ const ProductSection: React.FC = () => {
             {displayLimit < products.length && (
               <Button
                 onClick={handleShowMore}
-                className="bg-[#0071e3] text-white px-8 py-3 rounded-full text-base font-medium hover:bg-[#0077ed] transition-colors duration-200"
+                className="bg-appleBlue text-white px-8 py-3 rounded-full text-base font-medium hover:bg-appleBlueHover transition-colors duration-200"
               >
                 Show More
               </Button>

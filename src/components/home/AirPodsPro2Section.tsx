@@ -9,7 +9,7 @@ const AirPodsPro2Section: React.FC = () => {
   }`;
 
   const titleClasses = useFigmaGradient
-    ? "text-5xl md:text-6xl lg:text-7xl leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-[#F5F5F7]"
+    ? "text-5xl md:text-6xl lg:text-7xl leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-appleLightGray"
     : "text-5xl md:text-6xl lg:text-7xl leading-[1.0714] tracking-[-0.01em] font-bold mb-2";
 
   const descriptionClasses = useFigmaGradient
@@ -18,7 +18,7 @@ const AirPodsPro2Section: React.FC = () => {
 
   const buttonClasses = useFigmaGradient
     ? `px-6 py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-base leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
-    : `px-6 py-3 rounded-full text-[#F5F5F7] border-[#F5F5F7] hover:bg-[#F5F5F7] hover:text-black font-normal text-base leading-normal tracking-tight`;
+    : `px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black font-normal text-base leading-normal tracking-tight`;
 
   return (
     <section className={sectionClasses}>
@@ -27,13 +27,14 @@ const AirPodsPro2Section: React.FC = () => {
         alt="AirPods Pro 2"
         className="absolute bottom-0 left-1/2 -translate-x-1/2 max-w-[1200px] h-auto object-contain"
       />
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <h3 className={titleClasses}>
           AirPods Pro 2
         </h3>
       </div>
 
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <p className={descriptionClasses}>
           Coming this fall with a free software update, the world’s first all-in-one hearing health experience — test, aid, and help protect your hearing.
         </p>

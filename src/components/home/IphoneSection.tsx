@@ -9,7 +9,7 @@ const IphoneSection: React.FC = () => {
   }`;
 
   const titleClasses = useFigmaGradient
-    ? "text-4xl md:text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-[#F5F5F7]"
+    ? "text-4xl md:text-[62.25px] leading-[1.0281em] tracking-[-0.9253%] font-bold mb-2 text-appleLightGray"
     : "text-5xl md:text-6xl lg:text-7xl leading-[1.0714] tracking-[-0.01em] font-bold mb-2";
 
   const descriptionClasses = useFigmaGradient
@@ -22,7 +22,7 @@ const IphoneSection: React.FC = () => {
 
   const buttonClasses = useFigmaGradient
     ? `px-4 py-2 md:px-6 md:py-3 rounded-full text-white border-white hover:bg-white hover:text-black font-normal text-sm md:text-[17px] leading-[1.1764705882352942em] tracking-[-2.2000000757329605%]`
-    : `px-6 py-3 rounded-full text-[#F5F5F7] border-[#F5F5F7] hover:bg-[#F5F5F7] hover:text-black font-normal text-base leading-normal tracking-tight`;
+    : `px-6 py-3 rounded-full text-appleLightGray border-appleLightGray hover:bg-appleLightGray hover:text-black font-normal text-base leading-normal tracking-tight`;
 
   return (
     <section className={sectionClasses}>
@@ -32,7 +32,7 @@ const IphoneSection: React.FC = () => {
         className="absolute bottom-[100px] md:bottom-[150px] left-1/2 -translate-x-1/2 w-full max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] h-auto object-contain"
       />
       {/* Top content */}
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pt-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <h3 className={titleClasses}>
           iPhone 16 Pro
         </h3>
@@ -40,7 +40,7 @@ const IphoneSection: React.FC = () => {
       </div>
 
       {/* Bottom content */}
-      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-[#F5F5F7]"}`}>
+      <div className={`relative z-10 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto pb-20 ${useFigmaGradient ? "text-white" : "text-appleLightGray"}`}>
         <p className={descriptionClasses}>
           Built for Apple Intelligence — personal, private, powerful. Camera Control, an easier way to quickly access camera tools. Stunning 4K 120 fps Dolby Vision video. A18 Pro chip. And a huge leap in battery life.
         </p>
