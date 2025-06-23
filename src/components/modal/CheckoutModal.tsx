@@ -16,10 +16,10 @@ interface CheckoutModalProps {
   onClose: () => void;
   items: Items[];
   coupon: string | null;
-  onOrderSuccess: () => void; // New prop for success callback
+  onOrderSuccess: () => void; 
 }
 
-type ViewState = 'form' | 'zalopay_redirect'; // Removed 'cod_thankyou'
+type ViewState = 'form' | 'zalopay_redirect'; 
 
 const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, coupon, onOrderSuccess }) => {
   const initialShippingAddress = { street: '', city: '', state: '', phone: '' };
@@ -51,7 +51,6 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
   }, [isOpen]);
 
   const handleModalClose = () => {
-    // Reset state on close
     resetModalState();
     onClose();
   };
@@ -67,7 +66,13 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
 
     try {
       const orderData = {
-        items: items,
+        items: items.map(item => ({
+          product: item.product._id,
+          quantity: item.quantity,
+          price: item.price,
+          _id: item._id,
+          ...(item.product._id && { variantId: item.product._id }) // Assuming variantId is product._id for simplicity, adjust if needed
+        })),
         shippingAddress: shippingAddress,
         paymentMethod: paymentMethod,
         notes: notes,
@@ -93,10 +98,10 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
           setError('Error processing ZaloPay payment. Please try again.');
         }
       } else if (paymentMethod == "COD") {
-        if (onOrderSuccess) { // Add check before calling
-          onOrderSuccess(); // Call success callback for COD
+        if (onOrderSuccess) {
+          onOrderSuccess();
         }
-        onClose(); // Close modal immediately for COD
+        onClose();
       }
     } catch (orderError) {
       console.error('Error creating order:', orderError);

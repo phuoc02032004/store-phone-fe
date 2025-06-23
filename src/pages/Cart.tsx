@@ -115,7 +115,10 @@ const Cart: React.FC = () => {
         isOpen={isCheckoutModalOpen}
         onClose={handleCloseCheckoutModal}
         items={cartItems.map(item => ({
-          product: item._id,
+          product: {
+            _id: item._id,
+            name: item.name, // Assuming item.name exists on cart item
+          },
           quantity: item.quantity,
           price: item.selectedVariant?.price || item.price,
           _id: item.selectedVariant?._id || item._id,

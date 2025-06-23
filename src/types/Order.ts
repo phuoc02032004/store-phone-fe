@@ -14,7 +14,7 @@ export interface Order {
     isFreeShipping?: boolean,
     appliedCoupon?: string | null,
     discountAmount?: number,
-    finalAmount?: number,
+    finalAmount: number,
 }
 
 export interface shippingAddress {
@@ -26,7 +26,10 @@ export interface shippingAddress {
 }
 
 export interface Items{
-    product: string,
+    product: {
+        _id: string;
+        name: string;
+    },
     quantity: number,
     price: number,
     _id: string

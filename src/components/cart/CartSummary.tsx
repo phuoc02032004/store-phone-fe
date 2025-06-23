@@ -22,11 +22,14 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onOrderSuccess }) => {
   const { theme } = useTheme();
 
   const transformedItems = cartItems.map(item => ({
-    product: item._id,
+    product: {
+      _id: item._id,
+      name: item.name, // Assuming item.name exists on cart item
+    },
     quantity: item.quantity,
-    price: item.selectedVariant?.price || item.price, 
+    price: item.selectedVariant?.price || item.price,
     _id: item._id,
-    ...(item.selectedVariant && { variantId: item.selectedVariant._id }) 
+    ...(item.selectedVariant && { variantId: item.selectedVariant._id })
   }));
 
   const openModal = () => setIsModalOpen(true);
