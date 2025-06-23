@@ -8,6 +8,7 @@ import CategoryExploreLineupSection from "../../components/category/CategoryExpl
 import CategoryWhyBuySection from "../../components/category/CategoryWhyBuySection";
 import CategoryEssentialsSection from "../../components/category/CategoryEssentialsSection";
 import CategorySignificantOthersSection from "../../components/category/CategorySignificantOthersSection";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 interface CategoryPageParams extends Record<string, string | undefined> {
   categoryName: string;
@@ -33,7 +34,7 @@ const CategoryPage: React.FC = () => {
   }, [categoryName]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner fullScreen text="Loading Category Page..." />;
   }
 
   if (error) {

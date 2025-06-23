@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { Category } from "@/types/Category";
 import { getChild } from "@/api/category";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 interface ProductNavItem {
   imageSrc: string;
@@ -54,7 +55,11 @@ const CategoryProductNavSection: React.FC<CategoryProductNavSectionProps> = ({ c
   }
 
   if (loading) {
-    return <section className="py-4 px-4 bg-card text-card-foreground overflow-x-auto flex"><div>Loading...</div></section>;
+    return (
+      <section className="py-4 px-4 bg-card text-card-foreground overflow-x-auto flex justify-center items-center">
+        <LoadingSpinner text="Loading categories..." size="sm" />
+      </section>
+    );
   }
 
   return (

@@ -4,6 +4,7 @@ import ProductCard from "@/components/product/ProductCard";
 import { getProductbyCategory } from "@/api/product";
 import type { Product } from "@/types/Product";
 import { useTheme } from '@/context/ThemeContext';
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 interface CategoryExploreLineupSectionProps {
   explore_lineup: {
@@ -99,7 +100,7 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-500 py-10">Loading products...</p>
+          <LoadingSpinner text="Loading products..." />
         ) : error ? (
           <p className="text-center text-red-500 py-10">{error}</p>
         ) : products.length > 0 ? (

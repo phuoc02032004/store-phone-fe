@@ -3,6 +3,7 @@ import { useTheme } from '@/context/ThemeContext';
 import type { Product } from '@/types/Product';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/product/ProductCard';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 interface ChildCategoryFilteredListProps {
   products: Product[];
@@ -20,6 +21,16 @@ const ChildCategoryFilteredList: React.FC<ChildCategoryFilteredListProps> = ({
   ];
 
   const { theme } = useTheme();
+
+  if (products.length === 0) {
+    return (
+      <section className={`${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50'} py-16`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LoadingSpinner text={`No products found for ${categoryName}.`} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={`${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50'} py-16`}>

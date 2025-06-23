@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/product/ProductCard";
 import { getProducts } from "@/api/product";
 import type { Product } from "@/types/Product";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const ProductSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('New Arrival');
@@ -100,7 +101,7 @@ const ProductSection: React.FC = () => {
         </div>
  
         {loading ? (
-          <p className={`text-center py-10 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Loading products...</p>
+          <LoadingSpinner text="Loading products..." />
         ) : error ? (
           <p className={`text-center py-10 ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>{error}</p>
         ) : products.length > 0 ? (

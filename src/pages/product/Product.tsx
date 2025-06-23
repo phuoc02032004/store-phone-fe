@@ -12,6 +12,7 @@ import ReviewForm from '@/components/product/reviews/ReviewForm';
 import { getProductReviews } from '@/api/review';
 import { toast } from "sonner"
 import { addItem } from '@/store/cartSlice';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 const Products: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -82,7 +83,7 @@ const Products: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading product details...</div>;
+    return <LoadingSpinner fullScreen text="Loading product details..." />;
   }
 
   if (error) {
@@ -114,7 +115,7 @@ const Products: React.FC = () => {
  
         <div className={`mt-12 md:mt-16 p-6 rounded-lg shadow-sm ${theme === 'dark' ? 'bg-gray-800' : 'bg-card'}`}>
           {reviewsLoading ? (
-            <div className={`text-center py-4 ${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`}>Loading reviews...</div>
+            <LoadingSpinner text="Loading reviews..." />
           ) : reviewsError ? (
             <div className={`text-center py-4 ${theme === 'dark' ? 'text-red-400' : 'text-destructive'}`}>{reviewsError}</div>
           ) : (

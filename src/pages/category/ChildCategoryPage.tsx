@@ -8,6 +8,7 @@ import type { Category } from "@/types/Category";
 import ChildCategoryFilteredList from "@/components/category/child/ChildCategoryFilteredList";
 import ChildCategoryHeroSection from "@/components/category/child/ChildCategoryHeroSection";
 import ProductSection from "@/components/home/ProductSection";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const ChildCategoryPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -63,28 +64,15 @@ const ChildCategoryPage: React.FC = () => {
   }
  
   if (loading) {
-    return (
-      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-        <h1 className="text-3xl font-bold mb-4">Loading...</h1>
-      </div>
-    );
+    return <LoadingSpinner fullScreen text="Loading category data..." />;
   }
  
   if (error) {
-    return (
-      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-        <h1 className={`text-3xl font-bold mb-4 ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>Error</h1>
-        <p className={`text-lg ${theme === 'dark' ? 'text-red-300' : 'text-red-400'}`}>{error}</p>
-      </div>
-    );
+    return <LoadingSpinner fullScreen text={`Error: ${error}`} />;
   }
  
   if (!category) {
-    return (
-      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-        <h1 className="text-3xl font-bold mb-4">Category Not Found</h1>
-      </div>
-    );
+    return <LoadingSpinner fullScreen text="Category Not Found" />;
   }
  
   return (
