@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTheme } from '@/context/ThemeContext';
 import { useParams } from "react-router-dom";
 import { getProductbyCategory } from "@/api/product";
 import { getCategoryById } from "@/api/category";
@@ -50,44 +51,46 @@ const ChildCategoryPage: React.FC = () => {
     }
   }, [categoryId]);
 
+  const { theme } = useTheme();
+
   if (!categoryId) {
     return (
-      <div className="min-h-screen text-white pt-16 flex flex-col items-center justify-center">
+      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
         <h1 className="text-3xl font-bold mb-4">Category Not Found</h1>
         <p className="text-lg">No category ID provided in the URL.</p>
       </div>
     );
   }
-
+ 
   if (loading) {
     return (
-      <div className="min-h-screen text-white pt-16 flex flex-col items-center justify-center">
+      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
         <h1 className="text-3xl font-bold mb-4">Loading...</h1>
       </div>
     );
   }
-
+ 
   if (error) {
     return (
-      <div className="min-h-screen text-white pt-16 flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4 text-red-500">Error</h1>
-        <p className="text-lg text-red-400">{error}</p>
+      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+        <h1 className={`text-3xl font-bold mb-4 ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>Error</h1>
+        <p className={`text-lg ${theme === 'dark' ? 'text-red-300' : 'text-red-400'}`}>{error}</p>
       </div>
     );
   }
-
+ 
   if (!category) {
     return (
-      <div className="min-h-screen text-white pt-16 flex flex-col items-center justify-center">
+      <div className={`min-h-screen pt-16 flex flex-col items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
         <h1 className="text-3xl font-bold mb-4">Category Not Found</h1>
       </div>
     );
   }
-
+ 
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
       <ChildCategoryHeroSection categoryName={category.name} />
-
+ 
       <ChildCategoryFilteredList
         products={products}
         categoryName={category.name}

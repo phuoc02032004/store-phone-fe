@@ -11,7 +11,7 @@ interface ProductNavItem {
 }
 
 interface CategoryProductNavSectionProps {
-  categoryId?: string; // Make categoryId optional
+  categoryId?: string;
 }
 
 const CategoryProductNavSection: React.FC<CategoryProductNavSectionProps> = ({ categoryId }) => {
@@ -54,17 +54,17 @@ const CategoryProductNavSection: React.FC<CategoryProductNavSectionProps> = ({ c
   }
 
   if (loading) {
-    return <section className="py-4 px-4 bg-gray-100 text-lightText overflow-x-auto flex"><div>Loading...</div></section>;
+    return <section className="py-4 px-4 bg-card text-card-foreground overflow-x-auto flex"><div>Loading...</div></section>;
   }
 
   return (
-    <section className="py-4 px-4 bg-gray-100 text-lightText overflow-x-auto flex">
+    <section className="py-4 px-4 bg-card text-card-foreground overflow-x-auto flex">
       <div className="flex space-x-8 max-w-7xl mx-auto">
         {productsToDisplay.map((product, index) => (
           <a key={index} href={product.linkHref} className="flex flex-col items-center text-center flex-shrink-0">
             <img src={product.imageSrc} alt={product.imageAlt} className="w-12 h-12 object-contain mb-1" />
             <div className="flex items-center">
-              <span className="text-sm font-semibold text-lightText">{product.text}</span>
+              <span className="text-sm font-semibold text-foreground">{product.text}</span>
             </div>
           </a>
         ))}

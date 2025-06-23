@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createOrder } from '@/api/order';
 import { createZaloPay } from '@/api/zalopay';
+import { useTheme } from "@/context/ThemeContext";
 
 import type { Items } from '@/types/Order';
 
@@ -29,6 +30,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
   const [viewState, setViewState] = useState<ViewState>('form');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   const resetModalState = () => {
     setShippingAddress(initialShippingAddress);
@@ -111,49 +113,52 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
         handleModalClose();
       }
     }}>
-      <DialogContent className="sm:max-w-[425px] [&>button]:bg-transparent [&>button]:text-lightText [&>button]:hover:bg-transparent">
+      <DialogContent className={`sm:max-w-[425px] [&>button]:bg-transparent ${theme === 'dark' ? 'bg-gray-800 text-white border-gray-700' : '[&>button]:text-lightText [&>button]:hover:bg-transparent'}`}>
         {viewState === 'form' && (
           <>
             <DialogHeader>
-              <DialogTitle>Checkout Information</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className={`${theme === 'dark' ? 'text-white' : ''}`}>Checkout Information</DialogTitle>
+              <DialogDescription className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>
                 Please provide your shipping details and payment method.
               </DialogDescription>
             </DialogHeader>
             {error && <p className="text-red-500 text-sm py-2">{error}</p>}
             <form onSubmit={handleSubmit} className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="street">Street</Label>
+                <Label htmlFor="street" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>Street</Label>
                 <Input
                   id="street"
                   value={shippingAddress.street}
                   onChange={(e) => setShippingAddress({ ...shippingAddress, street: e.target.value })}
                   required
                   disabled={isLoading}
+                  className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="city">City</Label>
+                <Label htmlFor="city" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>City</Label>
                 <Input
                   id="city"
                   value={shippingAddress.city}
                   onChange={(e) => setShippingAddress({ ...shippingAddress, city: e.target.value })}
                   required
                   disabled={isLoading}
+                  className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="state">State</Label>
+                <Label htmlFor="state" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>State</Label>
                 <Input
                   id="state"
                   value={shippingAddress.state}
                   onChange={(e) => setShippingAddress({ ...shippingAddress, state: e.target.value })}
                   required
                   disabled={isLoading}
+                  className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="phone">Phone</Label>
+                <Label htmlFor="phone" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>Phone</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -161,38 +166,40 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                   onChange={(e) => setShippingAddress({ ...shippingAddress, phone: e.target.value })}
                   required
                   disabled={isLoading}
+                  className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}
                 />
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="paymentMethod">Payment Method</Label>
+                <Label htmlFor="paymentMethod" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>Payment Method</Label>
                 <Select
                   onValueChange={(value) => setPaymentMethod(value)}
                   value={paymentMethod}
                   required
                   disabled={isLoading}
                 >
-                  <SelectTrigger id="paymentMethod">
+                  <SelectTrigger id="paymentMethod" className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}>
                     <SelectValue placeholder="Select a payment method" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="COD">COD (Cash on Delivery)</SelectItem>
-                    <SelectItem value="ZaloPay">ZaloPay</SelectItem>
+                  <SelectContent className={`${theme === 'dark' ? 'bg-gray-800 text-white border-gray-700' : ''}`}>
+                    <SelectItem value="COD" className={`${theme === 'dark' ? 'hover:bg-gray-700' : ''}`}>COD (Cash on Delivery)</SelectItem>
+                    <SelectItem value="ZaloPay" className={`${theme === 'dark' ? 'hover:bg-gray-700' : ''}`}>ZaloPay</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="notes">Notes</Label>
+                <Label htmlFor="notes" className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>Notes</Label>
                 <Textarea
                   id="notes"
                   value={notes}
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setNotes(e.target.value)}
                   placeholder="Add any notes for your order (optional)"
                   disabled={isLoading}
+                  className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : ''}`}
                 />
               </div>
-              <Button type="submit" className="w-full text-white" disabled={isLoading}>
+              <Button type="submit" className={`w-full ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-white'}`} disabled={isLoading}>
                 {isLoading ? 'Processing...' : 'Place Order'}
               </Button>
             </form>
@@ -202,8 +209,8 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
         {viewState === 'zalopay_redirect' && zalopayUrl && (
           <>
             <DialogHeader className='flex justify-center items-center'>
-              <DialogTitle>Proceed to ZaloPay</DialogTitle>
-              <DialogDescription className='text-center'>
+              <DialogTitle className={`${theme === 'dark' ? 'text-white' : ''}`}>Proceed to ZaloPay</DialogTitle>
+              <DialogDescription className={`text-center ${theme === 'dark' ? 'text-gray-300' : ''}`}>
                 Your order has been created. Click the button below to complete your payment with ZaloPay.
               </DialogDescription>
             </DialogHeader>
@@ -213,7 +220,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                   Pay with ZaloPay
                 </a>
               </Button>
-              <Button variant="outline" onClick={handleModalClose} className="mt-3 w-full text-white">
+              <Button variant="outline" onClick={handleModalClose} className={`mt-3 w-full ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' : 'text-white'}`}>
                 Cancel Payment & Close
               </Button>
             </div>
@@ -222,8 +229,8 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
          {viewState === 'zalopay_redirect' && !zalopayUrl && !isLoading && (
             <>
                 <DialogHeader>
-                    <DialogTitle>Payment Error</DialogTitle>
-                    <DialogDescription>
+                    <DialogTitle className={`${theme === 'dark' ? 'text-white' : ''}`}>Payment Error</DialogTitle>
+                    <DialogDescription className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>
                         There was an issue generating the ZaloPay payment link.
                     </DialogDescription>
                 </DialogHeader>
@@ -231,7 +238,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, items, c
                     <p className="text-red-500 mb-4">
                         {error || "Could not retrieve ZaloPay URL. Please try again or select a different payment method."}
                     </p>
-                    <Button onClick={() => setViewState('form')} className="w-full">
+                    <Button onClick={() => setViewState('form')} className={`w-full ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700 text-white' : ''}`}>
                         Back to Form
                     </Button>
                 </div>

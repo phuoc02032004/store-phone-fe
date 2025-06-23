@@ -78,7 +78,15 @@ const OrderHistory: React.FC = () => {
                   <span className="font-semibold">Total: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.finalAmount)}</span>
                     <div className='flex gap-2'>
                         {/* <Button onClick={() => handleCancelOrder(order._id)} className='text-white'>Cancel</Button> */}
-                        <Button className='text-white' onClick={() => openModal(order._id)}>Detail</Button>
+                        <Button 
+                          className='
+                          bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+                          backdrop-blur-[10px]
+                          rounded-[20px]
+                          border border-[rgba(255,255,255,0.18)]
+                          shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
+                          ' 
+                          onClick={() => openModal(order._id)}>Detail</Button>
                     </div>
                   </div>
               </div>

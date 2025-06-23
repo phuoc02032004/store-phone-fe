@@ -6,6 +6,7 @@ import { useFirebaseMessaging } from './hooks/useFirebaseMessaging';
 import './App.css';
 import { NotificationProvider } from "./context/NotificationContext";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const App: React.FC = () => {
   useFirebaseMessaging();
@@ -13,8 +14,10 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <NotificationProvider>
+        <ThemeProvider>
           <ScrollToTop />
           <AppRoutes />
+        </ThemeProvider>
         <Toaster richColors position="top-right" />
       </NotificationProvider>
     </BrowserRouter>

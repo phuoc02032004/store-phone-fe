@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTheme } from '@/context/ThemeContext';
 import { getProductbyId } from '@/api/product';
 import type { Product } from '@/types/Product';
 import type { Review } from '@/types/Review';
@@ -91,11 +92,13 @@ const Products: React.FC = () => {
   if (!product) {
     return <div className="text-center py-8">Product not found.</div>;
   }
+  const { theme } = useTheme();
+
   return (
-    <div className="min-h-screen bg-white text-appleBlack">
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-background text-foreground'}`}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">{product.name}</h1>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-white p-6 rounded-lg shadow-sm">
+        <h1 className={`text-3xl md:text-4xl font-bold mb-8 text-center ${theme === 'dark' ? 'text-white' : 'text-foreground'}`}>{product.name}</h1>
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 p-6 rounded-lg shadow-sm ${theme === 'dark' ? 'bg-gray-800' : 'bg-card'}`}>
           <div className="flex justify-center items-center">
             <ProductImageGallery productName={product.name} image={Array.isArray(product.image) ? product.image.filter((img): img is string => !!img) : [product.image].filter((img): img is string => !!img)} />
           </div>
@@ -108,12 +111,12 @@ const Products: React.FC = () => {
             />
           </div>
         </div>
-
-        <div className="mt-12 md:mt-16 bg-white p-6 rounded-lg shadow-sm">
+ 
+        <div className={`mt-12 md:mt-16 p-6 rounded-lg shadow-sm ${theme === 'dark' ? 'bg-gray-800' : 'bg-card'}`}>
           {reviewsLoading ? (
-            <div className="text-center py-4">Loading reviews...</div>
+            <div className={`text-center py-4 ${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`}>Loading reviews...</div>
           ) : reviewsError ? (
-            <div className="text-center py-4 text-red-500">{reviewsError}</div>
+            <div className={`text-center py-4 ${theme === 'dark' ? 'text-red-400' : 'text-destructive'}`}>{reviewsError}</div>
           ) : (
             <ReviewList reviews={reviews || []} />
           )}

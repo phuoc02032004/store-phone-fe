@@ -43,6 +43,11 @@ export default {
         gold: 'var(--color-gold)',
         silver: 'var(--color-silver)',
         richBlack: 'var(--color-rich-black)',
+        appleLightGray: 'var(--color-apple-light-gray)',
+        appleDarkGray: 'var(--color-apple-dark-gray)',
+        appleDarkGrayHover: 'var(--color-apple-dark-gray-hover)',
+        appleButtonGray: 'var(--color-apple-button-gray)',
+        appleBlack: 'var(--color-apple-black)',
       },
       backgroundImage: {
         'product-display-gradient': 'linear-gradient(to bottom, var(--product-display-gradient-start) 0%, var(--product-display-gradient-stop1) 18%, var(--product-display-gradient-stop2) 33%, var(--product-display-gradient-stop3) 49%, var(--product-display-gradient-stop4) 73%, var(--product-display-gradient-end) 100%)',

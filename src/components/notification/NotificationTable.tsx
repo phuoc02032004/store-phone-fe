@@ -2,6 +2,7 @@ import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
 import { useNotifications } from "@/context/NotificationContext";
+import { useTheme } from "@/context/ThemeContext";
 import type { Notify } from "@/types/Notify";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,7 @@ import {
 
 const NotificationTable: React.FC = () => {
   const { notifications, markNotificationAsRead, markAllNotificationsAsRead } = useNotifications();
+  const { theme } = useTheme();
 
   const [activeTab, setActiveTab] = React.useState<"all" | "unread">("all");
 
@@ -22,8 +24,8 @@ const NotificationTable: React.FC = () => {
     activeTab === "all" ? notifications : notifications.filter((n) => !n.read);
 
   return (
-    <div className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-xl rounded-lg overflow-hidden border border-border">
-      <div className="text-3xl font-bold text-left pl-4 pt-3 pb-2 border-b border-border">
+    <div className={`w-full max-w-md mx-auto shadow-xl rounded-lg overflow-hidden border ${theme === 'dark' ? 'bg-gray-800 text-white border-gray-700' : 'bg-card text-card-foreground border-border'}`}>
+      <div className={`text-3xl font-bold text-left pl-4 pt-3 pb-2 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-border'}`}>
         Notifications
       </div>
       <div className="p-4 flex items-center justify-between">
@@ -31,14 +33,14 @@ const NotificationTable: React.FC = () => {
           <Button
             variant={activeTab === "all" ? "default" : "outline"}
             onClick={() => setActiveTab("all")}
-            className="rounded-full px-4 py-2 text-sm text-white"
+            className={`rounded-full px-4 py-2 text-sm ${activeTab === "all" ? "" : (theme === 'dark' ? 'text-gray-300' : 'text-lightText')}`}
           >
             All
           </Button>
           <Button
             variant={activeTab === "unread" ? "default" : "outline"}
             onClick={() => setActiveTab("unread")}
-            className="rounded-full px-4 py-2 text-sm text-white"
+            className={`rounded-full px-4 py-2 text-sm ${activeTab === "unread" ? "" : (theme === 'dark' ? 'text-gray-300' : 'text-lightText')}`}
           >
             Unread
           </Button>
@@ -46,16 +48,16 @@ const NotificationTable: React.FC = () => {
         <Button
           variant="ghost"
           onClick={markAllNotificationsAsRead}
-          className="rounded-full px-4 py-2 text-sm hover:bg-primary/10 text-white"
+          className={`rounded-full px-4 py-2 text-sm hover:bg-primary/10 ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-lightText'}`}
         >
           Mark All as Read
         </Button>
       </div>
 
-      <div className="max-h-[500px] overflow-y-auto custom-scrollbar divide-y divide-border">
+      <div className={`max-h-[500px] overflow-y-auto custom-scrollbar divide-y ${theme === 'dark' ? 'divide-gray-700' : 'divide-border'}`}>
         {filteredNotifications.length === 0 ? (
           <div className="flex items-center justify-center h-40">
-            <p className="text-center text-muted-foreground py-4 text-lg">
+            <p className={`text-center py-4 text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`}>
               You're all caught up! No new notifications.
             </p>
           </div>
@@ -78,7 +80,7 @@ const NotificationTable: React.FC = () => {
                 if (title.includes("Error")) {
                   return <FaExclamationTriangle className="text-red-500 text-xl" />;
                 }
-                return <FaBell className="text-gray-500 text-xl" />; // Default icon
+                return <FaBell className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} text-xl`} />; // Default icon
               };
 
               return (
@@ -98,7 +100,7 @@ const NotificationTable: React.FC = () => {
                     markNotificationAsRead(notification._id.toString())
                   }
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-muted mr-3 flex items-center justify-center">
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full mr-3 flex items-center justify-center ${theme === 'dark' ? 'bg-gray-700' : 'bg-muted'}`}>
                     {getNotificationIcon(notification.title)}
                   </div>
 
@@ -106,8 +108,8 @@ const NotificationTable: React.FC = () => {
                   <p
                     className={`text-base ${
                       !notification.read
-                        ? "font-semibold text-foreground"
-                        : "text-muted-foreground"
+                        ? `font-semibold ${theme === 'dark' ? 'text-white' : 'text-foreground'}`
+                        : `${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`
                     }`}
                   >
                     {notification.title}:{" "}
@@ -119,7 +121,7 @@ const NotificationTable: React.FC = () => {
                     className={`text-xs mt-1 ${
                       !notification.read
                         ? "text-blue-600 dark:text-blue-400"
-                        : "text-muted-foreground"
+                        : `${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`
                     }`}
                   >
                     {notification.createdAt

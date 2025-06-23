@@ -52,6 +52,11 @@ body {
   --appleDarkBg: #242426;
   --appleLightBg: #FAFAFA;
   --appleButtonGray: #D2D2D7;
+  --color-apple-light-gray: #D6D6D7;
+  --color-apple-dark-gray: #333336;
+  --color-apple-dark-gray-hover: #2c2c2c;
+  --color-apple-button-gray: #D2D2D7;
+  --color-apple-black: #1d1d1f;
 
   /* Scrollbar Colors */
   --scrollbarTrack: #f1f1f1;
@@ -75,17 +80,111 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.light {
+  --background: var(--lightBg);
+  --foreground: var(--lightText);
+  --card: var(--lightBg);
+  --card-foreground: var(--lightText);
+  --popover: var(--lightBg);
+  --popover-foreground: var(--lightText);
+  --primary: var(--appleBlue);
+  --primary-foreground: var(--appleOffWhite);
+  --secondary: var(--appleLightGray);
+  --secondary-foreground: var(--appleBlack);
+  --muted: var(--appleLightGray);
+  --muted-foreground: var(--appleTextGray);
+  --accent: var(--appleBlueHover);
+  --accent-foreground: var(--appleOffWhite);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: var(--appleBlue);
+  --radius: 0.5rem;
+
+  --color-button-primary-bg: var(--appleBlue);
+  --color-button-primary-foreground: var(--appleOffWhite);
+  --color-button-primary-hover-bg: var(--appleBlueHover);
+  --color-button-destructive-bg: #ef4444;
+  --color-button-destructive-foreground: #ffffff;
+  --color-button-destructive-hover-bg: #dc2626;
+  --color-button-outline-border: #e5e7eb;
+  --color-button-outline-bg: transparent;
+  --color-button-outline-hover-bg: #f3f4f6;
+  --color-button-outline-hover-foreground: #1f2937;
+  --color-button-secondary-bg: #f3f4f6;
+  --color-button-secondary-foreground: #1f2937;
+  --color-button-secondary-hover-bg: #e5e7eb;
+  --color-button-ghost-hover-bg: #f3f4f6;
+  --color-button-ghost-hover-foreground: #1f2937;
+  --color-button-link-foreground: var(--appleBlue);
+
+  --product-display-gradient-start: #0c1247;
+  --product-display-gradient-stop1: #30337d;
+  --product-display-gradient-stop2: #505dad;
+  --product-display-gradient-stop3: #7d8ed1;
+  --product-display-gradient-stop4: #aebce6;
+  --product-display-gradient-end: #fafafc;
+}
+
+.dark {
+  --background: var(--appleBlack);
+  --foreground: var(--appleOffWhite);
+  --card: var(--appleDarkBg);
+  --card-foreground: var(--appleOffWhite);
+  --popover: var(--appleDarkBg);
+  --popover-foreground: var(--appleOffWhite);
+  --primary: var(--appleBlue);
+  --primary-foreground: var(--appleOffWhite);
+  --secondary: var(--appleDarkGray);
+  --secondary-foreground: var(--appleOffWhite);
+  --muted: var(--appleDarkGray);
+  --muted-foreground: var(--appleTextGray);
+  --accent: var(--appleBlueHover);
+  --accent-foreground: var(--appleOffWhite);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #374151;
+  --input: #374151;
+  --ring: var(--appleBlue);
+  --radius: 0.5rem;
+
+  --color-button-primary-bg: var(--appleBlue);
+  --color-button-primary-foreground: var(--appleOffWhite);
+  --color-button-primary-hover-bg: var(--appleBlueHover);
+  --color-button-destructive-bg: #ef4444;
+  --color-button-destructive-foreground: #ffffff;
+  --color-button-destructive-hover-bg: #dc2626;
+  --color-button-outline-border: #374151;
+  --color-button-outline-bg: transparent;
+  --color-button-outline-hover-bg: #1f2937;
+  --color-button-outline-hover-foreground: #e5e7eb;
+  --color-button-secondary-bg: #374151;
+  --color-button-secondary-foreground: #e5e7eb;
+  --color-button-secondary-hover-bg: #4b5563;
+  --color-button-ghost-hover-bg: #1f2937;
+  --color-button-ghost-hover-foreground: #e5e7eb;
+  --color-button-link-foreground: var(--appleBlue);
+
+  --product-display-gradient-start: #0c1247;
+  --product-display-gradient-stop1: #30337d;
+  --product-display-gradient-stop2: #505dad;
+  --product-display-gradient-stop3: #7d8ed1;
+  --product-display-gradient-stop4: #aebce6;
+  --product-display-gradient-end: #fafafc;
+}
+
 a {
   font-weight: 500;
-  color: var(--darkLink);
+  color: var(--primary);
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--darkLinkHover);
+  color: var(--accent);
 }
 
 body {
-  background-color: white;
+  background-color: var(--background);
   margin: 0;
   place-items: center;
   min-width: 320px;
@@ -104,12 +203,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--darkButtonBg);
+  background-color: var(--buttonPrimaryBg);
+  color: var(--buttonPrimaryForeground);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: var(--darkButtonBorderHover);
+  background-color: var(--buttonPrimaryHoverBg);
 }
 button:focus,
 button:focus-visible {
@@ -118,14 +218,14 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: var(--lightText);
-    background-color: var(--lightBg);
+    color: var(--foreground);
+    background-color: var(--background);
   }
   a:hover {
-    color: var(--lightLinkHover);
+    color: var(--accent);
   }
   button {
-    background-color: var(--lightButtonBg);
+    background-color: var(--buttonPrimaryBg);
   }
 }
 

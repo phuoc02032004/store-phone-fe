@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from '@/context/ThemeContext';
 import { CURRENCY_LOCALE, CURRENCY_CODE } from "@/config/currencyConfig";
 import {
   Card,
@@ -20,10 +21,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         navigate(`/product/${product._id}`)
     };
 
+    const { theme } = useTheme();
+
     return(
-        <Card className="w-full max-w-sm rounded-2xl overflow-hidden group
-            bg-lightBg border border-gray-200 shadow-md
-            hover:shadow-lg hover:border-gray-300 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.01]">
+        <Card className={`w-full max-w-sm rounded-2xl overflow-hidden group
+            ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-lightBg border-gray-200'} shadow-md
+            hover:shadow-lg ${theme === 'dark' ? 'hover:border-gray-600' : 'hover:border-gray-300'} transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.01]`}>
             {/* Product Image */}
             <div className="relative aspect-[4/3] overflow-hidden">
                 <img
@@ -37,30 +40,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     </div>
                 )}
             </div>
-
+ 
             {/* Product Info */}
             <CardContent className="p-6">
-                <CardTitle className="text-xl font-semibold text-lightText mb-2 truncate">
+                <CardTitle className={`text-xl font-semibold mb-2 truncate ${theme === 'dark' ? 'text-white' : 'text-lightText'}`}>
                     {product.name}
                 </CardTitle>
-                <p className="text-lightText text-sm mb-4 line-clamp-2">
+                <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-lightText'} text-sm mb-4 line-clamp-2`}>
                     {product.description}
                 </p>
                 <div className="flex items-center justify-between">
                     <div className="space-y-1">
                         {product.variants?.length > 0 ? (
                             <>
-                                <p className="text-lg font-bold text-lightText">
+                                <p className={`text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-lightText'}`}>
                                     From {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(Math.min(...product.variants.map(v => v.price)))}
                                 </p>
                                 {Math.min(...product.variants.map(v => v.price)) < product.price && (
-                                    <p className="text-sm text-gray-600 line-through">
+                                    <p className={`text-sm line-through ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                                         {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(product.price)}
                                     </p>
                                 )}
                             </>
                         ) : (
-                            <p className="text-lg font-bold text-lightText">
+                            <p className={`text-lg font-bold ${theme === 'dark' ? 'text-white' : 'text-lightText'}`}>
                                 {new Intl.NumberFormat(CURRENCY_LOCALE, { style: 'currency', currency: CURRENCY_CODE }).format(product.price)}
                             </p>
                         )}
@@ -68,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <Button
                         variant="outline"
                         size="sm"
-                        className="bg-gray-100 hover:bg-buttonOutlineHoverBg !text-lightText border-buttonOutlineBorder"
+                        className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600 text-white border-gray-600' : 'bg-gray-100 hover:bg-buttonOutlineHoverBg !text-lightText border-buttonOutlineBorder'}`}
                         onClick={handleViewDetails}
                     >
                         View Details

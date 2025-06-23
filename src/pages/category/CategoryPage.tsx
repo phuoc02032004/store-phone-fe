@@ -47,7 +47,7 @@ const CategoryPage: React.FC = () => {
   const { apple_intelligence, hero, get_to_know, explore_lineup, why_buy, essentials, significant_others } = categoryData;
 
   return (
-    <div className="min-h-screen text-white"> 
+    <div className="min-h-screen bg-background text-foreground">
       {apple_intelligence && <CategoryProductNavSection categoryId={categoryId || ""} />}
 
       {hero && <CategoryHeroSection hero={hero} />}

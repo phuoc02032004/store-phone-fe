@@ -20,16 +20,16 @@ interface CategoryEssentialsSectionProps {
 
 const CategoryEssentialsSection: React.FC<CategoryEssentialsSectionProps> = ({ essentials }) => {
   return (
-    <section className="bg-white py-12 md:py-16 text-lightText">
+    <section className="bg-background py-12 md:py-16 text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-10 md:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
             {essentials.title}
           </h2>
           {essentials.linkText && essentials.linkHref && (
             <a
               href={essentials.linkHref}
-              className="text-sm !text-lightText hover:text-blue-700 font-medium"
+              className="text-sm !text-foreground hover:text-primary font-medium"
             >
               {essentials.linkText} <span aria-hidden="true">›</span>
             </a>
@@ -40,19 +40,19 @@ const CategoryEssentialsSection: React.FC<CategoryEssentialsSectionProps> = ({ e
           {essentials.products.map((product: Product, index: number) => (
             <div
               key={index}
-              className="flex flex-col bg-neutral-50/70 p-8 pt-10 md:p-10 md:pt-12 rounded-2xl h-full" 
+              className="flex flex-col bg-card p-8 pt-10 md:p-10 md:pt-12 rounded-2xl h-full"
             >
               <div className="text-center">
-                <h3 className="text-2xl md:text-3xl font-semibold text-lightText">
+                <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
                   {product.title}
                 </h3>
-                <p className="mt-2 text-sm md:text-base text-gray-700 max-w-md mx-auto">
+                <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-md mx-auto">
                   {product.description}
                 </p>
                 {product.linkText && product.linkHref && (
                   <a
                     href={product.linkHref}
-                    className="mt-3 inline-block text-sm !text-lightText hover:text-blue-700 font-medium"
+                    className="mt-3 inline-block text-sm !text-foreground hover:text-primary font-medium"
                   >
                     {product.linkText} <span aria-hidden="true">›</span>
                   </a>
@@ -62,7 +62,7 @@ const CategoryEssentialsSection: React.FC<CategoryEssentialsSectionProps> = ({ e
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
-                  className="max-w-full h-auto object-contain max-h-[200px] sm:max-h-[250px] md:max-h-[280px]" 
+                  className="max-w-full h-auto object-contain max-h-[200px] sm:max-h-[250px] md:max-h-[280px]"
                 />
               </div>
             </div>

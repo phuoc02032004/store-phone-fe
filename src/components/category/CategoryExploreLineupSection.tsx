@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/product/ProductCard";
 import { getProductbyCategory } from "@/api/product";
 import type { Product } from "@/types/Product";
+import { useTheme } from '@/context/ThemeContext';
 
 interface CategoryExploreLineupSectionProps {
   explore_lineup: {
@@ -20,6 +21,7 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   const [tabs, setTabs] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchProductsData = async () => {
@@ -62,14 +64,14 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   }, [activeTab, groupedProducts]);
 
   return (
-    <section className="bg-appleGray py-20 md:py-24 text-lightText p-10 ">
+    <section className="bg-background py-20 md:py-24 text-foreground p-10 ">
       <div className=" container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold">
             {explore_lineup.title}
           </h2>
-          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-appleBlue font-normal">
-            <a href="#" className="hover:underline !text-lightText">Help me choose ›</a>
+          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-primary font-normal">
+            <a href="#" className="hover:underline !text-foreground">Help me choose ›</a>
             {explore_lineup.compareLinkText && explore_lineup.compareLinkHref && (
                 <a href={explore_lineup.compareLinkHref} className="hover:underline">
                     {explore_lineup.compareLinkText} ›
@@ -79,15 +81,15 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
         </div>
 
         <div className="mb-12 md:mb-16">
-          <div className="flex space-x-1 bg-gray-100 p-[3px] rounded-full w-max">
+          <div className="flex space-x-1 bg-muted p-[3px] rounded-full w-max">
             {tabs.map((tabName) => (
               <Button
                 key={tabName}
                 onClick={() => setActiveTab(tabName)}
-                className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
+               className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
                   ${activeTab === tabName
-                    ? 'bg-white text-lightText shadow-sm'
-                    : 'text-black hover:bg-gray-300/60 !bg-lightText/60'
+                    ? `${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white text-lightText'} shadow-sm`
+                    : `${theme === 'dark' ? 'text-gray-400 hover:bg-gray-700/60' : 'text-gray-500 hover:bg-gray-300/60'}`
                   }`}
               >
                 {tabName}

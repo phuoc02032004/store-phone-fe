@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTheme } from '@/context/ThemeContext';
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/product/ProductCard";
 import { getProducts } from "@/api/product";
@@ -11,7 +12,8 @@ const ProductSection: React.FC = () => {
   const [tabs, setTabs] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [displayLimit, setDisplayLimit] = useState<number>(8); 
+  const [displayLimit, setDisplayLimit] = useState<number>(8);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchProductsData = async () => {
@@ -65,29 +67,30 @@ const ProductSection: React.FC = () => {
     setDisplayLimit(prevLimit => Math.max(8, prevLimit - 8));
   };
 
+
   return (
-    <section className="bg-appleGray py-20 md:py-24 text-lightText w-full p-6">
+    <section className={`${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-appleGray text-lightText'} py-20 md:py-24 w-full p-6`}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
-          <h2 className="text-[32px] md:text-[40px] font-bold text-primary">
+          <h2 className={`text-[32px] md:text-[40px] font-bold ${theme === 'dark' ? 'text-white' : 'text-primary'}`}>
             Explore Our Products
           </h2>
-          <div className="hidden sm:flex items-center space-x-5 text-[13px]  font-normal">
-            <a href="#" className="hover:underline !text-lightText">Help me choose ›</a>
-            <a href="#" className="hover:underline !text-lightText">Compare all models ›</a>
+          <div className="hidden sm:flex items-center space-x-5 text-[13px] font-normal">
+            <a href="#" className={`hover:underline ${theme === 'dark' ? 'text-gray-300' : '!text-lightText'}`}>Help me choose ›</a>
+            <a href="#" className={`hover:underline ${theme === 'dark' ? 'text-gray-300' : '!text-lightText'}`}>Compare all models ›</a>
           </div>
         </div>
-
+ 
         <div className="mb-12 md:mb-16">
-          <div className="flex space-x-1 bg-gray-100 p-[3px] rounded-full w-max">
+          <div className={`flex space-x-1 p-[3px] rounded-full w-max ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
             {tabs.map((tabName) => (
               <button
                 key={tabName}
                 onClick={() => setActiveTab(tabName)}
                 className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
                   ${activeTab === tabName
-                    ? 'bg-white text-lightText shadow-sm'
-                    : 'text-gray-500 hover:bg-gray-300/60'
+                    ? `${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white text-lightText'} shadow-sm`
+                    : `${theme === 'dark' ? 'text-gray-400 hover:bg-gray-700/60' : 'text-gray-500 hover:bg-gray-300/60'}`
                   }`}
               >
                 {tabName}
@@ -95,11 +98,11 @@ const ProductSection: React.FC = () => {
             ))}
           </div>
         </div>
-
+ 
         {loading ? (
-          <p className="text-center text-gray-500 py-10">Loading products...</p>
+          <p className={`text-center py-10 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>Loading products...</p>
         ) : error ? (
-          <p className="text-center text-red-500 py-10">{error}</p>
+          <p className={`text-center py-10 ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>{error}</p>
         ) : products.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
             {products.slice(0, displayLimit).map((product) => (
@@ -107,15 +110,15 @@ const ProductSection: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500 py-10">No products available yet.</p>
+          <p className={`text-center py-10 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>No products available yet.</p>
         )}
-
+ 
         {(products.length > displayLimit || displayLimit > 8) && (
           <div className="flex justify-center mt-12 md:mt-16 space-x-4">
             {displayLimit < products.length && (
               <Button
                 onClick={handleShowMore}
-                className="bg-appleBlue text-white px-8 py-3 rounded-full text-base font-medium hover:bg-appleBlueHover transition-colors duration-200"
+                className={`${theme === 'dark' ? 'bg-gray-700 text-white hover:bg-gray-600' : '!bg-lightText text-white hover:!bg-appleBlueHover'} px-8 py-3 rounded-full text-base font-medium transition-colors duration-200`}
               >
                 Show More
               </Button>
@@ -123,7 +126,7 @@ const ProductSection: React.FC = () => {
             {displayLimit > 8 && (
               <Button
                 onClick={handleCollapse}
-                className="bg-gray-200 text-gray-800 px-8 py-3 rounded-full text-base font-medium hover:bg-gray-300 transition-colors duration-200"
+                className={`${theme === 'dark' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'} px-8 py-3 rounded-full text-base font-medium transition-colors duration-200`}
               >
                 Collapse
               </Button>
@@ -131,8 +134,8 @@ const ProductSection: React.FC = () => {
           </div>
         )}
         
-        {products.length > 0 && <hr className="mt-12 md:mt-16 border-neutral-300/80" />}
-
+        {products.length > 0 && <hr className={`mt-12 md:mt-16 ${theme === 'dark' ? 'border-gray-700' : 'border-neutral-300/80'}`} />}
+ 
       </div>
     </section>
   );

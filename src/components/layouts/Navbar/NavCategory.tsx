@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTheme } from '@/context/ThemeContext';
 import {
   NavigationMenuItem,
   NavigationMenuTrigger,
@@ -59,22 +60,24 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
     fetchChildCategories();
   }, [categoryId]);
 
-  const largeLinkClasses = "block text-2xl font-semibold text-neutral-800 hover:text-blue-600 focus:outline-none focus:text-blue-600";
-  const smallLinkClasses = "block text-xs text-neutral-700 hover:text-blue-600 focus:outline-none focus:text-blue-600";
+  const { theme } = useTheme();
+
+  const largeLinkClasses = `block text-2xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-neutral-800'} hover:text-blue-600 focus:outline-none focus:text-blue-600`;
+  const smallLinkClasses = `block text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-neutral-700'} hover:text-blue-600 focus:outline-none focus:text-blue-600`;
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="bg-transparent text-[rgba(255,255,255,0.8)] hover:text-white hover:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-white">
+      <NavigationMenuTrigger className={`bg-transparent ${theme === 'dark' ? 'text-gray-300 hover:text-white data-[state=open]:text-white' : 'text-[rgba(255,255,255,0.8)] hover:text-white'} hover:bg-transparent data-[state=open]:bg-transparent`}>
         {text}
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="bg-neutral-50 text-text-lightText border-none p-10 w-[1000px] grid grid-cols-3 gap-x-10 shadow-xl">
+      <NavigationMenuContent className={`${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-neutral-50 text-text-lightText'} border-none p-10 w-[1000px] grid grid-cols-3 gap-x-10 shadow-xl`}>
         <div>
-          <div className="text-xs text-neutral-500 uppercase mb-5">
+          <div className={`text-xs uppercase mb-5 ${theme === 'dark' ? 'text-gray-500' : 'text-neutral-500'}`}>
             Khám Phá {text}
           </div>
           <ul className="space-y-3">
             {loading ? (
-              <li className="text-neutral-500">Đang tải...</li>
+              <li className={`${theme === 'dark' ? 'text-gray-400' : 'text-neutral-500'}`}>Đang tải...</li>
             ) : (
               <>
                 {childCategories.map((child) => (
@@ -88,7 +91,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
                 ))}
                 {categoryId && !loading && childCategories.length > 0 && (
                   <>
-                    <li className="pt-2"> 
+                    <li className="pt-2">
                       <NavigationMenuLink asChild>
                         <a href="#" className={smallLinkClasses}>
                           So Sánh {text}
@@ -111,7 +114,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
 
         {content?.buy && (
           <div>
-            <div className="text-xs text-neutral-500 uppercase mb-5">
+            <div className={`text-xs uppercase mb-5 ${theme === 'dark' ? 'text-gray-500' : 'text-neutral-500'}`}>
               Mua {text}
             </div>
             <ul className="space-y-3">
@@ -123,7 +126,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
                 </NavigationMenuLink>
               </li>
               {content.buy.items.map((item, index) => (
-                <li key={`buy-item-${index}`} className={index === 0 ? "pt-2" : ""}> 
+                <li key={`buy-item-${index}`} className={index === 0 ? "pt-2" : ""}>
                   <NavigationMenuLink asChild>
                     <a href={item.href} className={smallLinkClasses}>
                       {item.title}
@@ -137,7 +140,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
 
         {content?.learnMore && (
           <div>
-            <div className="text-xs text-neutral-500 uppercase mb-5">
+            <div className={`text-xs uppercase mb-5 ${theme === 'dark' ? 'text-gray-500' : 'text-neutral-500'}`}>
               Tìm Hiểu Thêm Về {text}
             </div>
             <ul className="space-y-3">
@@ -149,7 +152,7 @@ const NavCategory: React.FC<NavCategoryProps> = ({ text, href, categoryId, conte
                 </NavigationMenuLink>
               </li>
               {content.learnMore.items.map((item, index) => (
-                <li key={`learnmore-item-${index}`} className={index === 0 ? "pt-2" : ""}> 
+                <li key={`learnmore-item-${index}`} className={index === 0 ? "pt-2" : ""}>
                   <NavigationMenuLink asChild>
                     <a href={item.href} className={smallLinkClasses}>
                       {item.title}
