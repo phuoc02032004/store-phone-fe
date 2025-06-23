@@ -66,15 +66,15 @@ const ProductSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-appleGray py-20 md:py-24 text-appleBlack w-full p-6">
+    <section className="bg-appleGray py-20 md:py-24 text-lightText w-full p-6">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold text-primary">
             Explore Our Products
           </h2>
-          <div className="hidden sm:flex items-center space-x-5 text-[13px] text-appleBlue font-normal">
-            <a href="#" className="hover:underline">Help me choose ›</a>
-            <a href="#" className="hover:underline">Compare all models ›</a>
+          <div className="hidden sm:flex items-center space-x-5 text-[13px]  font-normal">
+            <a href="#" className="hover:underline !text-lightText">Help me choose ›</a>
+            <a href="#" className="hover:underline !text-lightText">Compare all models ›</a>
           </div>
         </div>
 

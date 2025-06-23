@@ -92,10 +92,7 @@ const ChildCategoryPage: React.FC = () => {
         products={products}
         categoryName={category.name}
       />
-
       <ProductSection />
-
-      
     </div>
   );
 };

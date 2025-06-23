@@ -68,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <Button
                         variant="outline"
                         size="sm"
-                        className="bg-gray-100 hover:bg-buttonOutlineHoverBg text-lightText border-buttonOutlineBorder"
+                        className="bg-gray-100 hover:bg-buttonOutlineHoverBg !text-lightText border-buttonOutlineBorder"
                         onClick={handleViewDetails}
                     >
                         View Details
