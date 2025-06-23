@@ -81,11 +81,11 @@ const Cart: React.FC = () => {
                     <Table>
                       <TableHeader>
                         <TableRow className={`${theme === 'dark' ? 'text-gray-300' : ''}`}>
-                          <TableHead>Product</TableHead>
-                          <TableHead>Price</TableHead>
-                          <TableHead>Quantity</TableHead>
-                          <TableHead>Total</TableHead>
-                          <TableHead></TableHead>
+                          <TableHead className="w-[40%] py-3 sm:py-4 pr-1 sm:pr-2">Product</TableHead>
+                          <TableHead className="text-right w-[15%] py-3 sm:py-4">Price</TableHead>
+                          <TableHead className="text-center w-[20%] py-3 sm:py-4">Quantity</TableHead>
+                          <TableHead className="text-right w-[15%] py-3 sm:py-4">Total</TableHead>
+                          <TableHead className="text-right w-[10%] py-3 sm:py-4 pr-2 sm:pr-4"></TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -115,10 +115,7 @@ const Cart: React.FC = () => {
         isOpen={isCheckoutModalOpen}
         onClose={handleCloseCheckoutModal}
         items={cartItems.map(item => ({
-          product: {
-            _id: item._id,
-            name: item.name, // Assuming item.name exists on cart item
-          },
+          product: item._id,
           quantity: item.quantity,
           price: item.selectedVariant?.price || item.price,
           _id: item.selectedVariant?._id || item._id,

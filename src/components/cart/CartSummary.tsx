@@ -8,7 +8,7 @@ import type { RootState } from '@/store/store';
 import { getCouponByCode, applyCoupon } from '@/api/coupon';
 import { toast } from 'sonner';
 import type { Coupon } from '@/types/Coupon';
-import { useTheme } from "@/context/ThemeContext";
+import { TagIcon, TicketPercentIcon, CheckCircle, XIcon } from 'lucide-react'; // Thêm XIcon
 
 interface CartSummaryProps {
   onOrderSuccess: () => void;
@@ -18,18 +18,14 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onOrderSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponCode, setCouponCode] = useState<string>('');
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const { theme } = useTheme();
 
   const transformedItems = cartItems.map(item => ({
-    product: {
-      _id: item._id,
-      name: item.name, // Assuming item.name exists on cart item
-    },
+    product: item._id,
     quantity: item.quantity,
     price: item.selectedVariant?.price || item.price,
-    _id: item._id,
-    ...(item.selectedVariant && { variantId: item.selectedVariant._id })
+    _id: item.selectedVariant?._id || item._id,
   }));
 
   const openModal = () => setIsModalOpen(true);
@@ -49,63 +45,135 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onOrderSuccess }) => {
     }
   }
 
-  const total = subtotal - discount;
+  const total = Math.max(0, subtotal - discount);
 
   const handleApplyCoupon = async () => {
-    if (!couponCode) {
+    if (!couponCode.trim()) {
       toast.error('Please enter a coupon code.');
       return;
     }
+    setIsApplyingCoupon(true);
     try {
       const response = await getCouponByCode(couponCode);
-      const applyResponse = await applyCoupon(couponCode);
+      // Giữ nguyên logic gọi applyCoupon của bạn
+      const applyResponse = await applyCoupon(couponCode); 
       console.log(applyResponse);
 
       setAppliedCoupon(response);
-      toast.success(`Coupon "${couponCode}" applied successfully!`);
+      toast.success(`Coupon "${response.code}" applied successfully!`);
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to apply coupon or coupon not found.');
       setAppliedCoupon(null);
+    } finally {
+      setIsApplyingCoupon(false);
     }
   };
 
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode('');
+    toast.info("Coupon removed.");
+  };
+
   return (
-    <div className="space-y-4">
-      <div className="flex items-center space-x-2">
-        <Input
-          type="text"
-          placeholder="Enter coupon code"
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.target.value)}
-          className={`flex-grow ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : '!border-lightText !text-lightText'}`}
-        />
-        <Button variant={'outline'} onClick={handleApplyCoupon} className={`${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' : 'text-white !bg-lightText'}`}>Apply</Button>
-      </div>
-      {appliedCoupon && (
-        <div className="text-sm text-green-600">
-          Coupon applied: {appliedCoupon.code} (-{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(discount)})
+    <div className="space-y-5">
+      <div className="space-y-2">
+        <label htmlFor="cart-coupon-code" className="text-sm font-medium text-muted-foreground flex items-center">
+          <TicketPercentIcon className="w-4 h-4 mr-2" />
+          Discount Code
+        </label>
+        <div className="flex items-center space-x-2">
+          <Input
+            id="cart-coupon-code"
+            type="text"
+            placeholder="Enter coupon"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+            className="flex-grow"
+            disabled={isApplyingCoupon || !!appliedCoupon}
+          />
+          {!appliedCoupon ? (
+            <Button 
+              variant="outline" 
+              onClick={handleApplyCoupon} 
+              disabled={isApplyingCoupon || !couponCode.trim()}
+              className="whitespace-nowrap px-4"
+            >
+              {isApplyingCoupon ? (
+                <TagIcon className="mr-2 h-4 w-4 animate-spin" /> 
+              ) : (
+                <TagIcon className="mr-2 h-4 w-4" />
+              )}
+              Apply
+            </Button>
+          ) : (
+            <Button 
+              variant="ghost" 
+              onClick={handleRemoveCoupon}
+              size="sm"
+              className="text-destructive hover:bg-destructive/10 hover:text-destructive px-2"
+            >
+              <XIcon className="w-4 h-4 mr-1 sm:mr-1.5" /> Remove
+            </Button>
+          )}
         </div>
-      )}
-      <Separator className={`${theme === 'dark' ? 'bg-gray-700' : ''}`} />
-      <div className={`flex justify-between items-center text-lg ${theme === 'dark' ? 'text-white' : 'text-lightText'}`}>
-        <span>Subtotal:</span>
-        <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(subtotal)}</span>
+        {appliedCoupon && (
+          <div className="text-xs text-green-600 dark:text-green-500 flex items-center pt-1">
+            <CheckCircle className="w-3.5 h-3.5 mr-1.5 flex-shrink-0" />
+            <span>
+              Applied: <span className="font-semibold">{appliedCoupon.code}</span> (-{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(discount)})
+            </span>
+          </div>
+        )}
       </div>
-      {appliedCoupon && (
-        <div className="flex justify-between items-center text-lg text-green-600">
-          <span>Discount:</span>
-          <span>-{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(discount)}</span>
+
+      <Separator />
+
+      <div className="space-y-1.5 text-sm">
+        <div className="flex justify-between items-center">
+          <span className="text-muted-foreground">Subtotal:</span>
+          <span className="text-foreground font-medium">
+            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(subtotal)}
+          </span>
         </div>
-      )}
-      <Separator className={`${theme === 'dark' ? 'bg-gray-700' : ''}`} />
-      <div className={`flex justify-between items-center text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-lightText'}`}>
+        
+        {appliedCoupon && discount > 0 && (
+          <div className="flex justify-between items-center text-green-600 dark:text-green-500">
+            <span>Discount ({appliedCoupon.code}):</span>
+            <span className="font-medium">
+              -{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(discount)}
+            </span>
+          </div>
+        )}
+      </div>
+      
+      <Separator />
+
+      <div className="flex justify-between items-center text-xl font-bold text-foreground">
         <span>Total:</span>
-        <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total)}</span>
+        <span>
+          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total)}
+        </span>
       </div>
-      <div className="flex justify-center">
-        <Button size="lg" className={`w-full md:w-auto ${theme === 'dark' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-white !bg-lightText'}`} onClick={openModal}>Proceed to Checkout</Button>
+
+      <div className="pt-2">
+        <Button 
+          size="lg" 
+          className="w-full text-base font-semibold"
+          onClick={openModal}
+          disabled={cartItems.length === 0 || isApplyingCoupon}
+        >
+          Proceed to Checkout
+        </Button>
       </div>
-      <CheckoutModal isOpen={isModalOpen} onClose={closeModal} items={transformedItems} coupon={appliedCoupon ? appliedCoupon.code : null} onOrderSuccess={onOrderSuccess} />
+
+      <CheckoutModal 
+        isOpen={isModalOpen} 
+        onClose={closeModal} 
+        items={transformedItems} 
+        coupon={appliedCoupon ? appliedCoupon.code : null}
+        onOrderSuccess={onOrderSuccess} 
+      />
     </div>
   );
 };
