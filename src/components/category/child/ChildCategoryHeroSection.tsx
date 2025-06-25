@@ -8,10 +8,10 @@ interface ChildCategoryHeroSectionProps {
 const ChildCategoryHeroSection: React.FC<ChildCategoryHeroSectionProps> = ({ categoryName }) => {
   const { theme } = useTheme();
 
-  const heroImage = theme === 'dark' ? '/images/mac_hero.jpg' : '/images/mac_hero.jpg'; // Assuming mac_hero.jpg works for both or a dark version exists
+  const heroImage = theme === 'dark' ? '/images/mac_hero.jpg' : '/images/mac_hero.jpg';
 
   return (
-    <section className={`relative w-full h-[600px] flex items-center justify-center text-center overflow-hidden ${theme === 'dark' ? 'bg-gray-900' : 'bg-black'}`}>
+    <section className={`relative w-full h-[700px] flex items-center justify-center text-center overflow-hidden ${theme === 'dark' ? 'bg-gray-900' : 'bg-black'}`}>
       <img
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         src={heroImage}

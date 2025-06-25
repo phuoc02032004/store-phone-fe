@@ -21,10 +21,24 @@ import {
   accessoriesContent,
   supportContent,
 } from "@/mock/navbarContent";
+import SearchBar from "./SearchBar";
+import NotificationTable from "@/components/notification/NotificationTable";
+import { Bell } from "lucide-react";
+import { useNotifications } from "@/context/NotificationContext";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { unreadCount, fetchNotifications } = useNotifications();
+  const [, setIsDesktopNotificationOpen] = useState(false);
+
+  const handleOpenNotification = () => {
+    if (!localStorage.getItem("token")) {
+      return null;
+    } else {
+      fetchNotifications();
+    }
+  };
 
   const handleLinkClick = () => {
     setIsOpen(false);
@@ -53,6 +67,9 @@ const Navbar: React.FC = () => {
     >
       <div className="flex-grow flex justify-start">
         <Logo />
+      </div>
+      <div className="md:hidden flex-grow mx-2">
+        <SearchBar />
       </div>
       <nav className="hidden md:flex md:justify-center">
         <NavigationMenu>
@@ -120,56 +137,99 @@ const Navbar: React.FC = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      <div className="flex-grow flex justify-end">
+      <div className="hidden md:flex flex-grow justify-end">
         <NavAction onMenuClick={() => setIsOpen(true)} />
       </div>
 
-      <div className="md:hidden flex items-center space-x-4">
+      <div className="md:hidden flex items-center space-x-2">
+        <div className="relative cursor-pointer flex justify-center items-center">
+          {!localStorage.getItem("token") ? null : (
+            <Sheet
+              onOpenChange={(open) => {
+                setIsDesktopNotificationOpen(open);
+                if (open) {
+                  handleOpenNotification();
+                }
+              }}
+            >
+              <SheetTrigger asChild>
+                <div className="relative inline-block cursor-pointer">
+                  <Bell
+                    size={20}
+                    className="cursor-pointer hover:text-white transition-colors m-2 "
+                  />
+                  {unreadCount > 0 && (
+                    <span
+                      className="absolute -top-1 -right-1.5
+                       bg-red-500 text-white
+                       text-xs font-semibold
+                       w-4 h-4 rounded-full
+                       flex items-center justify-center
+                       pointer-events-none"
+                    >
+                      {unreadCount}
+                    </span>
+                  )}
+                </div>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-[250px] sm:w-[300px] bg-black text-white border-l border-gray-700"
+              >
+                <NotificationTable />
+              </SheetContent>
+            </Sheet>
+          )}
+        </div>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Menu
               size={20}
-              className="cursor-pointer hover:text-white transition-colors"
+              className="cursor-pointer hover:text-white transition-colors m-2"
             />
           </SheetTrigger>
+
           <SheetContent
             side="right"
             className="w-[250px] sm:w-[300px] bg-black text-white border-l border-gray-700"
           >
             <nav className="flex flex-col items-start space-y-4 pt-8">
+              <div className="md:hidden w-full flex justify-center">
+                <NavAction onMenuClick={handleLinkClick} />
+              </div>
               <NavLink
                 text="Mac"
-                href="/category/mac/68512098278176076b03ac00"
+                href="/category/mac/6853a003ccdd9eb4d905829a"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="iPad"
-                href="/category/ipad/68512099278176076b03ac03"
+                href="/category/ipad/6853a003ccdd9eb4d905829d"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="iPhone"
-                href="/category/iphone/68512099278176076b03ac07"
+                href="/category/iphone/6853a003ccdd9eb4d90582a0"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="Watch"
-                href="/category/watch/68512099278176076b03ac0a"
+                href="/category/watch/6853a003ccdd9eb4d90582a3"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="Vision"
-                href="/category/vision/68512099278176076b03ac0d"
+                href="/category/vision/6853a003ccdd9eb4d90582a6"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="AirPods"
-                href="/category/airpods/68512099278176076b03ac11"
+                href="/category/airpods/6853a003ccdd9eb4d90582a9"
                 onClick={handleLinkClick}
               />
               <NavLink
                 text="TV & Home"
-                href="/category/tv-home/68512099278176076b03ac15"
+                href="/category/tv-home/6853a003ccdd9eb4d90582ac"
                 onClick={handleLinkClick}
               />
               <NavLink

@@ -8,7 +8,7 @@ interface ProductImageGalleryProps {
 const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({ productName, image }) => {
   return (
     <div className="relative group">
-      <div className="aspect-[4/3] rounded-lg overflow-hidden bg-card shadow-lg m-6">
+      <div className="aspect-[4/3] rounded-lg overflow-hidden bg-card shadow-lg m-2 sm:m-4 md:m-6">
         <img
           src={image[0]}
           alt={productName}

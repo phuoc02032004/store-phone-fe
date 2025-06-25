@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ShoppingBag, User, Menu, Bell} from "lucide-react";
+import { ShoppingBag, User, Bell} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,7 +17,7 @@ interface NavActionProps {
   onMenuClick: () => void;
 }
 
-const NavAction: React.FC<NavActionProps> = ({ onMenuClick }) => {
+const NavAction: React.FC<NavActionProps> = ({}) => {
   const navigate = useNavigate();
   const itemCount = useSelector(selectCartItemCount);
   const { unreadCount, fetchNotifications } = useNotifications();
@@ -32,9 +32,12 @@ const NavAction: React.FC<NavActionProps> = ({ onMenuClick }) => {
   };
 
   return (
-    <div className="flex items-center justify-end gap-3 sm:gap-4 lg:gap-6 w-full">
-      <SearchBar/>
+    <div className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 lg:gap-6 w-full">
 
+      <div className="hidden md:block">
+          <SearchBar/>
+      </div>
+      
        {!localStorage.getItem("token") ? null : (
           <Popover
             onOpenChange={(open) => {
@@ -46,7 +49,7 @@ const NavAction: React.FC<NavActionProps> = ({ onMenuClick }) => {
               <div className="relative inline-block cursor-pointer">
                 <Bell
                   size={24}
-                  className="w-5 h-5 text-white sm:w-6 sm:h-6 hover:text-gray-300 transition-all hover:scale-110"
+                  className="w-5 h-5 text-white sm:w-6 sm:h-6 hover:text-gray-300 transition-all hover:scale-110 hidden md:block"
                 />
                 {unreadCount > 0 && (
                   <span
@@ -112,7 +115,6 @@ const NavAction: React.FC<NavActionProps> = ({ onMenuClick }) => {
           </Button>
         </div>
       )}
-      <Menu size={20} className="cursor-pointer hover:text-white transition-colors md:hidden" onClick={onMenuClick} />
     </div>
   );
 };

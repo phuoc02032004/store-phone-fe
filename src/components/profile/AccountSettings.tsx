@@ -46,13 +46,13 @@ const AccountSettings: React.FC = () => {
               variant="default" 
               size="sm"
               className="
-              font-medium min-w-[100px]
+              font-medium w-full sm:w-auto
               bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
               backdrop-blur-[10px]
               rounded-[20px]
               border border-[rgba(255,255,255,0.18)]
               shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
-              " 
+              "
             >
               Change
             </Button>
@@ -90,7 +90,7 @@ const AccountSettings: React.FC = () => {
               size="sm"
               onClick={handleLogout}
               className="
-              font-medium min-w-[100px]
+              font-medium w-full sm:w-auto
               bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
               backdrop-blur-[10px]
               rounded-[20px]

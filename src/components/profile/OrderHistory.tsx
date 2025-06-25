@@ -217,7 +217,7 @@ const OrderHistory: React.FC = () => {
       <div className="space-y-4">
         {currentOrders.map((order: Order) => (
           <Card key={order._id} className="mb-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden">
-            <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between p-3 sm:p-4 bg-muted/30 dark:bg-muted/20 gap-y-2">
+            <CardHeader className="flex flex-col md:flex-row items-center justify-between p-3 sm:p-4 bg-muted/30 dark:bg-muted/20 gap-y-2">
               <div className="flex items-center gap-x-3">
                 <FileText className="w-4 h-4 text-primary" />
                 <CardTitle className="text-base font-semibold text-foreground">
@@ -246,12 +246,12 @@ const OrderHistory: React.FC = () => {
                 </span>
               </div>
             </CardContent>
-            <CardFooter className="p-3 sm:p-4 bg-muted/30 dark:bg-muted/20 flex justify-end">
+            <CardFooter className="p-3 sm:p-4 bg-muted/30 dark:bg-muted/20 flex justify-center md:justify-end">
               <Button
                 variant="default"
                 size="sm"
                 onClick={() => openModal(order._id)}
-                className="font-medium text-xs"
+                className="font-medium text-xs w-full md:w-auto"
               >
                 <Info className="w-3 h-3 mr-2" />
                 View Details

@@ -52,7 +52,7 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
   return (
     <section className="bg-background py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[54px] font-bold text-foreground leading-[1.108] tracking-[-0.005em] mb-10 md:mb-12">
+        <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-foreground leading-[1.108] tracking-[-0.005em] mb-10 md:mb-12">
           {get_to_know.title}
         </h2>
         <Carousel
@@ -68,7 +68,7 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
                 className="pl-4 md:pl-5 basis-[80%] sm:basis-[45%] md:basis-[31%] lg:basis-[24%]"
               >
                 <div
-                  className="relative rounded-[28px] overflow-hidden group h-[480px] md:h-[500px] w-full"
+                  className="relative rounded-[28px] overflow-hidden group h-[400px] sm:h-[450px] md:h-[500px] w-full"
                   style={{ backgroundColor: imageBackgroundMap[product.imageSrc]?.bgColor || 'transparent' }}
                 >
                   <img
@@ -85,12 +85,12 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
                   >
                     <div>
                       <p
-                        className="text-[17px] font-semibold uppercase leading-[1.235] tracking-[-0.022em] text-muted-foreground"
+                        className="text-base sm:text-lg font-semibold uppercase leading-[1.235] tracking-[-0.022em] text-muted-foreground"
                       >
                         {product.title}
                       </p>
                       <h3
-                        className="mt-1 text-[27px] font-bold leading-[1.18] tracking-[0.007em] text-foreground"
+                        className="mt-1 text-xl sm:text-2xl lg:text-[27px] font-bold leading-[1.18] tracking-[0.007em] text-foreground"
                       >
                         {product.description}
                       </h3>
@@ -108,18 +108,18 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-end items-center mt-6 md:mt-8 -space-x-20 pr-1 md:pr-0">
+          <div className="flex justify-end items-center mt-2 md:mt-2 -space-x-20 p-10 md:pr-0 ">
             <CarouselPrevious
               className="relative w-[50px] h-[50px] rounded-[36px] bg-secondary/64 hover:bg-secondary/80 text-foreground/56
                          disabled:bg-secondary/30 disabled:text-foreground/30 disabled:cursor-not-allowed
-                         border-none shadow-sm transition-colors
-                         focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                         border-none shadow-xl transition-colors
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
             />
             <CarouselNext
               className="relative w-[50px] h-[50px] rounded-[36px] bg-secondary/64 hover:bg-secondary/80 text-foreground/56
                          disabled:bg-secondary/30 disabled:text-foreground/30 disabled:cursor-not-allowed
-                         border-none shadow-sm transition-colors
-                         focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                         border-none shadow-xl transition-colors
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
             />
           </div>
         </Carousel>
@@ -129,3 +129,4 @@ const CategoryGetToKnowSection: React.FC<CategoryGetToKnowSectionProps> = ({ get
 };
 
 export default CategoryGetToKnowSection;
+

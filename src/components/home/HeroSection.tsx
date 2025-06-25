@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full h-[500px] md:h-[700px] lg:h-[800px] flex items-end justify-center text-center bg-black text-white overflow-hidden">
+    <section className="relative w-full h-[700px] md:h-[700px] flex items-end justify-center text-center bg-black text-white overflow-hidden">
       <img
         src="/images/hero_static__f5zgxhmj6geq_large.jpg"
         alt="Introducing iPhone 16 Pro and iPhone 16"
-        className="absolute inset-0 w-full h-full object-contain"
+        className="absolute inset-0 w-full h-full md:object-contain object-cover"
       />
       <div className="relative z-10 p-4 pb-10 md:pb-20 max-w-4xl mx-auto">
         <h2 className="text-xl md:text-[28px] lg:text-3xl leading-[1.2] font-bold mb-4 text-appleLightGray rounded-lg

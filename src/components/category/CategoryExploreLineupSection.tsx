@@ -65,7 +65,7 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
   }, [activeTab, groupedProducts]);
 
   return (
-    <section className="bg-background py-20 md:py-24 text-foreground p-10 ">
+    <section className="bg-background py-20 md:py-24 text-foreground p-4 sm:p-6 md:p-10">
       <div className=" container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-baseline mb-10 md:mb-14">
           <h2 className="text-[32px] md:text-[40px] font-bold">
@@ -82,22 +82,22 @@ const CategoryExploreLineupSection: React.FC<CategoryExploreLineupSectionProps> 
         </div>
 
         <div className="mb-12 md:mb-16">
-          <div className="flex space-x-1 bg-muted p-[3px] rounded-full w-max">
+          <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto space-x-1 bg-muted p-[3px] rounded-full w-full sm:w-max">
             {tabs.map((tabName) => (
               <Button
                 key={tabName}
                 onClick={() => setActiveTab(tabName)}
-               className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out
+                className={`px-4 py-[5px] rounded-full text-[13px] font-normal transition-all duration-200 ease-in-out whitespace-nowrap
                   ${activeTab === tabName
                     ? `${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white text-lightText'} shadow-sm`
-                    : `${theme === 'dark' ? 'text-gray-400 hover:bg-gray-700/60' : 'text-gray-500 hover:bg-gray-300/60'}`
-                  }`}
+                    : `${theme === 'dark' ? 'text-gray-400 hover:bg-gray-700/60' : 'text-gray-500 hover:bg-gray-300/60'}`}`}
               >
                 {tabName}
               </Button>
             ))}
           </div>
         </div>
+
 
         {loading ? (
           <LoadingSpinner text="Loading products..." />

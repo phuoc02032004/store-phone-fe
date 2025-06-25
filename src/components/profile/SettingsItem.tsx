@@ -8,8 +8,8 @@ interface SettingsItemProps {
 }
 
 const SettingsItem: React.FC<SettingsItemProps> = ({ icon, title, description, action }) => (
-  <div className="flex items-start sm:items-center justify-between py-4 min-h-[76px]"> 
-    <div className="flex items-start sm:items-center space-x-3 sm:space-x-4">
+  <div className="flex flex-col sm:flex-row items-center justify-between py-4 min-h-[76px] space-y-2 sm:space-y-0">
+    <div className="flex items-center space-x-3 sm:space-x-4 text-center sm:text-left">
       <div className="p-2.5 bg-muted/60 dark:bg-muted/40 rounded-lg flex-shrink-0 mt-1 sm:mt-0">
         {icon}
       </div>
@@ -18,7 +18,7 @@ const SettingsItem: React.FC<SettingsItemProps> = ({ icon, title, description, a
         <p className="text-sm text-muted-foreground leading-tight">{description}</p>
       </div>
     </div>
-    <div className="flex-shrink-0 ml-2 sm:ml-4 self-center"> 
+    <div className="flex-shrink-0 ml-0 sm:ml-4 self-center w-full sm:w-auto">
       {action}
     </div>
   </div>

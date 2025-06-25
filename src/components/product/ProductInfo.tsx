@@ -60,9 +60,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
   const { theme } = useTheme();
 
   return (
-    <div className={`space-y-6 m-4 sm:m-6 shadow-2xl p-4 sm:p-6 md:p-10 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white'}`}>
+    <div className={`space-y-6 sm:m-6 shadow-2xl p-4 sm:p-6 md:p-10 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white'}`}>
       <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
           <div className={`text-3xl sm:text-4xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
             {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(displayPrice || 0)}
           </div>
@@ -71,7 +71,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
           </Badge>
         </div>
  
-        <div className={`flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+        <div className={`flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           <div className="flex items-center">
             <span className="mr-1 text-yellow-500">★</span>
             4.8 (120 reviews)
@@ -84,8 +84,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
  
       {availableColors.length > 0 && (
         <div className="space-y-2">
-          <span className={`font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Color:</span>
-          <div className="flex flex-wrap gap-2">
+          <span className={`font-medium text-center ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Color:</span>
+          <div className="flex flex-wrap gap-2 justify-center">
             {availableColors.map(color => (
               <Button
                 key={color}
@@ -106,8 +106,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
  
       {selectedColor && availableCapacities.length > 0 && (
         <div className="space-y-2">
-          <span className={`font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Capacity:</span>
-          <div className="flex flex-wrap gap-2">
+          <span className={`font-medium text-center ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Capacity:</span>
+          <div className="flex flex-wrap gap-2 justify-center">
             {availableCapacities.map(capacity => (
               <Button
                 key={capacity}
@@ -149,8 +149,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
       <Separator className={`${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'}`} />
  
       {/* Quantity Selector */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-        <span className={`font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Quantity:</span>
+      <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+        <span className={`font-medium text-center ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>Quantity:</span>
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
@@ -173,7 +173,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product, quantity, handleQuan
             size="icon"
             onClick={() => handleQuantityChange(quantity + 1)}
             className={`bg-transparent border-2 ${theme === 'dark' ? 'border-gray-600 text-white' : 'border-gray-500'}`}
- 
+
           >
             +
           </Button>

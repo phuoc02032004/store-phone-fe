@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
 import { useNotifications } from "@/context/NotificationContext";
-import { useTheme } from "@/context/ThemeContext";
+// import { useTheme } from "@/context/ThemeContext"; // Removed, relying on Tailwind dark mode
 import type { Notify } from "@/types/Notify";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,116 +13,143 @@ import {
   FaCheckCircle,
   FaExclamationTriangle,
 } from "react-icons/fa";
+import { BellRing, CheckCheck } from "lucide-react"; // Alternative icons from Lucide
 
 const NotificationTable: React.FC = () => {
   const { notifications, markNotificationAsRead, markAllNotificationsAsRead } = useNotifications();
-  const { theme } = useTheme();
+  // const { theme } = useTheme(); // Removed
 
-  const [activeTab, setActiveTab] = React.useState<"all" | "unread">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "unread">("all");
 
   const filteredNotifications =
     activeTab === "all" ? notifications : notifications.filter((n) => !n.read);
 
+  const getNotificationIcon = (title: string) => {
+    // Enhanced icon colors for better dark mode compatibility
+    if (title.toLowerCase().includes("order")) {
+      return <FaShoppingCart className="text-sky-500 dark:text-sky-400 text-lg" />;
+    }
+    if (title.toLowerCase().includes("promotion")) {
+      return <FaTag className="text-emerald-500 dark:text-emerald-400 text-lg" />;
+    }
+    if (title.toLowerCase().includes("system")) {
+      return <FaInfoCircle className="text-amber-500 dark:text-amber-400 text-lg" />;
+    }
+    if (title.toLowerCase().includes("success")) {
+      return <FaCheckCircle className="text-lime-600 dark:text-lime-500 text-lg" />;
+    }
+    if (title.toLowerCase().includes("error") || title.toLowerCase().includes("warning")) {
+      return <FaExclamationTriangle className="text-red-500 dark:text-red-400 text-lg" />;
+    }
+    return <FaBell className="text-slate-500 dark:text-slate-400 text-lg" />;
+  };
+
   return (
-    <div className={`w-full max-w-md mx-auto shadow-xl rounded-lg overflow-hidden border ${theme === 'dark' ? 'bg-gray-800 text-white border-gray-700' : 'bg-card text-card-foreground border-border'}`}>
-      <div className={`text-3xl font-bold text-left pl-4 pt-3 pb-2 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-border'}`}>
-        Notifications
+    <div className="shadow-lg rounded-lg overflow-hidden border border-border bg-card text-card-foreground">
+      {/* Header Title */}
+      <div className="px-4 sm:px-6 py-4 border-b border-border">
+        <h2 className="text-xl sm:text-2xl font-semibold flex items-center">
+          <BellRing className="w-6 h-6 mr-2 text-primary" />
+          Notifications
+        </h2>
       </div>
-      <div className="p-4 flex items-center justify-between">
-        <div className="flex space-x-2">
+
+      {/* Tabs and Actions */}
+      <div className="px-4 sm:px-6 pt-4 pb-3 border-b border-border 
+                      flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:justify-between">
+        <div className="flex space-x-2 w-full sm:w-auto">
           <Button
             variant={activeTab === "all" ? "default" : "outline"}
             onClick={() => setActiveTab("all")}
-            className={`rounded-full px-4 py-2 text-sm ${activeTab === "all" ? "" : (theme === 'dark' ? 'text-gray-300' : 'text-lightText')}`}
+            className="flex-1 sm:flex-none text-sm rounded-md" // rounded-md instead of full for a more common look
           >
-            All
+            All ({notifications.length})
           </Button>
           <Button
             variant={activeTab === "unread" ? "default" : "outline"}
             onClick={() => setActiveTab("unread")}
-            className={`rounded-full px-4 py-2 text-sm ${activeTab === "unread" ? "" : (theme === 'dark' ? 'text-gray-300' : 'text-lightText')}`}
+            className="flex-1 sm:flex-none text-sm rounded-md"
           >
-            Unread
+            Unread ({notifications.filter(n => !n.read).length})
           </Button>
         </div>
-        <Button
-          variant="ghost"
-          onClick={markAllNotificationsAsRead}
-          className={`rounded-full px-4 py-2 text-sm hover:bg-primary/10 ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-lightText'}`}
-        >
-          Mark All as Read
-        </Button>
+        {notifications.some(n => !n.read) && (
+          <Button
+            variant="ghost" // Changed to ghost for less prominence
+            size="sm"
+            onClick={markAllNotificationsAsRead}
+            className="w-full sm:w-auto text-sm text-muted-foreground hover:text-primary rounded-md"
+          >
+            <CheckCheck className="w-4 h-4 mr-1.5" />
+            Mark All as Read
+          </Button>
+        )}
       </div>
 
-      <div className={`max-h-[500px] overflow-y-auto custom-scrollbar divide-y ${theme === 'dark' ? 'divide-gray-700' : 'divide-border'}`}>
+      {/* Notification List */}
+      <div className="max-h-[400px] sm:max-h-[500px] overflow-y-auto divide-y divide-border">
         {filteredNotifications.length === 0 ? (
-          <div className="flex items-center justify-center h-40">
-            <p className={`text-center py-4 text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`}>
-              You're all caught up! No new notifications.
+          <div className="flex flex-col items-center justify-center h-40 p-4 text-center">
+            <FaBell className="w-12 h-12 text-muted-foreground/70 mb-3" />
+            <p className="text-lg font-medium text-muted-foreground">
+              {activeTab === 'unread' ? "No unread notifications" : "You're all caught up!"}
+            </p>
+            <p className="text-sm text-muted-foreground/80">
+              {activeTab === 'unread' ? "Looks like you've read everything." : "No new notifications at the moment."}
             </p>
           </div>
         ) : (
           <div>
-            {filteredNotifications.map((notification: Notify) => {
-              const getNotificationIcon = (title: string) => {
-                if (title.includes("Order")) {
-                  return <FaShoppingCart className="text-blue-500 text-xl" />;
-                }
-                if (title.includes("Promotion")) {
-                  return <FaTag className="text-green-500 text-xl" />;
-                }
-                if (title.includes("System")) {
-                  return <FaInfoCircle className="text-yellow-500 text-xl" />;
-                }
-                if (title.includes("Success")) {
-                  return <FaCheckCircle className="text-green-500 text-xl" />;
-                }
-                if (title.includes("Error")) {
-                  return <FaExclamationTriangle className="text-red-500 text-xl" />;
-                }
-                return <FaBell className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} text-xl`} />; // Default icon
-              };
-
-              return (
-                <div
-                  key={notification._id}
-                  className={`
-                    flex items-start p-4 cursor-pointer
-                    transition-colors duration-200
-                    ${
-                      !notification.read
-                        ? "bg-blue-50 dark:bg-blue-900/20"
-                        : "hover:bg-muted/50"
-                    }
-                  `}
-                  onClick={() =>
-                    notification._id &&
-                    markNotificationAsRead(notification._id.toString())
+            {filteredNotifications.map((notification: Notify) => (
+              <div
+                key={notification._id}
+                className={`
+                  flex items-start gap-x-3 p-3 sm:p-4 cursor-pointer transition-colors duration-150
+                  ${
+                    !notification.read
+                      ? "bg-primary/5 hover:bg-primary/10 dark:bg-primary/10 dark:hover:bg-primary/20" // Subtle primary highlight for unread
+                      : "hover:bg-muted/50"
                   }
-                >
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full mr-3 flex items-center justify-center ${theme === 'dark' ? 'bg-gray-700' : 'bg-muted'}`}>
-                    {getNotificationIcon(notification.title)}
-                  </div>
+                `}
+                onClick={() =>
+                  notification._id &&
+                  markNotificationAsRead(notification._id.toString())
+                }
+              >
+                {/* Icon Container */}
+                <div className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-muted`}>
+                  {getNotificationIcon(notification.title)}
+                </div>
 
-                <div className="flex flex-col text-left flex-grow">
+                {/* Text Content */}
+                <div className="flex-grow pt-0.5 sm:pt-0">
                   <p
-                    className={`text-base ${
-                      !notification.read
-                        ? `font-semibold ${theme === 'dark' ? 'text-white' : 'text-foreground'}`
-                        : `${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`
-                    }`}
+                    className={`text-sm leading-snug
+                      ${
+                        !notification.read
+                          ? "font-semibold text-foreground"
+                          : "font-medium text-muted-foreground"
+                      }`}
                   >
-                    {notification.title}:{" "}
-                    <span className="font-normal text-sm">
-                      {notification.body}
-                    </span>
+                    {notification.title}
                   </p>
                   <p
-                    className={`text-xs mt-1 ${
-                      !notification.read
-                        ? "text-blue-600 dark:text-blue-400"
-                        : `${theme === 'dark' ? 'text-gray-400' : 'text-muted-foreground'}`
-                    }`}
+                     className={`text-sm mt-0.5 leading-snug
+                      ${
+                        !notification.read
+                          ? "text-foreground/90" // Slightly less prominent than title for unread
+                          : "text-muted-foreground/80"
+                      }`}
+                  >
+                    {notification.body}
+                  </p>
+                  <p
+                    className={`text-xs mt-1.5
+                      ${
+                        !notification.read
+                          ? "text-primary font-medium"
+                          : "text-muted-foreground"
+                      }`}
                   >
                     {notification.createdAt
                       ? formatDistanceToNow(new Date(notification.createdAt), {
@@ -133,12 +160,12 @@ const NotificationTable: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Unread Dot Indicator */}
                 {!notification.read && (
-                  <div className="flex-shrink-0 w-2.5 h-2.5 bg-blue-500 rounded-full ml-3 mt-1.5"></div>
+                  <div className="flex-shrink-0 w-2.5 h-2.5 bg-primary rounded-full ml-auto mt-1 sm:mt-1.5"></div>
                 )}
               </div>
-              );
-            })}
+            ))}
           </div>
         )}
       </div>

@@ -9,11 +9,13 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { useTheme } from "@/context/ThemeContext";
 
 const SearchBar: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const { theme } = useTheme();
 
   const handleSearch = async (value: string) => {
     setSearchTerm(value);
@@ -48,7 +50,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <div className="w-full flex justify-center md:justify-start relative">
-      <Command>
+      <Command className="w-full md:max-w-md">
         <CommandInput
           placeholder="Search products..."
           className="relative"
@@ -58,7 +60,13 @@ const SearchBar: React.FC = () => {
           value={searchTerm}
         />
         {isSearchOpen && (
-          <CommandList className="absolute top-16 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-[400px] overflow-y-auto z-10 scrollbar-hide">
+          <CommandList
+            className={`absolute top-16 w-full border rounded-md shadow-lg max-h-[400px] overflow-y-auto z-10 scrollbar-hide ${
+              theme === "dark"
+                ? "bg-gray-800 border-gray-700 text-white"
+                : "bg-white border-gray-200 text-black"
+            }`}
+          >
             <CommandEmpty>No results found.</CommandEmpty>
             {products.length > 0 ? (
               <CommandGroup heading="Products">
