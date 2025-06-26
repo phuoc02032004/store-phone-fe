@@ -90,7 +90,10 @@ const RegisterForm: React.FC = () => {
                       <Input
                         placeholder="Username"
                         disabled={loading}
-                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        className="pr-10 rounded-lg border border-input bg-background text-foreground
+                                   focus:border-primary focus:ring-primary
+                                   dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                   dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                         {...field}
                       />
                     </div>
@@ -110,7 +113,10 @@ const RegisterForm: React.FC = () => {
                         placeholder="Email or Phone Number"
                         type="email"
                         disabled={loading}
-                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        className="pr-10 rounded-lg border border-input bg-background text-foreground
+                                   focus:border-primary focus:ring-primary
+                                   dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                   dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                         {...field}
                       />
                     </div>
@@ -129,7 +135,10 @@ const RegisterForm: React.FC = () => {
                       type="password"
                       placeholder="Password"
                       disabled={loading}
-                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="rounded-lg border border-input bg-background text-foreground
+                                 focus:border-primary focus:ring-primary
+                                 dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                 dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                       {...field}
                     />
                   </FormControl>
@@ -147,7 +156,10 @@ const RegisterForm: React.FC = () => {
                       type="password"
                       placeholder="Confirm Password"
                       disabled={loading}
-                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="rounded-lg border border-input bg-background text-foreground
+                                 focus:border-primary focus:ring-primary
+                                 dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                 dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                       {...field}
                     />
                   </FormControl>
@@ -160,7 +172,12 @@ const RegisterForm: React.FC = () => {
             )}
             <Button
               type="submit"
-              className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-lg py-6 mt-6 text-2xl font-bold"
+              className="w-full bg-primary text-white hover:bg-primary/90 rounded-lg py-6 text-2xl font-bold
+                         dark:bg-primary-dark dark:text-primary-foreground-dark dark:hover:bg-primary-dark/90
+                         bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
               disabled={loading}
             >
               {loading ? 'Registering...' : 'Register'}
@@ -168,9 +185,11 @@ const RegisterForm: React.FC = () => {
           </form>
         </Form>
       )}
-      <div className="mt-8 text-center text-sm text-gray-600">
+      <div className="mt-8 text-center text-sm text-white
+                      dark:text-muted-foreground-dark">
         <span>Already have an Apple Account? </span>
-        <a href="/login" className="text-blue-600 hover:underline">
+        <a href="/login" className="text-blue-300 hover:underline
+                                      dark:text-primary-dark">
           Sign in to Apple Store <span className="ml-1">{'>'}</span>
         </a>
       </div>
@@ -179,7 +198,8 @@ const RegisterForm: React.FC = () => {
           <button
             type="button"
             onClick={() => setShowVerifyForm(false)}
-            className="text-white hover:underline"
+            className="text-primary hover:underline
+                       dark:text-primary-dark"
           >
             Back to Register
           </button>

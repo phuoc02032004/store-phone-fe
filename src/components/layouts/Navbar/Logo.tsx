@@ -13,7 +13,7 @@ const Logo: React.FC = () => {
             <img
             src="/images/apple_logo.svg"
             alt="Apple Logo"
-            className="h-8 sm:h-10 md:h-12 w-8 sm:w-12 md:w-16 transition-transform hover:scale-105"
+            className="h-10 sm:h-10 md:h-12 w-8 sm:w-12 md:w-16 transition-transform hover:scale-105"
              />
         </div>
         

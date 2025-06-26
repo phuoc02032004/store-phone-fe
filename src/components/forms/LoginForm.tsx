@@ -66,13 +66,13 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="w-[90%] sm:w-[400px] mx-auto
-     bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+    <div className="w-[90%] sm:w-[400px] mx-auto m-10 p-8
+      bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
             backdrop-blur-[10px]
             rounded-[20px]
             border border-[rgba(255,255,255,0.18)]
             shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
-            m-10 p-8">
+           ">
       {showForgotPassword ? (
         <ForgotPasswordForm onSuccess={handleForgotPasswordSuccess} />
       ) : showResetPassword ? (
@@ -95,7 +95,10 @@ const LoginForm: React.FC = () => {
                         placeholder="Email or Phone Number"
                         type="email"
                         disabled={loading}
-                        className="pr-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        className="pr-10 rounded-lg border border-input bg-background text-foreground
+                                   focus:border-primary focus:ring-primary
+                                   dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                   dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                         {...field}
                       />
                     </div>
@@ -116,13 +119,17 @@ const LoginForm: React.FC = () => {
                       type="password"
                       placeholder="Password"
                       disabled={loading}
-                      className="rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="rounded-lg border border-input bg-background text-foreground
+                                 focus:border-primary focus:ring-primary
+                                 dark:border-input-dark dark:bg-background-dark dark:text-foreground-dark
+                                 dark:focus:border-primary-dark dark:focus:ring-primary-dark"
                       {...field}
                     />
                   </FormControl>
                   <div
                     onClick={() => setShowForgotPassword(true)}
-                    className="text-blue-600 hover:underline text-sm text-right block mt-2 cursor-pointer"
+                    className="text-white hover:underline text-sm text-right block mt-2 cursor-pointer
+                               dark:text-primary-dark"
                   >
                     Forgot password?
                   </div>
@@ -131,11 +138,16 @@ const LoginForm: React.FC = () => {
               )}
             />
             {error && (
-              <div className="text-red-500 text-sm mb-4">{error}</div>
+              <div className="text-destructive text-sm mb-4">{error}</div>
             )}
             <Button
               type="submit"
-              className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-lg py-6 mt-6 text-2xl font-bold"
+              className="w-full bg-primary text-white hover:bg-primary/90 rounded-lg py-6 text-2xl font-bold
+                         dark:bg-primary-dark dark:text-primary-foreground-dark dark:hover:bg-primary-dark/90
+                         bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
               disabled={loading}
             >
               {loading ? 'Logging in...' : 'Login'}
@@ -144,9 +156,11 @@ const LoginForm: React.FC = () => {
         </Form>
       )}
 
-      <div className="mt-8 text-center text-sm text-gray-600">
+      <div className="mt-8 text-center text-sm text-white
+                      dark:text-muted-foreground-dark">
         <span>Don't have an Apple Account? </span>
-        <a href="/register" className="text-blue-600 hover:underline">
+        <a href="/register" className="text-blue-300 hover:underline
+                                      dark:text-primary-dark">
           Create Your Apple Account <span className="ml-1">{'>'}</span>
         </a>
       </div>
@@ -158,7 +172,13 @@ const LoginForm: React.FC = () => {
               setShowForgotPassword(false);
               setShowResetPassword(false);
             }}
-            className="text-white hover:underline"
+            className="text-white hover:underline
+                       dark:text-primary-dark
+                       bg-gradient-to-tr from-[rgba(255,255,255,0.1)] to-[rgba(255,255,255,0)]
+            backdrop-blur-[10px]
+            rounded-[20px]
+            border border-[rgba(255,255,255,0.18)]
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
           >
             Back to Login
           </button>

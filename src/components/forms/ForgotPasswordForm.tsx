@@ -62,7 +62,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSuccess }) =>
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="m@example.com" {...field} />
+                <Input placeholder="admin@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
